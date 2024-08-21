@@ -1,0 +1,365 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+				:root {
+					--background: 0 0% 100%;
+                    --foreground: 240 10% 3.9%;
+                    --card: 0 0% 100%;
+                    --card-foreground: 240 10% 3.9%;
+                    --popover: 0 0% 100%;
+                    --popover-foreground: 240 10% 3.9%;
+                    --primary: 240 5.9% 10%;
+                    --primary-foreground: 0 0% 98%;
+                    --secondary: 240 4.8% 95.9%;
+                    --secondary-foreground: 240 5.9% 10%;
+                    --muted: 240 4.8% 95.9%;
+                    --muted-foreground: 240 3.8% 46.1%;
+                    --accent: 240 4.8% 95.9%;
+                    --accent-foreground: 240 5.9% 10%;
+                    --destructive: 0 84.2% 60.2%;
+                    --destructive-foreground: 0 0% 98%;
+                    --border: 240 5.9% 90%;
+                    --input: 240 5.9% 90%;
+                    --ring: 240 5.9% 10%;
+                    --radius: 0.5rem;
+				}
+				.dark {
+					--background: 240 10% 3.9%;
+                    --foreground: 0 0% 98%;
+                    --card: 240 10% 3.9%;
+                    --card-foreground: 0 0% 98%;
+                    --popover: 240 10% 3.9%;
+                    --popover-foreground: 0 0% 98%;
+                    --primary: 0 0% 98%;
+                    --primary-foreground: 240 5.9% 10%;
+                    --secondary: 240 3.7% 15.9%;
+                    --secondary-foreground: 0 0% 98%;
+                    --muted: 240 3.7% 15.9%;
+                    --muted-foreground: 240 5% 64.9%;
+                    --accent: 240 3.7% 15.9%;
+                    --accent-foreground: 0 0% 98%;
+                    --destructive: 0 62.8% 30.6%;
+                    --destructive-foreground: 0 0% 98%;
+                    --border: 240 3.7% 15.9%;
+                    --input: 240 3.7% 15.9%;
+                    --ring: 240 4.9% 83.9%;
+				}
+		        }
+	</style>
+</head>
+
+<body>
+    <div id="sidebar-container">
+    </div>
+
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto flex p-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+            <!-- Add Customer Form -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-3xl font-bold text-gray-800 mb-6">Add Customer</p>
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Name</label>
+                    <div class="flex">
+                        <input id="companyName" type="text" placeholder="Enter Company Name" class="border border-gray-300 rounded-l-md p-3 flex-1" />
+                        <button class="bg-blue-600 text-white rounded-r-md px-4 hover:bg-blue-700 transition">Check if exists</button>
+                    </div>
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN</label>
+                    <input id="gstin" type="text" placeholder="Enter GSTIN" class="border border-gray-300 rounded-md p-3 w-full" />
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Address</label>
+                    <input id="addressLine1" type="text" placeholder="Line 1" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                    <input id="addressLine2" type="text" placeholder="Line 2" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                    <input id="addressLine3" type="text" placeholder="Line 3" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number</label>
+                    <input id="companyPhone" type="text" placeholder="Enter Phone Number" class="border border-gray-300 rounded-md p-3 w-full" />
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Website</label>
+                    <input id="companyWebsite" type="text" placeholder="Enter Website URL" class="border border-gray-300 rounded-md p-3 w-full" />
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">City</label>
+                    <input id="city" type="text" placeholder="Enter City" class="border border-gray-300 rounded-md p-3 w-full" />
+                </div>
+        
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Industry</label>
+                    <input id="industry" type="text" placeholder="Enter Industry" class="border border-gray-300 rounded-md p-3 w-full" />
+                </div>
+            </div>
+        
+            <!-- Company Card -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <!-- Add Contact Person -->
+                <div class="mb-5">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Contact Person</h2>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Name</label>
+                        <input id="contactName" type="text" placeholder="Enter Name" class="border border-gray-300 rounded-md p-3 w-full" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Phone</label>
+                        <input id="contactPhone" type="text" placeholder="Enter Phone" class="border border-gray-300 rounded-md p-3 w-full" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Email</label>
+                        <input id="contactEmail" type="text" placeholder="Enter Email" class="border border-gray-300 rounded-md p-3 w-full" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Role</label>
+                        <input id="contactRole" type="text" placeholder="Enter Role" class="border border-gray-300 rounded-md p-3 w-full" />
+                    </div>
+                    <button id="addContact" class="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition">Add Contact</button>
+                    <p id="error-message" class="text-red-600 mt-2 hidden">Please add at least one contact person.</p>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Company Card</h2>
+        
+                <div id="companyDetails" class="mb-6">
+                    <p id="cardCompanyName" class="text-lg font-semibold text-gray-800"></p>
+                    <p id="cardAddress" class="text-sm text-gray-600"></p>
+                    <p id="cardGstin" class="text-sm text-gray-600"></p>
+                    <p id="cardWebsite" class="text-sm text-gray-600"></p>
+                    <p id="cardIndustry" class="text-sm text-gray-600"></p>
+                    <p id="cardCity" class="text-sm text-gray-600"></p>
+                </div>
+        
+                <div id="contactList" class="mb-6">
+                    <!-- Contacts will be dynamically inserted here -->
+                </div>
+        
+                <div class="flex space-x-4 mb-6">
+                    <button id="saveButton" class="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-700 transition">Save</button>
+                    <button class="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700 transition">Discard Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script>
+    const sidebarContainer = document.getElementById("sidebar-container");
+    const companyNameInput = document.getElementById('companyName');
+    const gstinInput = document.getElementById('gstin');
+    const addressLine1Input = document.getElementById('addressLine1');
+    const addressLine2Input = document.getElementById('addressLine2');
+    const addressLine3Input = document.getElementById('addressLine3');
+    const companyPhoneInput = document.getElementById('companyPhone');
+    const companyWebsiteInput = document.getElementById('companyWebsite');
+    const cityInput = document.getElementById('city');
+    const industryInput = document.getElementById('industry');
+
+    const cardCompanyName = document.getElementById('cardCompanyName');
+    const cardAddress = document.getElementById('cardAddress');
+    const cardGstin = document.getElementById('cardGstin');
+    const cardWebsite = document.getElementById('cardWebsite');
+    const cardIndustry = document.getElementById('cardIndustry');
+    const cardCity = document.getElementById('cardCity');
+
+    fetch("./Sidebar.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.text();
+        })
+        .then(html => {
+            sidebarContainer.innerHTML = html;
+
+            // Extract and execute scripts
+            const scripts = sidebarContainer.querySelectorAll("script");
+            scripts.forEach(script => {
+                const newScript = document.createElement("script");
+                newScript.text = script.innerHTML;
+                document.body.appendChild(newScript);
+            });
+        })
+        .catch(error => {
+            console.error("There was a problem with the fetch operation:", error);
+        });
+
+        const contactList = document.getElementById('contactList');
+    const addContactBtn = document.getElementById('addContact');
+    const saveButton = document.getElementById('saveButton');
+    const errorMessage = document.getElementById('error-message');
+
+    let contactCount = 0;
+
+    addContactBtn.addEventListener('click', () => {
+        const name = document.getElementById('contactName').value;
+        const phone = document.getElementById('contactPhone').value;
+        const email = document.getElementById('contactEmail').value;
+        const role = document.getElementById('contactRole').value;
+
+        if (name && phone && email && role) {
+            contactCount++;
+            errorMessage.classList.add('hidden');
+
+            const contactDiv = document.createElement('div');
+            contactDiv.className = 'mb-4';
+            contactDiv.innerHTML = `
+                <h3 class="font-semibold text-gray-800 mb-1">Contact Person ${contactCount}</h3>
+                <p class="text-sm text-gray-600">${phone}</p>
+                <p class="text-sm text-gray-600">${email}</p>
+                <p class="text-sm text-gray-600">${role}</p>
+            `;
+
+            contactList.appendChild(contactDiv);
+
+            // Clear input fields
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('contactEmail').value = '';
+            document.getElementById('contactRole').value = '';
+        }
+    });
+
+    saveButton.addEventListener('click', (e) => {
+        if (contactCount === 0) {
+            e.preventDefault();
+            errorMessage.classList.remove('hidden');
+        }
+    });
+
+
+    companyNameInput.addEventListener('input', () => {
+        cardCompanyName.textContent = companyNameInput.value || 'Company Name';
+    });
+
+    gstinInput.addEventListener('input', () => {
+        cardGstin.textContent = gstinInput.value ? `GSTIN: ${gstinInput.value}` : '';
+    });
+
+    addressLine1Input.addEventListener('input', updateAddress);
+    addressLine2Input.addEventListener('input', updateAddress);
+    addressLine3Input.addEventListener('input', updateAddress);
+
+    function updateAddress() {
+        const address = `${addressLine1Input.value || ''} ${addressLine2Input.value || ''} ${addressLine3Input.value || ''}`.trim();
+        cardAddress.textContent = address ? address : '';
+    }
+
+    companyPhoneInput.addEventListener('input', () => {
+        cardCity.textContent = companyPhoneInput.value ? `Phone: ${companyPhoneInput.value}` : '';
+    });
+
+    companyWebsiteInput.addEventListener('input', () => {
+        cardWebsite.innerHTML = companyWebsiteInput.value ? `Website: <a href="${companyWebsiteInput.value}" class="text-blue-600 hover:underline">${companyWebsiteInput.value}</a>` : '';
+    });
+
+    cityInput.addEventListener('input', () => {
+        cardCity.textContent = cityInput.value ? `City: ${cityInput.value}` : '';
+    });
+
+    industryInput.addEventListener('input', () => {
+        cardIndustry.textContent = industryInput.value ? `Industry: ${industryInput.value}` : '';
+    });
+</script>
+
+</html>

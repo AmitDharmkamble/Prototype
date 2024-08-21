@@ -106,10 +106,10 @@
             <a href="#" class="text-primary underline">More information on this page.</a>
         </div>
         <div class="flex items-center space-x-2 ml-auto">
-            <button
+            <a href="CreateCustomer.html"
                 class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 Add customer
-            </button>
+            </a>
         </div>
     </div>
 
@@ -181,52 +181,61 @@
                         + Person
                     </button>
                     <!-- Modal Background -->
-<div id="modal-background" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 hidden"></div>
+                    <div id="modal-background" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 hidden"></div>
 
-<!-- Modal Container -->
-<div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 w-11/12 md:w-1/3">
-        <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-4">Create New Record</h2>
-        <form id="modal-form">
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="name">Name</label>
-                <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Name" required>
-            </div>
-            <div class="mb-4">
-                <label for="organization" class="block text-gray-700 mb-2">Organization</label>
-                <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg" required>
-                    <option value="" disabled selected>Select an organization</option>
-                    <option>Acme, Inc.</option>
-                    <option>Another Org</option>
-                    <option>More Options</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
-                <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Phone Number" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="email">Email Id</label>
-                <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Email Id" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="designation">Designation</label>
-                <input id="designation" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Designation" required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary</label>
-                <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-            </div>
-            <div class="flex justify-end">
-                <button type="button" id="modal-close" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
-                <button type="submit" id="modal-submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
-            </div>
-        </form>
-    </div>
-</div>
+                    <!-- Modal Container -->
+                    <div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+                        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 w-11/12 md:w-1/3">
+                            <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-4">Create New Record</h2>
+                            <form id="modal-form">
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="name">Name</label>
+                                    <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Name" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="organization" class="block text-gray-700 mb-2">Organization</label>
+                                    <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        required>
+                                        <option value="" disabled selected>Select an organization</option>
+                                        <option>Acme, Inc.</option>
+                                        <option>Another Org</option>
+                                        <option>More Options</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
+                                    <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Phone Number" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="email">Email Id</label>
+                                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Email Id" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="designation">Designation</label>
+                                    <input id="designation" type="text"
+                                        class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Designation" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary</label>
+                                    <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        required>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="flex justify-end">
+                                    <button type="button" id="modal-close"
+                                        class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
+                                    <button type="submit" id="modal-submit"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                     <div id="alphabetContainer" class="flex flex-wrap items-center gap-1">
                         <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="A">A</span>
@@ -298,11 +307,12 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
-                                    
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
@@ -314,8 +324,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -329,8 +340,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -344,8 +356,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -359,8 +372,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -374,8 +388,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -389,8 +404,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -404,8 +420,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -419,8 +436,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -434,8 +452,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -449,8 +468,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -464,8 +484,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -479,8 +500,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -494,8 +516,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -509,8 +532,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -524,8 +548,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -539,8 +564,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -554,8 +580,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -569,8 +596,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -584,8 +612,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -599,8 +628,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -614,8 +644,9 @@
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -629,8 +660,9 @@
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
-                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
-                                        <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                    <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
                                         data-record-id="123">Delete</button>
                                 </td>
@@ -652,10 +684,10 @@
             <div id="organizationsContent" class="tab-content hidden">
                 <div class="flex items-center justify-between p-4">
                     <!-- Create Organization Button -->
-                    <button
+                    <!-- <button
                         class="bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
                         + Organization
-                    </button>
+                    </button> -->
 
                     <!-- Search Bar -->
                     <div class="relative">
@@ -953,100 +985,100 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-    const openModalButtons = document.querySelectorAll('[data-modal-action]');
-    const closeModalButton = document.getElementById('modal-close');
-    const modal = document.getElementById('modal');
-    const modalBackground = document.getElementById('modal-background');
-    const modalTitle = document.getElementById('modal-title');
-    const modalForm = document.getElementById('modal-form');
-    const submitButton = document.getElementById('modal-submit');
+            const openModalButtons = document.querySelectorAll('[data-modal-action]');
+            const closeModalButton = document.getElementById('modal-close');
+            const modal = document.getElementById('modal');
+            const modalBackground = document.getElementById('modal-background');
+            const modalTitle = document.getElementById('modal-title');
+            const modalForm = document.getElementById('modal-form');
+            const submitButton = document.getElementById('modal-submit');
 
-    let currentMode = 'create'; // 'create' or 'edit'
-    let currentRecordId = null; // Store the ID of the record being edited
+            let currentMode = 'create'; // 'create' or 'edit'
+            let currentRecordId = null; // Store the ID of the record being edited
 
-    function openModal(mode, record = {}) {
-        currentMode = mode;
-        modalTitle.textContent = mode === 'create' ? 'Create New Record' : 'Edit Record';
+            function openModal(mode, record = {}) {
+                currentMode = mode;
+                modalTitle.textContent = mode === 'create' ? 'Create New Record' : 'Edit Record';
 
-        if (mode === 'edit') {
-            // Populate the form with the record data
-            document.getElementById('name').value = record.name || '';
-            document.getElementById('organization').value = record.organization || '';
-            document.getElementById('phone').value = record.phone || '';
-            document.getElementById('email').value = record.email || '';
-            document.getElementById('designation').value = record.designation || '';
-            document.getElementById('isPrimary').value = record.isPrimary || '';
-            currentRecordId = record.id;
-        } else {
-            // Clear the form for creating new records
-            modalForm.reset();
-            currentRecordId = null;
-        }
+                if (mode === 'edit') {
+                    // Populate the form with the record data
+                    document.getElementById('name').value = record.name || '';
+                    document.getElementById('organization').value = record.organization || '';
+                    document.getElementById('phone').value = record.phone || '';
+                    document.getElementById('email').value = record.email || '';
+                    document.getElementById('designation').value = record.designation || '';
+                    document.getElementById('isPrimary').value = record.isPrimary || '';
+                    currentRecordId = record.id;
+                } else {
+                    // Clear the form for creating new records
+                    modalForm.reset();
+                    currentRecordId = null;
+                }
 
-        modal.classList.remove('hidden');
-        modalBackground.classList.remove('hidden');
-    }
+                modal.classList.remove('hidden');
+                modalBackground.classList.remove('hidden');
+            }
 
-    openModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const action = button.getAttribute('data-modal-action');
-            const recordId = button.getAttribute('data-record-id');
-            const recordData = getRecordById(recordId); // Function to get record data by ID
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const action = button.getAttribute('data-modal-action');
+                    const recordId = button.getAttribute('data-record-id');
+                    const recordData = getRecordById(recordId); // Function to get record data by ID
 
-            if (action === 'edit') {
-                openModal('edit', recordData);
-            } else {
-                openModal('create');
+                    if (action === 'edit') {
+                        openModal('edit', recordData);
+                    } else {
+                        openModal('create');
+                    }
+                });
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                modalBackground.classList.add('hidden');
+            });
+
+            modalBackground.addEventListener('click', () => {
+                modal.classList.add('hidden');
+                modalBackground.classList.add('hidden');
+            });
+
+            modalForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (currentMode === 'create') {
+                    // Handle create logic here
+                    createRecord(new FormData(modalForm));
+                } else if (currentMode === 'edit') {
+                    // Handle edit logic here
+                    updateRecord(currentRecordId, new FormData(modalForm));
+                }
+                closeModalButton.click(); // Close modal after save
+            });
+
+            function getRecordById(id) {
+                // Function to get record data by ID (e.g., from an API or data source)
+                // Return mock data for demonstration
+                return {
+                    id: id,
+                    name: 'John Doe',
+                    organization: 'Acme, Inc.',
+                    phone: '+1 234 567 8901',
+                    email: 'john.doe@example.com',
+                    designation: 'Developer',
+                    isPrimary: 'Yes'
+                };
+            }
+
+            function createRecord(data) {
+                // Handle create record logic
+                console.log('Creating record with data:', Object.fromEntries(data));
+            }
+
+            function updateRecord(id, data) {
+                // Handle update record logic
+                console.log(`Updating record ${id} with data:`, Object.fromEntries(data));
             }
         });
-    });
-
-    closeModalButton.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        modalBackground.classList.add('hidden');
-    });
-
-    modalBackground.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        modalBackground.classList.add('hidden');
-    });
-
-    modalForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (currentMode === 'create') {
-            // Handle create logic here
-            createRecord(new FormData(modalForm));
-        } else if (currentMode === 'edit') {
-            // Handle edit logic here
-            updateRecord(currentRecordId, new FormData(modalForm));
-        }
-        closeModalButton.click(); // Close modal after save
-    });
-
-    function getRecordById(id) {
-        // Function to get record data by ID (e.g., from an API or data source)
-        // Return mock data for demonstration
-        return {
-            id: id,
-            name: 'John Doe',
-            organization: 'Acme, Inc.',
-            phone: '+1 234 567 8901',
-            email: 'john.doe@example.com',
-            designation: 'Developer',
-            isPrimary: 'Yes'
-        };
-    }
-
-    function createRecord(data) {
-        // Handle create record logic
-        console.log('Creating record with data:', Object.fromEntries(data));
-    }
-
-    function updateRecord(id, data) {
-        // Handle update record logic
-        console.log(`Updating record ${id} with data:`, Object.fromEntries(data));
-    }
-});
 
 
         // Initial call to set up pagination
@@ -1054,34 +1086,34 @@
 
 
         document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const recordId = button.getAttribute('data-record-id');
-            
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Handle delete logic
-                    deleteRecord(recordId);
-                }
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const recordId = button.getAttribute('data-record-id');
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Handle delete logic
+                        deleteRecord(recordId);
+                    }
+                });
             });
         });
-    });
 
-    function deleteRecord(id) {
-        Swal.fire({
+        function deleteRecord(id) {
+            Swal.fire({
                 title: 'Success',
                 text: "Contact Person deleted successfully!",
                 icon: 'success',
             });
-    }
+        }
     </script>
 </body>
 
