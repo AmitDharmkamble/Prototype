@@ -126,61 +126,62 @@
         <input type="file" class="w-full border border-gray-300 rounded px-3 py-2">
         <br><br>
         <button type="submit" id="modal-submit"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
         <br><br>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         $(function () {
-        const calculateTotals = () => {
-            let total = 0;
-            $('.item').each(function () {
-                const quantity = $(this).find('input:eq(1)').val();
-                const price = $(this).find('input:eq(0)').val();
-                const subtotal = quantity * price;
-                $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
-                total += subtotal;
+            const calculateTotals = () => {
+                let total = 0;
+                $('.item').each(function () {
+                    const quantity = $(this).find('input:eq(1)').val();
+                    const price = $(this).find('input:eq(0)').val();
+                    const subtotal = quantity * price;
+                    $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
+                    total += subtotal;
+                });
+                $('#total').text(`Total: ₹${total.toFixed(2)}`);
+            };
+
+            $('table').on('input', 'input[type=number]', calculateTotals);
+
+            $('.btn-add-row').click(function () {
+                const newRow = $('.item:first').clone();
+                newRow.find('input').val('');
+                newRow.find('td:eq(4)').text('');
+                newRow.appendTo('table');
+
+                // Re-add event listeners for new rows
+                handleRowEvents(newRow);
             });
-            $('#total').text(`Total: ₹${total.toFixed(2)}`);
-        };
 
-        $('table').on('input', 'input[type=number]', calculateTotals);
+            $('table').on('click', '.remove-row', function () {
+                $(this).closest('tr').remove();
+                calculateTotals();
+            });
 
-        $('.btn-add-row').click(function () {
-            const newRow = $('.item:first').clone();
-            newRow.find('input').val('');
-            newRow.find('td:eq(4)').text('');
-            newRow.appendTo('table');
+            const handleRowEvents = (row) => {
+                // Handle changes in the tenure-select dropdown
+                row.find('.tenure-select').off('change').on('change', function () {
+                    const tenureSelect = $(this);
+                    const startDateInput = tenureSelect.closest('tr').find('.start-date');
+                    const endDateInput = tenureSelect.closest('tr').find('.end-date');
+                    const tenure = tenureSelect.val();
 
-            // Re-add event listeners for new rows
-            handleRowEvents(newRow);
-        });
+                    if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
+                        startDateInput.removeClass('hidden');
+                        endDateInput.removeClass('hidden');
+                    } else {
+                        startDateInput.addClass('hidden');
+                        endDateInput.addClass('hidden');
+                        endDateInput.val('');
+                        return;
+                    }
 
-        $('table').on('click', '.remove-row', function () {
-            $(this).closest('tr').remove();
-            calculateTotals();
-        });
-
-        const handleRowEvents = (row) => {
-            row.find('.tenure-select').off('change').on('change', function () {
-                const tenureSelect = $(this);
-                const startDateInput = tenureSelect.closest('tr').find('.start-date');
-                const endDateInput = tenureSelect.closest('tr').find('.end-date');
-                const tenure = tenureSelect.val();
-
-                if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
-                    startDateInput.removeClass('hidden');
-                    endDateInput.removeClass('hidden');
-                } else {
-                    startDateInput.addClass('hidden');
-                    endDateInput.addClass('hidden');
-                    endDateInput.val('');
-                    return;
-                }
-
-                startDateInput.off('change').on('change', function () {
-                    const startDate = new Date(this.value);
+                    // Trigger start date calculation if a new tenure is selected
+                    const startDate = new Date(startDateInput.val());
                     let endDate = new Date(startDate);
 
                     switch (tenure) {
@@ -200,30 +201,57 @@
 
                     endDateInput.val(formatDate(endDate));
                 });
+
+                // Handle changes in the start-date input field
+                row.find('.start-date').off('change').on('change', function () {
+                    const startDate = new Date(this.value);
+                    const tenureSelect = $(this).closest('tr').find('.tenure-select');
+                    const endDateInput = $(this).closest('tr').find('.end-date');
+                    const tenure = tenureSelect.val();
+                    let endDate = new Date(startDate);
+
+                    switch (tenure) {
+                        case 'monthly':
+                            endDate.setMonth(endDate.getMonth() + 1);
+                            break;
+                        case 'quarterly':
+                            endDate.setMonth(endDate.getMonth() + 3);
+                            break;
+                        case '6-monthly':
+                            endDate.setMonth(endDate.getMonth() + 6);
+                            break;
+                        case 'annually':
+                            endDate.setFullYear(endDate.getFullYear() + 1);
+                            break;
+                    }
+
+                    endDateInput.val(formatDate(endDate));
+                });
+            };
+
+            // Initialize events for existing rows
+            $('table .item').each(function () {
+                handleRowEvents($(this));
             });
-        };
 
-        // Initialize events for existing rows
-        $('table .item').each(function() {
-            handleRowEvents($(this));
+            // Customer change event handler
+            document.getElementById('customer').addEventListener('change', function () {
+                const card = document.getElementById('customerCard');
+                if (this.value) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Format date function
+            function formatDate(date) {
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+            }
         });
-    });
-
-    document.getElementById('customer').addEventListener('change', function () {
-        const card = document.getElementById('customerCard');
-        if (this.value) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    function formatDate(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-}
     </script>
 </body>
 
