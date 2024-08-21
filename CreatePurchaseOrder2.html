@@ -112,8 +112,8 @@
         </table>
 
         <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
-        <tr class="total font-bold">
-            <p colspan="5" class="py-2 text-right" id="total">Total: ₹300.00</td>
+        <tr class="">
+            <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
         </tr>
 
         <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
@@ -198,7 +198,7 @@
                             break;
                     }
 
-                    endDateInput.val(endDate.toISOString().split('T')[0]);
+                    endDateInput.val(formatDate(endDate));
                 });
             });
         };
@@ -217,6 +217,13 @@
             card.style.display = 'none';
         }
     });
+
+    function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+}
     </script>
 </body>
 
