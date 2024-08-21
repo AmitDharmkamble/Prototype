@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: scroll;
+            /* Prevents scrollbars */
+            box-sizing: border-box;
+            font-family: "Helvetica";
+            font-style: normal;
+            font-size: medium;
+            /* Ensures padding and borders are included in the element’s dimensions */
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 10%;
+            background-color: #343a40;
+            padding-top: 20px;
+            overflow-y: auto;
+            z-index: 20;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        /* Dropdown Toggle */
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            background-color: #343a40;
+            padding-left: 20px;
+            border-left: 2px solid #495057;
+        }
+
+        .dropdown-menu a {
+            padding: 8px 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #495057;
+        }
+
+        /* Show dropdown menu on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .square {
+            position: absolute;
+            top: 20px;
+            /* Adjust the top position as needed */
+            left: calc(10% - 30px);
+            /* Adjust position to appear near the edge of the sidebar */
+            height: 30px;
+            width: 30px;
+            background-color: #fff;
+            border: 1px solid #343a40;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: left 0.5s ease;
+            z-index: 1001;
+        }
+
+        .square span {
+            font-size: 18px;
+            color: #343a40;
+            font-weight: bold;
+        }
+
+
+        .sidebar-hidden .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .sidebar-hidden .square {
+            left: 10px;
+            /* Position the close button when sidebar is hidden */
+        }
+
+        /* Ensure sidebar slides left when hidden */
+        .sidebar {
+            transition: transform 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="square">
+        <span>&lt;</span>
+    </div>
+
+    <div class="sidebar">
+        <a href="./AccountHome.html">Dashboard</a>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Masters</a>
+            <div class="dropdown-menu">
+                <a href="#">Services</a>
+                <a href="#">Taxes</a>
+                <a href="#">Payment Modes</a>
+                <a href="#">Industries</a>
+                <a href="#">Cities</a>
+                <a href="#">Templates</a>
+            </div>
+        </div>
+        <a href="./Customer.html">Customers</a>
+        <a href="./PurchaseOrders.html">Purchase Orders</a>
+        <a href="./Invoices.html">Invoices</a>
+        <a href="#">Receipts</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(function () {
+            const squareButton = document.querySelector('.square');
+            const squareText = squareButton.querySelector('span');
+            const bodyElement = document.body;
+
+            squareButton.addEventListener("click", function () {
+                // Toggle sidebar visibility
+                bodyElement.classList.toggle('sidebar-hidden');
+
+                // Change text between 'x' and '<' depending on sidebar state
+                if (bodyElement.classList.contains('sidebar-hidden')) {
+                    squareText.textContent = '>'; // Show '<' when sidebar is hidden
+                } else {
+                    squareText.textContent = '<'; // Show 'x' when sidebar is open
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

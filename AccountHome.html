@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: "Helvetica", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        /* Dropdown Toggle */
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            background-color: #343a40;
+            padding-left: 20px;
+            border-left: 2px solid #495057;
+        }
+
+        .dropdown-menu a {
+            padding: 8px 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #495057;
+        }
+
+        /* Show dropdown menu on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .boxes-container {
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sidebar-container">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container-fluid">
+            <h1 class="mt-4">Dashboard</h1>
+            <div class="row boxes-container">
+                <!-- Card 1 -->
+                <div class="col-md-3">
+                    <div class="card bg-light shadow-sm">
+                        <div class="card-body">
+                            <div class="card-title">Sales</div>
+                            <h2 class="display-4 fw-bold text-primary">₹1,234</h2>
+                            <p class="text-muted">Current Financial Year, Updated 5s ago</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-3">
+                    <div class="card bg-light shadow-sm">
+                        <div class="card-body">
+                            <div class="card-title">Outstanding</div>
+                            <h2 class="display-4 fw-bold text-primary">₹12,345</h2>
+                            <p class="text-muted">Current Financial Year, Updated 5s ago</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-3">
+                    <div class="card bg-light shadow-sm">
+                        <div class="card-body">
+                            <div class="card-title">Customers</div>
+                            <h2 class="display-4 fw-bold text-primary">567</h2>
+                            <p class="text-muted">Active : 300, Inactive : 267</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-3">
+                    <div class="card bg-light shadow-sm">
+                        <div class="card-body">
+                            <div class="card-title">Pending Payments</div>
+                            <h2 class="display-4 fw-bold text-primary">12</h2>
+                            <p class="text-muted">Total pending payment amount : ₹12,345</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Top 5 Customers by Transaction Amount</div>
+                        <div class="card-body">
+                            <canvas id="topCustomersBarChart" style="height: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Placeholder -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Sales Overview</div>
+                        <div class="card-body">
+                            <canvas id="salesPieChart" style="height: 200px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Table -->
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Recent Transactions</div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>08/07/2024</td>
+                                        <td>Payment from client A</td>
+                                        <td>$500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>08/07/2024</td>
+                                        <td>Refund to client B</td>
+                                        <td>-$150</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>08/07/2024</td>
+                                        <td>Invoice #1234</td>
+                                        <td>$1,200</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var salesPieChart;
+        var topCustomersBarChart;
+
+        createSalesPieChart();
+
+        createTopCustomersBarChart()
+
+        function createSalesPieChart() {
+            var ctx = document.getElementById('salesPieChart').getContext('2d');
+
+            // Destroy existing chart if it exists
+            if (salesPieChart) {
+                salesPieChart.destroy();
+            }
+
+            // Create a new chart
+            salesPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['SMM', 'SEO', 'G-Suite'],
+                    datasets: [{
+                        data: [300, 50, 100],
+                        backgroundColor: ['#007bff', '#28a745', '#ffc107'],
+                        hoverBackgroundColor: ['#0056b3', '#218838', '#e0a800'],
+                        hoverBorderColor: ['#004085', '#155724', '#856404'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var label = data.labels[tooltipItem.index] || '';
+                                var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += value + ' units';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Call the function to create the pie chart
+
+        function createTopCustomersBarChart() {
+            var ctx = document.getElementById('topCustomersBarChart').getContext('2d');
+
+            // Destroy existing chart if it exists
+            if (topCustomersBarChart) {
+                topCustomersBarChart.destroy();
+            }
+
+            // Create a new chart
+            var topCustomersBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Customer A', 'Customer B', 'Customer C', 'Customer D', 'Customer E'],
+                    datasets: [{
+                        label: 'Transaction Amount ($)',
+                        data: [1200, 950, 800, 750, 600],
+                        backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8'],
+                        hoverBackgroundColor: ['#0056b3', '#218838', '#e0a800', '#c82333', '#138496'],
+                        borderColor: ['#0056b3', '#218838', '#e0a800', '#c82333', '#138496'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value) {
+                                    return '$' + value;
+                                }
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Transaction Amount ($)'
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Customers'
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += '$' + tooltipItem.yLabel;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebarContainer = document.querySelector('#sidebar-container');
+
+
+            fetch("./Sidebar.html")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Insert the content into the container
+                    sidebarContainer.innerHTML = html;
+
+                    // Extract and execute scripts
+                    const scripts = sidebarContainer.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        newScript.text = script.innerHTML;
+                        document.body.appendChild(newScript); // Append to body to execute
+                    });
+                })
+                .catch(error => {
+                    console.error("There was a problem with the fetch operation:", error);
+                });
+        });
+    </script>
+</body>
+
+</html>

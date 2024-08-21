@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: scroll;
+            /* Prevents scrollbars */
+            box-sizing: border-box;
+            /* Ensures padding and borders are included in the element’s dimensions */
+            font-family: "Helvetica", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            font-family: Arial, sans-serif;
+            color: #555;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+            line-height: 24px;
+            text-align: left;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .title {
+            font-size: 45px;
+            color: #333;
+        }
+
+        .heading td {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .item td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .total td {
+            border-top: 2px solid #eee;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        textarea, select, input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="number"] {
+            width: 60px;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .invoice-box table {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        .card {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            border-radius: 8px;
+            display: none;
+        }
+        .card img {
+            max-width: 100%;
+            height: 100px;
+            object-fit: contain;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .card .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .card .info div {
+            width: 48%;
+        }
+        .card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .card .details {
+            margin: 10px 0;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <div class="form-group">
+            <label for="customer">Customer</label>
+            <select class="form-control" id="customer" name="customer" required>
+                <option value="" disabled selected>Select a customer</option>
+                <option value="customerA">Customer A</option>
+                <option value="customerB">Customer B</option>
+                <option value="customerC">Customer C</option>
+                <option value="customerD">Customer D</option>
+                <option value="customerE">Customer E</option>
+            </select>
+        </div>
+
+        <div class="card" id="customerCard">
+            <img src="https://www.ikf.co.in/wp-content/uploads/ikf-logo-svg.svg" alt="IKF Logo">
+            
+            <div class="info">
+                <div>
+                    <h2>Customer Details</h2>
+                    <p><strong>29GGGGG1314R9Z6</strong></p>
+                    <p><strong>Since:</strong> January 1, 2024</p>
+                    <p><strong>Oustanding:</strong> ₹50,000/-</p>
+                </div>
+                <div>
+                    <h2>Company Info</h2>
+                    <p><strong>I Knowledge Factory, Inc.</strong></p>
+                    <p>12345 Guru Nanak Nagar</p>
+                    <p>Pune, Maharashta 411042</p>
+                </div>
+            </div>
+            
+            <div class="info">
+                <div>
+                    <h2>Contact Info</h2>
+                    <p><strong>Amit Dharmkamble</strong></p>
+                    <p>Software Developer</p>
+                    <p>amit@amitpaints.com</p>
+                </div>
+            </div>
+            
+            <div class="details">
+                <p>This is a note from customer master.</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="poNumber">PO Number</label>
+            <input type="text" class="form-control" id="poNumber" name="poNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="proposal">Proposal</label>
+            <textarea class="form-control" id="proposal" name="proposal" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="paymentTerms">Payment Terms</label>
+            <input type="text" class="form-control" id="paymentTerms" name="paymentTerms" required>
+        </div>
+        <div class="form-group">
+            <label for="clientBrief">Client Brief</label>
+            <textarea class="form-control" id="clientBrief" name="clientBrief" required></textarea>
+        </div>
+        <table>
+            <tr class="heading">
+                <td colspan="3">Payment Method</td>
+                <td>
+                    <select id="paymentMethod" required>
+                        <option disabled selected>Select Payment Method</option>
+                        <option>Cheque</option>
+                        <option>Credit Card</option>
+                        <option>Bank Transfer</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3">Check</td>
+                <td>₹1000</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td colspan="4">
+                    <label>Description:</label>
+                    <textarea></textarea>
+                </td>
+            </tr>
+        </table>
+
+        <table>
+            <tr class="heading">
+                <td>Service</td>
+                <td>Tenure</td>
+                <td>Unit Cost</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    <select required>
+                        <option disabled selected>Select Service</option>
+                        <option>Service A</option>
+                        <option>Service B</option>
+                    </select>
+                </td>
+                <td>
+                    <select required>
+                        <option disabled selected>Select Tenure</option>
+                        <option>One Time</option>
+                        <option>Monthly</option>
+                    </select>
+                </td>
+                <td>₹<input type="number" value="300"></td>
+                <td><input type="number" value="1"></td>
+                <td>₹300.00</td>
+                <td><button class="remove-row" type="button">Remove</button></td>
+            </tr>
+
+            <tr>
+                <td colspan="6"><button class="btn-add-row" type="button">Add row</button></td>
+            </tr>
+
+            <tr class="total">
+                <td colspan="5">Total: ₹300.00</td>
+            </tr>
+        </table>
+
+        <select id="soldBy" required>
+            <option disabled selected>Sold By</option>
+            <option>Salesperson 1</option>
+        </select>
+
+        <br><br>
+        <label>Upload Attachment:</label>
+        <input type="file"><br><br>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            const calculateTotals = () => {
+                let total = 0;
+                $('.item').each(function () {
+                    const quantity = $(this).find('input:eq(1)').val();
+                    const price = $(this).find('input:eq(0)').val();
+                    const subtotal = quantity * price;
+                    $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
+                    total += subtotal;
+                });
+                $('.total td').text(`Total: ₹${total.toFixed(2)}`);
+            };
+
+            $('table').on('input', 'input[type=number]', calculateTotals);
+
+            $('.btn-add-row').on('click', () => {
+                const $newRow = $('.item:last').clone().find('input').val('').end();
+                $newRow.insertAfter('.item:last').find('input:eq(0)').focus();
+                calculateTotals();
+            });
+
+            $('table').on('click', '.remove-row', function () {
+                $(this).closest('tr').remove();
+                calculateTotals();
+            });
+
+            calculateTotals();
+        });
+
+        document.getElementById('customer').addEventListener('change', function() {
+        const card = document.getElementById('customerCard');
+        if (this.value) {
+            card.style.display = 'block'; // Show the card
+        } else {
+            card.style.display = 'none';  // Hide the card if no option is selected
+        }
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers</title>
+    <style>
+        .dropdown:hover .dropdown-menu,
+        .dropdown:focus-within .dropdown-menu {
+            display: block;
+        }
+
+        .toggle {
+            appearance: none;
+            width: 24px;
+            height: 12px;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .toggle:checked {
+            background-color: #34d399;
+        }
+
+        .toggle:checked::before {
+            transform: translateX(12px);
+        }
+
+        .toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 9999px;
+            transition: transform 0.2s;
+        }
+
+        .alphabet.active {
+            color: #007bff;
+            /* Change this to the color you want for the active state */
+            font-weight: bold;
+            border-bottom: 2px solid #007bff;
+            /* Optional: underline effect */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar-container">
+
+    </div>
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto flex p-4">
+        <div>
+            <h1 class="text-2xl font-bold">Customers</h1>
+            <p class="text-muted-foreground">Add, search and manage your customers and contact persons in one place.</p>
+            <a href="#" class="text-primary underline">More information on this page.</a>
+        </div>
+        <div class="flex items-center space-x-2 ml-auto">
+            <button
+                class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                Add customer
+            </button>
+        </div>
+    </div>
+
+    <div class="container mx-auto flex p-4">
+        <div
+            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+            <div>
+                <h2 class="text-gray-700 text-lg font-semibold">Total Customers</h2>
+                <p class="text-4xl font-bold text-gray-800">2,120</p>
+            </div>
+            <span class="text-green-500 text-lg font-semibold">↑ 20%</span>
+        </div>
+
+        <div
+            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+            <div>
+                <h2 class="text-gray-700 text-lg font-semibold">Inactive Contacts</h2>
+                <p class="text-3xl font-bold text-gray-800">1,220</p>
+            </div>
+            <span class="text-green-500 text-lg font-semibold">↑ 15%</span>
+        </div>
+
+        <div
+            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex flex-col space-y-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h2 class="text-gray-700 text-lg font-semibold">Active Customers</h2>
+                    <p class="text-3xl font-bold text-gray-800">316</p>
+                </div>
+                <span class="text-green-500 text-lg font-semibold">↑ 5%</span>
+            </div>
+            <div class="flex flex-wrap space-x-2">
+                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                    alt="Customer 1" />
+                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                    alt="Customer 2" />
+                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                    alt="Customer 3" />
+                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                    alt="Customer 4" />
+                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                    alt="Customer 5" />
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4 mb-10">
+        <div class="flex">
+            <div class="w-50 p-4 bg-card border-r border-border">
+                <h2 class="text-lg font-semibold text-yellow-500" id="selectedTab">People</h2>
+                <div class="mt-4">
+                    <button id="peopleTab"
+                        class="w-full text-left p-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition duration-300 ease-in-out">People</button>
+                    <button id="organizationsTab"
+                        class="w-full text-left p-2 mt-2 bg-muted text-muted-foreground hover:bg-muted/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-muted transition duration-300 ease-in-out">Companies</button>
+                </div>
+            </div>
+
+            <!-- <div class="w-3/4 p-4 bg-gray-100 border-l border-border rounded-lg"> -->
+            <div id="peopleContent" class="tab-content w-full p-4">
+                <div class="flex items-center justify-between p-4">
+                    <!-- Button and Alphabet Container -->
+                    <!-- <div class="flex items-center space-x-1"> -->
+                    <button id="createNewContactPerson" data-modal-action="create"
+                        class="bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+                        + Person
+                    </button>
+                    <!-- Modal Background -->
+<div id="modal-background" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 hidden"></div>
+
+<!-- Modal Container -->
+<div id="modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 w-11/12 md:w-1/3">
+        <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-4">Create New Record</h2>
+        <form id="modal-form">
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="name">Name</label>
+                <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Name" required>
+            </div>
+            <div class="mb-4">
+                <label for="organization" class="block text-gray-700 mb-2">Organization</label>
+                <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                    <option value="" disabled selected>Select an organization</option>
+                    <option>Acme, Inc.</option>
+                    <option>Another Org</option>
+                    <option>More Options</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
+                <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Phone Number" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="email">Email Id</label>
+                <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Email Id" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="designation">Designation</label>
+                <input id="designation" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Designation" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary</label>
+                <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="flex justify-end">
+                <button type="button" id="modal-close" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
+                <button type="submit" id="modal-submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+                    <div id="alphabetContainer" class="flex flex-wrap items-center gap-1">
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="A">A</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="B">B</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="C">C</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="D">D</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="E">E</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="F">F</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="G">G</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="H">H</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="I">I</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="J">J</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="K">K</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="L">L</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="M">M</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="N">N</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="O">O</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="P">P</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="Q">Q</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="R">R</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="S">S</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="T">T</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="U">U</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="V">V</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="W">W</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="X">X</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="Y">Y</span>
+                        <span class="text-muted-foreground cursor-pointer alphabet" data-alphabet="Z">Z</span>
+                    </div>
+                    <!-- </div> -->
+
+                    <!-- Organization Dropdown -->
+                    <div class="text-right">
+                        <label for="organization" class="block text-muted-foreground">Organization</label>
+                        <select id="organization" class="border border-border rounded-md p-2">
+                            <option>Acme, Inc.</option>
+                            <option>Another Org</option>
+                            <option>More Options</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table id="dataTable"
+                        class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-700">
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
+                                    Name</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
+                                    Organization</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(2)">
+                                    Phone Number</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(3)">
+                                    Email Id</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(4)">
+                                    Designation</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(5)">
+                                    Is Primary</th>
+                                <th class="border border-gray-300 p-4 text-left">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Amit Dharmkamble</td>
+                                <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">+91 123 456 7890</td>
+                                <td class="border border-gray-300 p-4">amit.dharmkamble@ikf.co.in</td>
+                                <td class="border border-gray-300 p-4">Manager</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                    
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Steven Mcguire</td>
+                                <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">+1 234 567 8901</td>
+                                <td class="border border-gray-300 p-4">steven.mcguire@mail.com</td>
+                                <td class="border border-gray-300 p-4">Director</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Zoe Jacobson</td>
+                                <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">+44 789 012 3456</td>
+                                <td class="border border-gray-300 p-4">zoe.jacobson@g.com</td>
+                                <td class="border border-gray-300 p-4">Executive</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Emily Davis</td>
+                                <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
+                                <td class="border border-gray-300 p-4">emily.davis@lmninc.com</td>
+                                <td class="border border-gray-300 p-4">HR Manager</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Michael Johnson</td>
+                                <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
+                                <td class="border border-gray-300 p-4">michael.johnson@opqltd.com</td>
+                                <td class="border border-gray-300 p-4">Sales Lead</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Olivia Martinez</td>
+                                <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">+66 789 012 3456</td>
+                                <td class="border border-gray-300 p-4">olivia.martinez@rstcorp.com</td>
+                                <td class="border border-gray-300 p-4">Marketing Specialist</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">James Wilson</td>
+                                <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">+77 890 123 4567</td>
+                                <td class="border border-gray-300 p-4">james.wilson@uvwinc.com</td>
+                                <td class="border border-gray-300 p-4">Product Manager</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Sophia Brown</td>
+                                <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">+88 901 234 5678</td>
+                                <td class="border border-gray-300 p-4">sophia.brown@xyzltd.com</td>
+                                <td class="border border-gray-300 p-4">Business Analyst</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Liam Thompson</td>
+                                <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">+99 012 345 6789</td>
+                                <td class="border border-gray-300 p-4">liam.thompson@abccorp.com</td>
+                                <td class="border border-gray-300 p-4">Customer Support</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Mia Anderson</td>
+                                <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">+11 234 567 8901</td>
+                                <td class="border border-gray-300 p-4">mia.anderson@ikf.co.in</td>
+                                <td class="border border-gray-300 p-4">Lead Developer</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Noah Walker</td>
+                                <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">+22 345 678 9012</td>
+                                <td class="border border-gray-300 p-4">noah.walker@lmninc.com</td>
+                                <td class="border border-gray-300 p-4">Financial Analyst</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Isabella Lee</td>
+                                <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
+                                <td class="border border-gray-300 p-4">isabella.lee@opqltd.com</td>
+                                <td class="border border-gray-300 p-4">Operations Manager</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Ethan Harris</td>
+                                <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">+44 567 890 1234</td>
+                                <td class="border border-gray-300 p-4">ethan.harris@rstcorp.com</td>
+                                <td class="border border-gray-300 p-4">HR Coordinator</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Ava Martinez</td>
+                                <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
+                                <td class="border border-gray-300 p-4">ava.martinez@uvwinc.com</td>
+                                <td class="border border-gray-300 p-4">Product Specialist</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">William King</td>
+                                <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">+66 789 012 3456</td>
+                                <td class="border border-gray-300 p-4">william.king@xyzltd.com</td>
+                                <td class="border border-gray-300 p-4">Business Development</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Charlotte Wright</td>
+                                <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">+77 890 123 4567</td>
+                                <td class="border border-gray-300 p-4">charlotte.wright@abccorp.com</td>
+                                <td class="border border-gray-300 p-4">Customer Success</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Lucas Scott</td>
+                                <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">+88 901 234 5678</td>
+                                <td class="border border-gray-300 p-4">lucas.scott@ikf.co.in</td>
+                                <td class="border border-gray-300 p-4">Lead Designer</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Mason Green</td>
+                                <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">+99 012 345 6789</td>
+                                <td class="border border-gray-300 p-4">mason.green@lmninc.com</td>
+                                <td class="border border-gray-300 p-4">Financial Planner</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Amelia Adams</td>
+                                <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">+11 234 567 8901</td>
+                                <td class="border border-gray-300 p-4">amelia.adams@opqltd.com</td>
+                                <td class="border border-gray-300 p-4">Operations Analyst</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Evelyn Evans</td>
+                                <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">+22 345 678 9012</td>
+                                <td class="border border-gray-300 p-4">evelyn.evans@rstcorp.com</td>
+                                <td class="border border-gray-300 p-4">HR Assistant</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Henry Carter</td>
+                                <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
+                                <td class="border border-gray-300 p-4">henry.carter@uvwinc.com</td>
+                                <td class="border border-gray-300 p-4">Product Development</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Isabella Phillips</td>
+                                <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">+44 567 890 1234</td>
+                                <td class="border border-gray-300 p-4">isabella.phillips@xyzltd.com</td>
+                                <td class="border border-gray-300 p-4">Marketing Manager</td>
+                                <td class="border border-gray-300 p-4">No</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">Owen Rivera</td>
+                                <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
+                                <td class="border border-gray-300 p-4">owen.rivera@abccorp.com</td>
+                                <td class="border border-gray-300 p-4">Customer Support</td>
+                                <td class="border border-gray-300 p-4">Yes</td>
+                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                    <button
+                                        class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300" data-modal-action="edit" data-record-id="1">Edit</button>
+                                        <button
+                                        class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
+                                        data-record-id="123">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex justify-between mt-4">
+                    <button onclick="prevPage()"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Previous</button>
+                    <span id="pagination" class="text-gray-700"></span>
+                    <button onclick="nextPage()"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Next</button>
+                </div>
+                <!-- </div> -->
+            </div>
+
+            <div id="organizationsContent" class="tab-content hidden">
+                <div class="flex items-center justify-between p-4">
+                    <!-- Create Organization Button -->
+                    <button
+                        class="bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+                        + Organization
+                    </button>
+
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search organizations..."
+                            class="border border-gray-300 rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5a6 6 0 00-6 6 6 6 0 006 6 6 6 0 006-6 6 6 0 00-6-6zM21 21l-4.35-4.35" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    <!-- Card 1 -->
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">I Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Edit Icon -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 8.5l-1-1-2.5 2.5 1 1z"></path>
+                                <path d="M13.5 11.5l-1-1-7.5 7.5v2h2l7.5-7.5z"></path>
+                                <path d="M21 21l-6-6"></path>
+                                <path d="M4 21h-2v-2l2-2"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+
+
+                    <!-- Card 2 -->
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Manufacturing</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">My Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://bca.com" class="text-blue-500 hover:underline mt-2 block">bca.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Button -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <!-- Card 3 -->
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Button -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Button -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Button -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            View Details
+                        </a>
+                    </div>
+
+
+                    <div
+                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
+                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+                        <!-- Button -->
+                        <a href="#"
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
+                            Edit
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-2 fixed bottom-0 left-0 w-full flex items-center justify-center"
+        style="height: 60px; margin-top: 10px;">
+        <p class="text-sm">&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const heading = document.getElementById('selectedTab');
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        const sidebarContainer = document.getElementById("sidebar-container");
+        fetch("./Sidebar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(html => {
+                sidebarContainer.innerHTML = html;
+
+                // Extract and execute scripts
+                const scripts = sidebarContainer.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.text = script.innerHTML;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+
+
+        document.querySelector('.dropdown button').addEventListener('click', function () {
+            this.nextElementSibling.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function (e) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(e.target)) {
+                dropdown.querySelector('.dropdown-menu').classList.add('hidden');
+            }
+        });
+
+        document.querySelectorAll('.dropdown button').forEach(button => {
+            button.addEventListener('click', function () {
+                const dropdownMenu = this.nextElementSibling;
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== dropdownMenu) menu.classList.add('hidden');
+                });
+                dropdownMenu.classList.toggle('hidden');
+            });
+        });
+
+        document.getElementById('peopleTab').addEventListener('click', function () {
+            document.getElementById('peopleContent').classList.remove('hidden');
+            document.getElementById('organizationsContent').classList.add('hidden');
+            document.getElementById('peopleTab').classList.add('bg-secondary/80', 'text-black');
+            document.getElementById('organizationsTab').classList.remove('bg-muted/80', 'text-black');
+            document.getElementById('organizationsTab').classList.add('bg-muted');
+            document.getElementById('selectedTab').textContent = 'People';
+        });
+
+        document.getElementById('organizationsTab').addEventListener('click', function () {
+            document.getElementById('organizationsContent').classList.remove('hidden');
+            document.getElementById('peopleContent').classList.add('hidden');
+            document.getElementById('organizationsTab').classList.add('bg-muted/80', 'text-black');
+            document.getElementById('peopleTab').classList.remove('bg-secondary/80', 'text-black');
+            document.getElementById('peopleTab').classList.add('bg-secondary');
+            document.getElementById('selectedTab').textContent = 'Companies';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const alphabets = document.querySelectorAll('#alphabetContainer .alphabet');
+
+            alphabets.forEach(alphabet => {
+                alphabet.addEventListener('click', () => {
+                    // Toggle the 'active' class on the clicked alphabet
+                    alphabet.classList.toggle('active');
+                });
+            });
+        });
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById("dataTable");
+            const rows = Array.from(table.querySelectorAll("tbody tr"));
+            const isAscending = table.dataset.sortDirection === 'asc';
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.children[columnIndex].innerText;
+                const cellB = rowB.children[columnIndex].innerText;
+
+                return isAscending
+                    ? cellA.localeCompare(cellB, undefined, { numeric: true })
+                    : cellB.localeCompare(cellA, undefined, { numeric: true });
+            });
+
+            table.querySelector("tbody").append(...rows);
+            table.dataset.sortDirection = isAscending ? 'desc' : 'asc';
+            updateTable();
+        }
+
+        function updateTable() {
+            const table = document.getElementById("dataTable");
+            const rows = table.querySelectorAll("tbody tr");
+            const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+            rows.forEach((row, index) => {
+                row.style.display = (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage)
+                    ? '' : 'none';
+            });
+
+            document.getElementById("pagination").innerText = `Page ${currentPage} of ${totalPages}`;
+            document.querySelector("button[onclick='prevPage()']").disabled = currentPage === 1;
+            document.querySelector("button[onclick='nextPage()']").disabled = currentPage === totalPages;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                updateTable();
+            }
+        }
+
+        function nextPage() {
+            const rows = document.querySelectorAll("#dataTable tbody tr");
+            const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+            if (currentPage < totalPages) {
+                currentPage++;
+                updateTable();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+    const openModalButtons = document.querySelectorAll('[data-modal-action]');
+    const closeModalButton = document.getElementById('modal-close');
+    const modal = document.getElementById('modal');
+    const modalBackground = document.getElementById('modal-background');
+    const modalTitle = document.getElementById('modal-title');
+    const modalForm = document.getElementById('modal-form');
+    const submitButton = document.getElementById('modal-submit');
+
+    let currentMode = 'create'; // 'create' or 'edit'
+    let currentRecordId = null; // Store the ID of the record being edited
+
+    function openModal(mode, record = {}) {
+        currentMode = mode;
+        modalTitle.textContent = mode === 'create' ? 'Create New Record' : 'Edit Record';
+
+        if (mode === 'edit') {
+            // Populate the form with the record data
+            document.getElementById('name').value = record.name || '';
+            document.getElementById('organization').value = record.organization || '';
+            document.getElementById('phone').value = record.phone || '';
+            document.getElementById('email').value = record.email || '';
+            document.getElementById('designation').value = record.designation || '';
+            document.getElementById('isPrimary').value = record.isPrimary || '';
+            currentRecordId = record.id;
+        } else {
+            // Clear the form for creating new records
+            modalForm.reset();
+            currentRecordId = null;
+        }
+
+        modal.classList.remove('hidden');
+        modalBackground.classList.remove('hidden');
+    }
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const action = button.getAttribute('data-modal-action');
+            const recordId = button.getAttribute('data-record-id');
+            const recordData = getRecordById(recordId); // Function to get record data by ID
+
+            if (action === 'edit') {
+                openModal('edit', recordData);
+            } else {
+                openModal('create');
+            }
+        });
+    });
+
+    closeModalButton.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modalBackground.classList.add('hidden');
+    });
+
+    modalBackground.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modalBackground.classList.add('hidden');
+    });
+
+    modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (currentMode === 'create') {
+            // Handle create logic here
+            createRecord(new FormData(modalForm));
+        } else if (currentMode === 'edit') {
+            // Handle edit logic here
+            updateRecord(currentRecordId, new FormData(modalForm));
+        }
+        closeModalButton.click(); // Close modal after save
+    });
+
+    function getRecordById(id) {
+        // Function to get record data by ID (e.g., from an API or data source)
+        // Return mock data for demonstration
+        return {
+            id: id,
+            name: 'John Doe',
+            organization: 'Acme, Inc.',
+            phone: '+1 234 567 8901',
+            email: 'john.doe@example.com',
+            designation: 'Developer',
+            isPrimary: 'Yes'
+        };
+    }
+
+    function createRecord(data) {
+        // Handle create record logic
+        console.log('Creating record with data:', Object.fromEntries(data));
+    }
+
+    function updateRecord(id, data) {
+        // Handle update record logic
+        console.log(`Updating record ${id} with data:`, Object.fromEntries(data));
+    }
+});
+
+
+        // Initial call to set up pagination
+        updateTable();
+
+
+        document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const recordId = button.getAttribute('data-record-id');
+            
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Handle delete logic
+                    deleteRecord(recordId);
+                }
+            });
+        });
+    });
+
+    function deleteRecord(id) {
+        Swal.fire({
+                title: 'Success',
+                text: "Contact Person deleted successfully!",
+                icon: 'success',
+            });
+    }
+    </script>
+</body>
+
+</html>

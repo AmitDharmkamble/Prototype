@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        /* Dropdown Toggle */
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            background-color: #343a40;
+            padding-left: 20px;
+            border-left: 2px solid #495057;
+        }
+
+        .dropdown-menu a {
+            padding: 8px 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #495057;
+        }
+
+        /* Show dropdown menu on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+        }
+
+        .info-card {
+            display: none;
+            /* Hidden by default */
+            margin-top: 20px;
+        }
+
+        .info-card.active {
+            display: block;
+            /* Show when active */
+        }
+
+        .info-card .card {
+            position: relative;
+        }
+
+        .info-card .card-title {
+            font-size: 1.5rem;
+            /* Large font size */
+            font-weight: bold;
+            /* Bold text */
+        }
+
+        .info-card .card-text {
+            font-size: 0.875rem;
+            /* Smaller text */
+        }
+
+        .info-card .card-text a {
+            color: #007bff;
+            /* Bootstrap primary color for links */
+            text-decoration: none;
+            /* Remove underline from links */
+        }
+
+        .info-card .card-text a:hover {
+            text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        .current-outstanding {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-weight: lighter;
+            font-size: small;
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: green;
+            /* Status dot color */
+        }
+
+        .info-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-button {
+            background: none;
+            border: none;
+            color: #007bff;
+            /* Bootstrap primary color */
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .info-tooltip {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 200px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .info-container:hover .info-tooltip {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="./AccountHome.html">Dashboard</a>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Masters</a>
+            <div class="dropdown-menu">
+                <a href="#">Services</a>
+                <a href="#">Taxes</a>
+                <a href="#">Payment Modes</a>
+                <a href="#">Industries</a>
+                <a href="#">Cities</a>
+                <a href="#">Templates</a>
+            </div>
+        </div>
+        <a href="#">Customers</a>
+        <a href="./PurchaseOrders.html">Purchase Orders</a>
+        <a href="./Invoices.html">Invoices</a>
+        <a href="#">Receipts</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <div class="container">
+        <h1 class="mb-4">Create New Purchase Orders</h1>
+        <form id="purchaseOrderForm">
+            <div class="row col-md-12">
+                <div class="form-group col-md-6">
+                    <label for="customer">Customer</label>
+                    <select class="form-control" id="customer" name="customer" required>
+                        <option value="" disabled selected>Select a customer</option>
+                        <option value="customerA">Customer A</option>
+                        <option value="customerB">Customer B</option>
+                        <option value="customerC">Customer C</option>
+                        <option value="customerD">Customer D</option>
+                        <option value="customerE">Customer E</option>
+                    </select>
+                </div>
+
+                <div class="info-card col-md-6" id="customerInfoCard">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="current-outstanding" id="outstanding"></div>
+                            <br>
+                            <h5 class="card-title" id="companyName">Company Name</h5>
+                            <p class="card-text"> <span id="address"></span></p>
+                            <p class="card-text"> <span id="gstin"></span></p>
+                            <p class="card-text"> <a id="email" href="#"></a></p>
+                            <p class="card-text"> <a id="website" href="#" target="_blank"></a></p>
+                            <p class="card-text"> <a id="phoneNumber" href="#"></a></p>
+                            <div class="status-indicator" id="status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="poNumber">PO Number</label>
+                <input type="text" class="form-control" id="poNumber" name="poNumber" required>
+                <div class="info-container">
+                    <button class="info-button" aria-label="More info">ℹ️</button>
+                    <div class="info-tooltip">
+                        Use this field to store PO number of PO provided by client.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="proposal">Proposal</label>
+                <textarea class="form-control" id="proposal" name="proposal" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="soldBy">Sold by</label>
+                <input type="text" class="form-control" id="soldBy" name="soldBy" required>
+            </div>
+            <div class="form-group">
+                <label for="paymentTerms">Payment Terms</label>
+                <input type="text" class="form-control" id="paymentTerms" name="paymentTerms" required>
+            </div>
+            <div class="form-group">
+                <label for="clientBrief">Client Brief</label>
+                <textarea class="form-control" id="clientBrief" name="clientBrief" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="Attachment">Attach</label>
+                <input type="file" class="form-control" id="attachment" name="attachment" required></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function () {
+        // Sample data for demonstration
+        const customerData = {
+            customerA: {
+                companyName: "Company A",
+                address: "123 Street, City, Country",
+                gstin: "ABC123456",
+                email: "contact@companya.com",
+                website: "http://www.companya.com",
+                phoneNumber: "+1234567890",
+                outstanding: "₹1000",
+                status: "Active"
+            },
+            customerB: {
+                companyName: "Company B",
+                address: "456 Avenue, City, Country",
+                gstin: "DEF654321",
+                email: "contact@companyb.com",
+                website: "http://www.companyb.com",
+                phoneNumber: "+0987654321",
+                outstanding: "₹500",
+                status: "Inactive"
+            }
+            // Add more customers as needed
+        };
+
+        $('#customer').change(function () {
+            const selectedCustomer = $(this).val();
+            const customerInfo = customerData[selectedCustomer];
+
+            if (customerInfo) {
+                $('#companyName').text(customerInfo.companyName);
+                $('#address').text(customerInfo.address);
+                $('#gstin').text(customerInfo.gstin);
+                $('#email').text(customerInfo.email).attr('href', 'mailto:' + customerInfo.email);
+                $('#website').text(customerInfo.website).attr('href', customerInfo.website);
+                $('#phoneNumber').text(customerInfo.phoneNumber).attr('href', 'tel:' + customerInfo.phoneNumber);
+                $('#outstanding').text('Current Outstanding: ' + customerInfo.outstanding);
+                $('#status').css('background-color', customerInfo.status === 'Active' ? 'green' : 'red');
+
+                $('#customerInfoCard').addClass('active');
+            } else {
+                $('#customerInfoCard').removeClass('active');
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
