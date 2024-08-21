@@ -153,44 +153,64 @@
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Company Name</label>
                     <div class="flex">
-                        <input id="companyName" type="text" placeholder="Enter Company Name" class="border border-gray-300 rounded-l-md p-3 flex-1" />
-                        <button class="bg-blue-600 text-white rounded-r-md px-4 hover:bg-blue-700 transition">Check if exists</button>
+                        <input id="companyName" type="text" placeholder="Enter Company Name"
+                            class="border border-gray-300 rounded-l-md p-3 flex-1" />
+                        <button class="bg-blue-600 text-white rounded-r-md px-4 hover:bg-blue-700 transition">Check if
+                            exists</button>
                     </div>
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN</label>
-                    <input id="gstin" type="text" placeholder="Enter GSTIN" class="border border-gray-300 rounded-md p-3 w-full" />
+                    <input id="gstin" type="text" placeholder="Enter GSTIN"
+                        class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Address</label>
-                    <input id="addressLine1" type="text" placeholder="Line 1" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
-                    <input id="addressLine2" type="text" placeholder="Line 2" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
-                    <input id="addressLine3" type="text" placeholder="Line 3" class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                    <input id="addressLine1" type="text" placeholder="Line 1"
+                        class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                    <input id="addressLine2" type="text" placeholder="Line 2"
+                        class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
+                    <input id="addressLine3" type="text" placeholder="Line 3"
+                        class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number</label>
-                    <input id="companyPhone" type="text" placeholder="Enter Phone Number" class="border border-gray-300 rounded-md p-3 w-full" />
+                    <input id="companyPhone" type="text" placeholder="Enter Phone Number"
+                        class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Company Website</label>
-                    <input id="companyWebsite" type="text" placeholder="Enter Website URL" class="border border-gray-300 rounded-md p-3 w-full" />
+                    <input id="companyWebsite" type="text" placeholder="Enter Website URL"
+                        class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">City</label>
-                    <input id="city" type="text" placeholder="Enter City" class="border border-gray-300 rounded-md p-3 w-full" />
+                    <select id="city" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                        <option value="" disabled selected>Select City</option>
+                        <option>Pune</option>
+                        <option>Mumbai</option>
+                        <option>New City</option>
+                    </select>
                 </div>
-        
+
                 <div class="mb-5">
                     <label class="block text-sm font-medium text-gray-600 mb-2">Industry</label>
-                    <input id="industry" type="text" placeholder="Enter Industry" class="border border-gray-300 rounded-md p-3 w-full" />
+                    <select id="industry" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                        <option value="" disabled selected>Select industry</option>
+                        <option>Hotel</option>
+                        <option>Manufacturing</option>
+                        <option>Healthcare</option>
+                    </select>
                 </div>
+
+
             </div>
-        
+
             <!-- Company Card -->
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <!-- Add Contact Person -->
@@ -198,42 +218,69 @@
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Contact Person</h2>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-600 mb-2">Name</label>
-                        <input id="contactName" type="text" placeholder="Enter Name" class="border border-gray-300 rounded-md p-3 w-full" />
+                        <input id="contactName" type="text" placeholder="Enter Name"
+                            class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-600 mb-2">Phone</label>
-                        <input id="contactPhone" type="text" placeholder="Enter Phone" class="border border-gray-300 rounded-md p-3 w-full" />
+                        <input id="contactPhone" type="text" placeholder="Enter Phone"
+                            class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-600 mb-2">Email</label>
-                        <input id="contactEmail" type="text" placeholder="Enter Email" class="border border-gray-300 rounded-md p-3 w-full" />
+                        <input id="contactEmail" type="text" placeholder="Enter Email"
+                            class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-600 mb-2">Role</label>
-                        <input id="contactRole" type="text" placeholder="Enter Role" class="border border-gray-300 rounded-md p-3 w-full" />
+                        <input id="contactRole" type="text" placeholder="Enter Role"
+                            class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
-                    <button id="addContact" class="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition">Add Contact</button>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Role</label>
+                        <select id="contactIsPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                            <option value="" disabled selected>Is Primary</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Role</label>
+                        <select id="contactIsSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg"
+                            required>
+                            <option value="" disabled selected>Is Signing Authority</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <button id="addContact"
+                        class="bg-blue-600 text-white rounded-md px-4 py-2 hover:bg-blue-700 transition">Add
+                        Contact</button>
                     <p id="error-message" class="text-red-600 mt-2 hidden">Please add at least one contact person.</p>
                 </div>
 
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Company Card</h2>
-        
-                <div id="companyDetails" class="mb-6">
-                    <p id="cardCompanyName" class="text-lg font-semibold text-gray-800"></p>
-                    <p id="cardAddress" class="text-sm text-gray-600"></p>
-                    <p id="cardGstin" class="text-sm text-gray-600"></p>
-                    <p id="cardWebsite" class="text-sm text-gray-600"></p>
-                    <p id="cardIndustry" class="text-sm text-gray-600"></p>
-                    <p id="cardCity" class="text-sm text-gray-600"></p>
+
+                <div id="companyDetails"
+                    class="mb-6 bg-white bg-opacity-10 backdrop-blur-md rounded-lg shadow-lg p-6 border border-white border-opacity-20 transition-transform transform hover:scale-105 hover:bg-opacity-20 hover:shadow-xl hover:border-opacity-40">
+                    <p id="cardCompanyName" class="text-2xl font-extrabold text-black mb-4"></p>
+                    <p id="cardAddress" class="text-base text-black mb-2"></p>
+                    <p id="cardGstin" class="text-base text-black mb-2"></p>
+                    <p id="cardWebsite" class="text-base text-black mb-2"></p>
+                    <p id="cardIndustry" class="text-base text-black mb-2"></p>
+                    <p id="cardCity" class="text-base text-black"></p>
                 </div>
-        
+
+
                 <div id="contactList" class="mb-6">
                     <!-- Contacts will be dynamically inserted here -->
                 </div>
-        
+
                 <div class="flex space-x-4 mb-6">
-                    <button id="saveButton" class="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-700 transition">Save</button>
-                    <button class="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700 transition">Discard Changes</button>
+                    <button id="saveButton"
+                        class="bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-700 transition">Save</button>
+                    <button class="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700 transition">Discard
+                        Changes</button>
                 </div>
             </div>
         </div>
@@ -284,7 +331,7 @@
             console.error("There was a problem with the fetch operation:", error);
         });
 
-        const contactList = document.getElementById('contactList');
+    const contactList = document.getElementById('contactList');
     const addContactBtn = document.getElementById('addContact');
     const saveButton = document.getElementById('saveButton');
     const errorMessage = document.getElementById('error-message');
@@ -296,18 +343,40 @@
         const phone = document.getElementById('contactPhone').value;
         const email = document.getElementById('contactEmail').value;
         const role = document.getElementById('contactRole').value;
+        const isPrimary = document.getElementById('contactIsPrimary').value;
+        const isSigningAuthority = document.getElementById('contactIsSigningAuthority').value;
 
         if (name && phone && email && role) {
             contactCount++;
             errorMessage.classList.add('hidden');
 
             const contactDiv = document.createElement('div');
-            contactDiv.className = 'mb-4';
+            contactDiv.classList.add(
+                'bg-white',
+                'bg-opacity-10',
+                'backdrop-blur-md',
+                'rounded-lg',
+                'shadow-lg',
+                'p-4',
+                'mb-4',
+                'border',
+                'border-white',
+                'border-opacity-20',
+                'transition-transform',
+                'transform',
+                'hover:scale-105',
+                'hover:bg-opacity-20',
+                'hover:shadow-xl',
+                'hover:border-opacity-40'
+            );
             contactDiv.innerHTML = `
-                <h3 class="font-semibold text-gray-800 mb-1">Contact Person ${contactCount}</h3>
-                <p class="text-sm text-gray-600">${phone}</p>
-                <p class="text-sm text-gray-600">${email}</p>
-                <p class="text-sm text-gray-600">${role}</p>
+                <h3 class="font-semibold text-black mb-2">Contact Person ${contactCount}</h3>
+                <p class="text-sm text-black mb-1">${name}</p>
+                <p class="text-sm text-black mb-1">${phone}</p>
+                <p class="text-sm text-black mb-1">${email}</p>
+                <p class="text-sm text-black mb-1">${role}</p>
+                <p class="text-sm text-black mb-1">Is Primary: ${isPrimary}</p>
+                <p class="text-sm text-black mb-1">Is Signing Authority: ${isSigningAuthority}</p>
             `;
 
             contactList.appendChild(contactDiv);
