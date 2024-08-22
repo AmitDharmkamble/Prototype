@@ -49,7 +49,40 @@
             border-bottom: 2px solid #007bff;
             /* Optional: underline effect */
         }
+
+        .tooltip {
+            position: absolute;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.875rem;
+            width: max-content;
+            max-width: 200px;
+            text-align: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip.visible {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -113,50 +146,70 @@
         </div>
     </div>
 
-    <div class="container mx-auto flex p-4">
-        <div
-            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-            <div>
-                <h2 class="text-gray-700 text-lg font-semibold">Total Customers</h2>
-                <p class="text-4xl font-bold text-gray-800">2,120</p>
-            </div>
-            <span class="text-green-500 text-lg font-semibold">↑ 20%</span>
-        </div>
-
-        <div
-            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-            <div>
-                <h2 class="text-gray-700 text-lg font-semibold">Inactive Contacts</h2>
-                <p class="text-3xl font-bold text-gray-800">1,220</p>
-            </div>
-            <span class="text-green-500 text-lg font-semibold">↑ 15%</span>
-        </div>
-
-        <div
-            class="bg-white p-6 rounded-lg shadow-lg w-full mx-4 flex flex-col space-y-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
-            <div class="flex justify-between items-start">
+    <div class="container mx-auto flex p-4 space-x-4">
+        <!-- First Div with Tooltip -->
+        <div class="relative group w-1/3">
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg h-full flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
                 <div>
-                    <h2 class="text-gray-700 text-lg font-semibold">Active Customers</h2>
-                    <p class="text-3xl font-bold text-gray-800">316</p>
+                    <h2 class="text-gray-700 text-lg font-semibold">Total Customers</h2>
+                    <p class="text-4xl font-bold text-gray-800">2,120</p>
                 </div>
-                <span class="text-green-500 text-lg font-semibold">↑ 5%</span>
+                <span class="text-green-500 text-lg font-semibold">↑ 20%</span>
             </div>
-            <div class="flex flex-wrap space-x-2">
-                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
-                    alt="Customer 1" />
-                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
-                    alt="Customer 2" />
-                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
-                    alt="Customer 3" />
-                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
-                    alt="Customer 4" />
-                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
-                    alt="Customer 5" />
+            <div
+                class="tooltip absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 w-48 bg-gray-800 text-white text-center text-sm p-2 rounded shadow-lg">
+                20% of 2,120 = 424 customers added this year
             </div>
         </div>
 
+        <!-- Second Div with Tooltip -->
+        <div class="relative group w-1/3">
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg h-full flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+                <div>
+                    <h2 class="text-gray-700 text-lg font-semibold">Inactive Contacts</h2>
+                    <p class="text-3xl font-bold text-gray-800">1,220</p>
+                </div>
+                <span class="text-red-500 text-lg font-semibold">↑ 15%</span>
+            </div>
+            <div
+                class="tooltip absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 w-48 bg-gray-800 text-white text-center text-sm p-2 rounded shadow-lg">
+                Number of contacts inactive in the current period
+            </div>
+        </div>
 
+        <!-- Third Div with Tooltip -->
+        <div class="relative group w-1/3">
+            <div
+                class="bg-white p-6 rounded-lg shadow-lg h-full flex flex-col space-y-4 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="text-gray-700 text-lg font-semibold">Active Customers</h2>
+                        <p class="text-3xl font-bold text-gray-800">316</p>
+                    </div>
+                    <span class="text-green-500 text-lg font-semibold">↑ 5%</span>
+                </div>
+                <div class="flex flex-wrap space-x-2">
+                    <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                        alt="Customer 1" />
+                    <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                        alt="Customer 2" />
+                    <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                        alt="Customer 3" />
+                    <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                        alt="Customer 4" />
+                    <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/40x40?text=👤"
+                        alt="Customer 5" />
+                </div>
+            </div>
+            <div
+                class="tooltip absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 w-48 bg-gray-800 text-white text-center text-sm p-2 rounded shadow-lg">
+                Number of active customers this period
+            </div>
+        </div>
     </div>
+
 
     <!-- Main Content -->
     <div class="container mx-auto p-4 mb-10">
@@ -282,10 +335,10 @@
                         class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                         <thead>
                             <tr class="bg-gray-200 text-gray-700">
-                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
-                                    Name</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
                                     Organization</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
+                                    Name</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(2)">
                                     Phone Number</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(3)">
@@ -299,8 +352,8 @@
                         </thead>
                         <tbody>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Amit Dharmkamble</td>
                                 <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">Amit Dharmkamble</td>
                                 <td class="border border-gray-300 p-4">+91 123 456 7890</td>
                                 <td class="border border-gray-300 p-4">amit.dharmkamble@ikf.co.in</td>
                                 <td class="border border-gray-300 p-4">Manager</td>
@@ -308,16 +361,21 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
 
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Steven Mcguire</td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">Steven Mcguire</td>
                                 <td class="border border-gray-300 p-4">+1 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">steven.mcguire@mail.com</td>
                                 <td class="border border-gray-300 p-4">Director</td>
@@ -325,15 +383,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Zoe Jacobson</td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">Zoe Jacobson</td>
                                 <td class="border border-gray-300 p-4">+44 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">zoe.jacobson@g.com</td>
                                 <td class="border border-gray-300 p-4">Executive</td>
@@ -341,15 +404,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Emily Davis</td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">Emily Davis</td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">emily.davis@lmninc.com</td>
                                 <td class="border border-gray-300 p-4">HR Manager</td>
@@ -357,15 +425,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Michael Johnson</td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">Michael Johnson</td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">michael.johnson@opqltd.com</td>
                                 <td class="border border-gray-300 p-4">Sales Lead</td>
@@ -373,15 +446,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Olivia Martinez</td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">Olivia Martinez</td>
                                 <td class="border border-gray-300 p-4">+66 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">olivia.martinez@rstcorp.com</td>
                                 <td class="border border-gray-300 p-4">Marketing Specialist</td>
@@ -389,15 +467,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">James Wilson</td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">James Wilson</td>
                                 <td class="border border-gray-300 p-4">+77 890 123 4567</td>
                                 <td class="border border-gray-300 p-4">james.wilson@uvwinc.com</td>
                                 <td class="border border-gray-300 p-4">Product Manager</td>
@@ -405,15 +488,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Sophia Brown</td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">Sophia Brown</td>
                                 <td class="border border-gray-300 p-4">+88 901 234 5678</td>
                                 <td class="border border-gray-300 p-4">sophia.brown@xyzltd.com</td>
                                 <td class="border border-gray-300 p-4">Business Analyst</td>
@@ -421,15 +509,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Liam Thompson</td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">Liam Thompson</td>
                                 <td class="border border-gray-300 p-4">+99 012 345 6789</td>
                                 <td class="border border-gray-300 p-4">liam.thompson@abccorp.com</td>
                                 <td class="border border-gray-300 p-4">Customer Support</td>
@@ -437,15 +530,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Mia Anderson</td>
                                 <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">Mia Anderson</td>
                                 <td class="border border-gray-300 p-4">+11 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">mia.anderson@ikf.co.in</td>
                                 <td class="border border-gray-300 p-4">Lead Developer</td>
@@ -453,15 +551,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Noah Walker</td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">Noah Walker</td>
                                 <td class="border border-gray-300 p-4">+22 345 678 9012</td>
                                 <td class="border border-gray-300 p-4">noah.walker@lmninc.com</td>
                                 <td class="border border-gray-300 p-4">Financial Analyst</td>
@@ -469,15 +572,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Isabella Lee</td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">Isabella Lee</td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">isabella.lee@opqltd.com</td>
                                 <td class="border border-gray-300 p-4">Operations Manager</td>
@@ -485,15 +593,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Ethan Harris</td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">Ethan Harris</td>
                                 <td class="border border-gray-300 p-4">+44 567 890 1234</td>
                                 <td class="border border-gray-300 p-4">ethan.harris@rstcorp.com</td>
                                 <td class="border border-gray-300 p-4">HR Coordinator</td>
@@ -501,15 +614,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Ava Martinez</td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">Ava Martinez</td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">ava.martinez@uvwinc.com</td>
                                 <td class="border border-gray-300 p-4">Product Specialist</td>
@@ -517,15 +635,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">William King</td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">William King</td>
                                 <td class="border border-gray-300 p-4">+66 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">william.king@xyzltd.com</td>
                                 <td class="border border-gray-300 p-4">Business Development</td>
@@ -533,15 +656,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Charlotte Wright</td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">Charlotte Wright</td>
                                 <td class="border border-gray-300 p-4">+77 890 123 4567</td>
                                 <td class="border border-gray-300 p-4">charlotte.wright@abccorp.com</td>
                                 <td class="border border-gray-300 p-4">Customer Success</td>
@@ -549,15 +677,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Lucas Scott</td>
                                 <td class="border border-gray-300 p-4">IKF</td>
+                                <td class="border border-gray-300 p-4">Lucas Scott</td>
                                 <td class="border border-gray-300 p-4">+88 901 234 5678</td>
                                 <td class="border border-gray-300 p-4">lucas.scott@ikf.co.in</td>
                                 <td class="border border-gray-300 p-4">Lead Designer</td>
@@ -565,15 +698,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Mason Green</td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
+                                <td class="border border-gray-300 p-4">Mason Green</td>
                                 <td class="border border-gray-300 p-4">+99 012 345 6789</td>
                                 <td class="border border-gray-300 p-4">mason.green@lmninc.com</td>
                                 <td class="border border-gray-300 p-4">Financial Planner</td>
@@ -581,15 +719,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Amelia Adams</td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
+                                <td class="border border-gray-300 p-4">Amelia Adams</td>
                                 <td class="border border-gray-300 p-4">+11 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">amelia.adams@opqltd.com</td>
                                 <td class="border border-gray-300 p-4">Operations Analyst</td>
@@ -597,15 +740,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Evelyn Evans</td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
+                                <td class="border border-gray-300 p-4">Evelyn Evans</td>
                                 <td class="border border-gray-300 p-4">+22 345 678 9012</td>
                                 <td class="border border-gray-300 p-4">evelyn.evans@rstcorp.com</td>
                                 <td class="border border-gray-300 p-4">HR Assistant</td>
@@ -613,15 +761,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Henry Carter</td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
+                                <td class="border border-gray-300 p-4">Henry Carter</td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">henry.carter@uvwinc.com</td>
                                 <td class="border border-gray-300 p-4">Product Development</td>
@@ -629,15 +782,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Isabella Phillips</td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
+                                <td class="border border-gray-300 p-4">Isabella Phillips</td>
                                 <td class="border border-gray-300 p-4">+44 567 890 1234</td>
                                 <td class="border border-gray-300 p-4">isabella.phillips@xyzltd.com</td>
                                 <td class="border border-gray-300 p-4">Marketing Manager</td>
@@ -645,15 +803,20 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4">Owen Rivera</td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
+                                <td class="border border-gray-300 p-4">Owen Rivera</td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">owen.rivera@abccorp.com</td>
                                 <td class="border border-gray-300 p-4">Customer Support</td>
@@ -661,10 +824,15 @@
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                                        data-modal-action="edit" data-record-id="1">Edit</button>
+                                        data-modal-action="edit" data-record-id="1">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
                                     <button
                                         class="bg-red-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-300 delete-button"
-                                        data-record-id="123">Delete</button>
+                                        data-record-id="123">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -1114,6 +1282,15 @@
                 icon: 'success',
             });
         }
+
+        document.querySelectorAll('.group').forEach(group => {
+            group.addEventListener('mouseenter', function () {
+                this.querySelector('.tooltip').classList.add('visible');
+            });
+            group.addEventListener('mouseleave', function () {
+                this.querySelector('.tooltip').classList.remove('visible');
+            });
+        });
     </script>
 </body>
 

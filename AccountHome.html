@@ -5,193 +5,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <style>
-        body {
-            font-family: "Helvetica", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background-color: #343a40;
-            padding-top: 20px;
-            overflow-y: auto;
-        }
-
-        .sidebar a {
-            color: #fff;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-
-        .card {
-            margin-bottom: 20px;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        /* Dropdown Toggle */
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none;
-            background-color: #343a40;
-            padding-left: 20px;
-            border-left: 2px solid #495057;
-        }
-
-        .dropdown-menu a {
-            padding: 8px 10px;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #495057;
-        }
-
-        /* Show dropdown menu on hover */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .boxes-container {
-            padding: 20px;
-            background-color: rgb(255, 255, 255);
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-
     <div id="sidebar-container">
-        <!-- Content will be loaded here -->
     </div>
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="index.html" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
 
     <!-- Page Content -->
-    <div class="content">
-        <div class="container-fluid">
-            <h1 class="mt-4">Dashboard</h1>
-            <div class="row boxes-container">
+    <div class="ml-60 p-5">
+        <div class="container mx-auto">
+            <div class="flex items-center mt-4">
+                <h1 class="text-4xl font-bold mr-4">Dashboard for financial year</h1>
+                <select id="financialYear" class="border border-gray-300 rounded-lg px-3 py-2 text-gray-700">
+                    <option value="2022-2023">2024-2025</option>
+                    <option value="2023-2024">2023-2024</option>
+                    <option value="2024-2025">2022-2023</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
                 <!-- Card 1 -->
-                <div class="col-md-3">
-                    <div class="card bg-light shadow-sm">
-                        <div class="card-body">
-                            <div class="card-title">Sales</div>
-                            <h2 class="display-4 fw-bold text-primary">₹1,234</h2>
-                            <p class="text-muted">Current Financial Year, Updated 5s ago</p>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
+                    <div class="text-gray-500">Sales</div>
+                    <h2 class="text-3xl font-bold text-blue-600">₹1,234</h2>
+                    <p class="text-gray-400 text-sm">Current Financial Year, Updated 5s ago</p>
                 </div>
                 <!-- Card 2 -->
-                <div class="col-md-3">
-                    <div class="card bg-light shadow-sm">
-                        <div class="card-body">
-                            <div class="card-title">Outstanding</div>
-                            <h2 class="display-4 fw-bold text-primary">₹12,345</h2>
-                            <p class="text-muted">Current Financial Year, Updated 5s ago</p>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
+                    <div class="text-gray-500">Outstanding</div>
+                    <h2 class="text-3xl font-bold text-blue-600">₹12,345</h2>
+                    <p class="text-gray-400 text-sm">Current Financial Year, Updated 5s ago</p>
                 </div>
                 <!-- Card 3 -->
-                <div class="col-md-3">
-                    <div class="card bg-light shadow-sm">
-                        <div class="card-body">
-                            <div class="card-title">Customers</div>
-                            <h2 class="display-4 fw-bold text-primary">567</h2>
-                            <p class="text-muted">Active : 300, Inactive : 267</p>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
+                    <div class="text-gray-500">Customers</div>
+                    <h2 class="text-3xl font-bold text-blue-600">567</h2>
+                    <p class="text-gray-400 text-sm">Active : 300, Inactive : 267</p>
                 </div>
                 <!-- Card 4 -->
-                <div class="col-md-3">
-                    <div class="card bg-light shadow-sm">
-                        <div class="card-body">
-                            <div class="card-title">Pending Payments</div>
-                            <h2 class="display-4 fw-bold text-primary">12</h2>
-                            <p class="text-muted">Total pending payment amount : ₹12,345</p>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
+                    <div class="text-gray-500">Pending Payments</div>
+                    <h2 class="text-3xl font-bold text-blue-600">12</h2>
+                    <p class="text-gray-400 text-sm">Total pending payment amount : ₹12,345</p>
                 </div>
+
             </div>
 
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Top 5 Customers by Transaction Amount</div>
-                        <div class="card-body">
-                            <canvas id="topCustomersBarChart" style="height: 300px;"></canvas>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
                 <!-- Chart Placeholder -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">Sales Overview</div>
-                        <div class="card-body">
-                            <canvas id="salesPieChart" style="height: 200px;"></canvas>
-                        </div>
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b border-gray-200 font-bold">Top 5 Customers by Transaction Amount</div>
+                    <div class="p-4">
+                        <canvas id="topCustomersBarChart" class="h-64"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b border-gray-200 font-bold">Sales Overview</div>
+                    <div class="p-4">
+                        <canvas id="salesPieChart" class="h-64"></canvas>
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                <canvas id="servicesChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                <!-- Chart Placeholder -->
+                <div class="bg-white rounded-lg shadow-lg p-4">
+                    <div class="border-b border-gray-200 font-bold">Services by Period</div>
+                    <div class="p-4">
+                        <canvas id="servicesByPeriodChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
                 <!-- Table -->
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Recent Transactions</div>
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Description</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>08/07/2024</td>
-                                        <td>Payment from client A</td>
-                                        <td>$500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>08/07/2024</td>
-                                        <td>Refund to client B</td>
-                                        <td>-$150</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>08/07/2024</td>
-                                        <td>Invoice #1234</td>
-                                        <td>$1,200</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="bg-white rounded-lg shadow-lg">
+                    <div class="p-4 border-b border-gray-200 font-bold">Recent Transactions</div>
+                    <div class="p-4">
+                        <table class="table-auto w-full text-left">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-700">
+                                    <th class="px-4 py-2">#</th>
+                                    <th class="px-4 py-2">Date</th>
+                                    <th class="px-4 py-2">Description</th>
+                                    <th class="px-4 py-2">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-2">1</td>
+                                    <td class="px-4 py-2">08/07/2024</td>
+                                    <td class="px-4 py-2">Payment from client A</td>
+                                    <td class="px-4 py-2">$500</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-2">2</td>
+                                    <td class="px-4 py-2">08/07/2024</td>
+                                    <td class="px-4 py-2">Refund to client B</td>
+                                    <td class="px-4 py-2">-$150</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="px-4 py-2">3</td>
+                                    <td class="px-4 py-2">08/07/2024</td>
+                                    <td class="px-4 py-2">Invoice #1234</td>
+                                    <td class="px-4 py-2">$1,200</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -199,17 +168,80 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
         var salesPieChart;
         var topCustomersBarChart;
 
+        const services = ['Service A', 'Service B', 'Service C', 'Service D', 'Service E'];
+        const invoiceData = [5000, 3000, 4000, 7000, 2000];
+        const receiptData = [2000, 1500, 3000, 4000, 1500];
+        const outstandingData = [3000, 1500, 1000, 3000, 500];
+
+        createServicesChart(services, invoiceData, receiptData, outstandingData);
+
         createSalesPieChart();
 
-        createTopCustomersBarChart()
+        createTopCustomersBarChart();
+
+        createServicesByPeriodChart();
+
+        function createServicesByPeriodChart() {
+            const ctx = document.getElementById('servicesByPeriodChart').getContext('2d');
+            new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Service A', 'Service B', 'Service C', 'Service D'], // X-axis labels (Services)
+                datasets: [
+                    {
+                        label: 'Invoice Amount - Jan',
+                        data: [1200, 1500, 800, 1300], // Example data for January
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        stack: 'Stack 0'
+                    },
+                    {
+                        label: 'Service Count - Jan',
+                        data: [12, 19, 3, 5], // Example data for January
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        stack: 'Stack 1'
+                    },
+                    {
+                        label: 'Invoice Amount - Feb',
+                        data: [1100, 1400, 900, 1200], // Example data for February
+                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                        stack: 'Stack 0'
+                    },
+                    {
+                        label: 'Service Count - Feb',
+                        data: [10, 20, 4, 6], // Example data for February
+                        backgroundColor: 'rgba(75, 192, 192, 0.4)',
+                        stack: 'Stack 1'
+                    },
+                    // Add more datasets for other months
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Services'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amount (Invoice) / Count (Services)'
+                        },
+                        stacked: true
+                    }
+                }
+            }
+        });
+        }
 
         function createSalesPieChart() {
             var ctx = document.getElementById('salesPieChart').getContext('2d');
@@ -289,23 +321,12 @@
                                 display: true,
                                 labelString: 'Transaction Amount ($)'
                             }
-                        }],
-                        xAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Customers'
-                            }
                         }]
                     },
                     tooltips: {
                         callbacks: {
                             label: function (tooltipItem, data) {
-                                var label = data.datasets[tooltipItem.datasetIndex].label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += '$' + tooltipItem.yLabel;
-                                return label;
+                                return '$' + tooltipItem.yLabel;
                             }
                         }
                     }
@@ -313,34 +334,93 @@
             });
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebarContainer = document.querySelector('#sidebar-container');
+        function createServicesChart(services, invoiceData, receiptData, outstandingData) {
+            const ctx = document.getElementById('servicesChart').getContext('2d');
 
+            const servicesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: services,
+                    datasets: [
+                        {
+                            label: 'Invoice Amount',
+                            data: invoiceData,
+                            backgroundColor: 'rgba(54, 162, 235, 0.7)', // Light Blue color
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Receipt Amount',
+                            data: receiptData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.7)', // Light Green color
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Outstanding Amount',
+                            data: outstandingData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.7)', // Light Red color
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            stacked: true, // Stack the bars horizontally
+                            title: {
+                                display: true,
+                                text: 'Services'
+                            }
+                        },
+                        y: {
+                            stacked: true, // Stack the bars vertically
+                            title: {
+                                display: true,
+                                text: 'Amount'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
 
-            fetch("./Sidebar.html")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    // Insert the content into the container
-                    sidebarContainer.innerHTML = html;
+        const sidebarContainer = document.getElementById("sidebar-container");
+        fetch("./Sidebar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(html => {
+                sidebarContainer.innerHTML = html;
 
-                    // Extract and execute scripts
-                    const scripts = sidebarContainer.querySelectorAll("script");
-                    scripts.forEach(script => {
-                        const newScript = document.createElement("script");
-                        newScript.text = script.innerHTML;
-                        document.body.appendChild(newScript); // Append to body to execute
-                    });
-                })
-                .catch(error => {
-                    console.error("There was a problem with the fetch operation:", error);
+                // Extract and execute scripts
+                const scripts = sidebarContainer.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.text = script.innerHTML;
+                    document.body.appendChild(newScript);
                 });
-        });
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
     </script>
+
 </body>
 
 </html>
