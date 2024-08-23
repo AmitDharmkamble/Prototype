@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .counter {
+            animation: countUp 1s ease-out forwards;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,8 +71,6 @@
         </div>
     </header>
 
-
-
     <!-- Page Content -->
     <div class="ml-60 p-5">
         <div class="container mx-auto">
@@ -72,25 +87,28 @@
                 <!-- Card 1 -->
                 <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
                     <div class="text-gray-500">Sales</div>
-                    <h2 class="text-3xl font-bold text-blue-600">₹1,234</h2>
+                    <h2 class="text-3xl font-bold text-blue-600 counter" data-target="1234">₹0</h2>
                     <p class="text-gray-400 text-sm">Current Financial Year, Updated 5s ago</p>
                 </div>
+
                 <!-- Card 2 -->
                 <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
                     <div class="text-gray-500">Outstanding</div>
-                    <h2 class="text-3xl font-bold text-blue-600">₹12,345</h2>
+                    <h2 class="text-3xl font-bold text-blue-600 counter" data-target="12345">₹0</h2>
                     <p class="text-gray-400 text-sm">Current Financial Year, Updated 5s ago</p>
                 </div>
+
                 <!-- Card 3 -->
                 <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
                     <div class="text-gray-500">Customers</div>
-                    <h2 class="text-3xl font-bold text-blue-600">567</h2>
+                    <h2 class="text-3xl font-bold text-blue-600 counter" data-target="567">0</h2>
                     <p class="text-gray-400 text-sm">Active : 300, Inactive : 267</p>
                 </div>
+
                 <!-- Card 4 -->
                 <div class="bg-white rounded-lg shadow-lg p-4 hover:bg-blue-50 hover:shadow-xl transition duration-300">
                     <div class="text-gray-500">Pending Payments</div>
-                    <h2 class="text-3xl font-bold text-blue-600">12</h2>
+                    <h2 class="text-3xl font-bold text-blue-600 counter" data-target="12">0</h2>
                     <p class="text-gray-400 text-sm">Total pending payment amount : ₹12,345</p>
                 </div>
 
@@ -191,56 +209,56 @@
         function createServicesByPeriodChart() {
             const ctx = document.getElementById('servicesByPeriodChart').getContext('2d');
             new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Service A', 'Service B', 'Service C', 'Service D'], // X-axis labels (Services)
-                datasets: [
-                    {
-                        label: 'Invoice Amount - Jan',
-                        data: [1200, 1500, 800, 1300], // Example data for January
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        stack: 'Stack 0'
-                    },
-                    {
-                        label: 'Service Count - Jan',
-                        data: [12, 19, 3, 5], // Example data for January
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        stack: 'Stack 1'
-                    },
-                    {
-                        label: 'Invoice Amount - Feb',
-                        data: [1100, 1400, 900, 1200], // Example data for February
-                        backgroundColor: 'rgba(54, 162, 235, 0.4)',
-                        stack: 'Stack 0'
-                    },
-                    {
-                        label: 'Service Count - Feb',
-                        data: [10, 20, 4, 6], // Example data for February
-                        backgroundColor: 'rgba(75, 192, 192, 0.4)',
-                        stack: 'Stack 1'
-                    },
-                    // Add more datasets for other months
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Services'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Amount (Invoice) / Count (Services)'
+                type: 'bar',
+                data: {
+                    labels: ['Service A', 'Service B', 'Service C', 'Service D'], // X-axis labels (Services)
+                    datasets: [
+                        {
+                            label: 'Invoice Amount - Jan',
+                            data: [1200, 1500, 800, 1300], // Example data for January
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            stack: 'Stack 0'
                         },
-                        stacked: true
+                        {
+                            label: 'Service Count - Jan',
+                            data: [12, 19, 3, 5], // Example data for January
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            stack: 'Stack 1'
+                        },
+                        {
+                            label: 'Invoice Amount - Feb',
+                            data: [1100, 1400, 900, 1200], // Example data for February
+                            backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                            stack: 'Stack 0'
+                        },
+                        {
+                            label: 'Service Count - Feb',
+                            data: [10, 20, 4, 6], // Example data for February
+                            backgroundColor: 'rgba(75, 192, 192, 0.4)',
+                            stack: 'Stack 1'
+                        },
+                        // Add more datasets for other months
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Services'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Amount (Invoice) / Count (Services)'
+                            },
+                            stacked: true
+                        }
                     }
                 }
-            }
-        });
+            });
         }
 
         function createSalesPieChart() {
@@ -419,6 +437,37 @@
             .catch(error => {
                 console.error("There was a problem with the fetch operation:", error);
             });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all elements that need the counter animation
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+                // Get the target number from the text content
+                let target = parseInt(counter.getAttribute('data-target'), 10);
+
+                // Animate from 0 to the target number
+                let count = 0;
+                const increment = target / 100; // Adjust the increment value as needed
+
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.textContent = `₹${Math.round(count)}`; // Adjust the formatting as needed
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.textContent = `₹${target}`; // Ensure it ends exactly at target
+                    }
+                };
+
+                // Start the count up animation
+                updateCount();
+
+                // Add the counter class to trigger CSS animation
+                counter.classList.add('counter');
+            });
+        });
+
     </script>
 
 </body>

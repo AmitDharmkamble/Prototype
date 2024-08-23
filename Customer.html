@@ -81,6 +81,72 @@
             visibility: visible;
             opacity: 1;
         }
+
+        .contact-persons {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .contact-persons.open {
+            max-height: 1000px;
+            /* Adjust as needed or use scrollHeight */
+        }
+
+        .tab-button {
+            background-color: #f8f8f8;
+            color: #333;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background-color: #ffffff;
+            color: #000000;
+            border-bottom: 2px solid #007bff;
+            /* Active tab color */
+        }
+
+        .tab-content {
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+            padding: 0 1rem;
+        }
+
+        .tab-content.show {
+            max-height: 1000px;
+            /* Set to a value high enough to contain the content */
+            padding: 1rem;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .counter {
+            animation: countUp 1s ease-out forwards;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .group:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -153,7 +219,7 @@
                 class="bg-white p-6 rounded-lg shadow-lg h-full flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
                 <div>
                     <h2 class="text-gray-700 text-lg font-semibold">Total Customers</h2>
-                    <p class="text-4xl font-bold text-gray-800">2,120</p>
+                    <p class="text-4xl font-bold text-gray-800 counter" data-target="2120">0</p>
                 </div>
                 <span class="text-green-500 text-lg font-semibold">↑ 20%</span>
             </div>
@@ -169,7 +235,7 @@
                 class="bg-white p-6 rounded-lg shadow-lg h-full flex justify-between items-start transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-100">
                 <div>
                     <h2 class="text-gray-700 text-lg font-semibold">Inactive Contacts</h2>
-                    <p class="text-3xl font-bold text-gray-800">1,220</p>
+                    <p class="text-3xl font-bold text-gray-800 counter" data-target="1220">0</p>
                 </div>
                 <span class="text-red-500 text-lg font-semibold">↑ 15%</span>
             </div>
@@ -186,7 +252,7 @@
                 <div class="flex justify-between items-start">
                     <div>
                         <h2 class="text-gray-700 text-lg font-semibold">Active Customers</h2>
-                        <p class="text-3xl font-bold text-gray-800">316</p>
+                        <p class="text-3xl font-bold text-gray-800 counter" data-target="316">0</p>
                     </div>
                     <span class="text-green-500 text-lg font-semibold">↑ 5%</span>
                 </div>
@@ -208,24 +274,262 @@
                 Number of active customers this period
             </div>
         </div>
+
     </div>
 
 
     <!-- Main Content -->
     <div class="container mx-auto p-4 mb-10">
-        <div class="flex">
-            <div class="w-50 p-4 bg-card border-r border-border">
-                <h2 class="text-lg font-semibold text-yellow-500" id="selectedTab">People</h2>
-                <div class="mt-4">
-                    <button id="peopleTab"
-                        class="w-full text-left p-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary transition duration-300 ease-in-out">People</button>
+        <div class="flex flex-col">
+            <div class="relative">
+                <div class="flex border-b border-gray-200">
                     <button id="organizationsTab"
-                        class="w-full text-left p-2 mt-2 bg-muted text-muted-foreground hover:bg-muted/80 rounded-lg focus:outline-none focus:ring-2 focus:ring-muted transition duration-300 ease-in-out">Companies</button>
+                        class="tab-button w-full py-2 px-4 text-center focus:outline-none transition duration-300 ease-in-out">
+                        Companies
+                    </button>
+                    <button id="peopleTab"
+                        class="tab-button w-full py-2 px-4 text-center focus:outline-none transition duration-300 ease-in-out">
+                        People
+                    </button>
+                </div>
+            </div>
+
+            <div id="organizationsContent" class="tab-content p-4 hidden">
+                <div class="flex items-center justify-between p-4">
+                    <!-- Create Organization Button -->
+                    <!-- <button
+                        class="bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+                        + Organization
+                    </button> -->
+
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" placeholder="Search organizations..."
+                            class="border border-gray-300 rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5a6 6 0 00-6 6 6 6 0 006 6 6 6 0 006-6 6 6 0 00-6-6zM21 21l-4.35-4.35" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    <!-- Card 1 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">I Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>10 years 4 months and 1 day</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
+
+
+
+
+
+                    <!-- Card 2 -->
+                    <!-- Card 1 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">My Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>5 years 1 month and 15 days</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>1 year 4 months and 1 day</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Our Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>1 year 4 months and 1 day</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Their Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>1 year 4 months and 1 day</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
+                        onclick="toggleContacts(this)">
+                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                        <h2 class="text-xl font-bold text-gray-900 mt-1">Knowledge Factory</h2>
+                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                        <div class="mt-4 flex items-center">
+                            <input type="checkbox" class="toggle text-blue-500" checked />
+                            <span class="ml-2 text-gray-600">Active</span>
+                        </div>
+
+                        <!-- Contact Persons Section -->
+                        <div
+                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                            </ul>
+                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                            <p>1 year 4 months and 1 day</p>
+                        </div>
+
+                        <!-- Edit Icon -->
+                        <button
+                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
             <!-- <div class="w-3/4 p-4 bg-gray-100 border-l border-border rounded-lg"> -->
-            <div id="peopleContent" class="tab-content w-full p-4">
+            <div id="peopleContent" class="tab-content w-full p-4 hidden">
                 <div class="flex items-center justify-between p-4">
                     <!-- Button and Alphabet Container -->
                     <!-- <div class="flex items-center space-x-1"> -->
@@ -335,9 +639,9 @@
                         class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                         <thead>
                             <tr class="bg-gray-200 text-gray-700">
-                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
-                                    Organization</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
+                                    Organization</th>
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
                                     Name</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(2)">
                                     Phone Number</th>
@@ -849,163 +1153,7 @@
                 <!-- </div> -->
             </div>
 
-            <div id="organizationsContent" class="tab-content hidden">
-                <div class="flex items-center justify-between p-4">
-                    <!-- Create Organization Button -->
-                    <!-- <button
-                        class="bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 font-semibold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
-                        + Organization
-                    </button> -->
-
-                    <!-- Search Bar -->
-                    <div class="relative">
-                        <input type="text" placeholder="Search organizations..."
-                            class="border border-gray-300 rounded-md py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-primary transition duration-300" />
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 5a6 6 0 00-6 6 6 6 0 006 6 6 6 0 006-6 6 6 0 00-6-6zM21 21l-4.35-4.35" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                    <!-- Card 1 -->
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">I Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Edit Icon -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 20h9"></path>
-                                <path d="M16.5 8.5l-1-1-2.5 2.5 1 1z"></path>
-                                <path d="M13.5 11.5l-1-1-7.5 7.5v2h2l7.5-7.5z"></path>
-                                <path d="M21 21l-6-6"></path>
-                                <path d="M4 21h-2v-2l2-2"></path>
-                            </svg>
-                        </a>
-                    </div>
-
-
-
-                    <!-- Card 2 -->
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Manufacturing</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">My Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://bca.com" class="text-blue-500 hover:underline mt-2 block">bca.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Button -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            View Details
-                        </a>
-                    </div>
-
-
-                    <!-- Card 3 -->
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Button -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            View Details
-                        </a>
-                    </div>
-
-
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Button -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            View Details
-                        </a>
-                    </div>
-
-
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Button -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            View Details
-                        </a>
-                    </div>
-
-
-                    <div
-                        class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50">
-                        <h3 class="text-lg font-semibold text-gray-700">Entertainment</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://xyz.com" class="text-blue-500 hover:underline mt-2 block">xyz.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
-                        <!-- Button -->
-                        <a href="#"
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300">
-                            Edit
-                        </a>
-                    </div>
-
-
-                </div>
-            </div>
-
         </div>
-    </div>
     </div>
 
     <!-- Footer -->
@@ -1072,23 +1220,37 @@
             });
         });
 
-        document.getElementById('peopleTab').addEventListener('click', function () {
-            document.getElementById('peopleContent').classList.remove('hidden');
-            document.getElementById('organizationsContent').classList.add('hidden');
-            document.getElementById('peopleTab').classList.add('bg-secondary/80', 'text-black');
-            document.getElementById('organizationsTab').classList.remove('bg-muted/80', 'text-black');
-            document.getElementById('organizationsTab').classList.add('bg-muted');
-            document.getElementById('selectedTab').textContent = 'People';
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // Remove active class from all tabs and hide all contents
+                    tabs.forEach(btn => btn.classList.remove('active'));
+                    contents.forEach(content => {
+                        content.classList.remove('show');
+                        content.classList.add('hidden');
+                    });
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Show content associated with the clicked tab
+                    const targetContent = document.getElementById(this.id.replace('Tab', 'Content'));
+                    targetContent.classList.remove('hidden');
+
+                    // Ensure content height is set dynamically for smooth animation
+                    requestAnimationFrame(() => {
+                        targetContent.classList.add('show');
+                    });
+                });
+            });
+
+            // Initialize the first tab as active
+            document.getElementById('organizationsTab').click();
         });
 
-        document.getElementById('organizationsTab').addEventListener('click', function () {
-            document.getElementById('organizationsContent').classList.remove('hidden');
-            document.getElementById('peopleContent').classList.add('hidden');
-            document.getElementById('organizationsTab').classList.add('bg-muted/80', 'text-black');
-            document.getElementById('peopleTab').classList.remove('bg-secondary/80', 'text-black');
-            document.getElementById('peopleTab').classList.add('bg-secondary');
-            document.getElementById('selectedTab').textContent = 'Companies';
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             const alphabets = document.querySelectorAll('#alphabetContainer .alphabet');
@@ -1107,18 +1269,31 @@
             const isAscending = table.dataset.sortDirection === 'asc';
 
             rows.sort((rowA, rowB) => {
-                const cellA = rowA.children[columnIndex].innerText;
-                const cellB = rowB.children[columnIndex].innerText;
+                let cellA = rowA.children[columnIndex].innerText.trim();
+                let cellB = rowB.children[columnIndex].innerText.trim();
+
+                // Check if the cells contain numeric values
+                const isNumericA = !isNaN(cellA) && cellA !== '';
+                const isNumericB = !isNaN(cellB) && cellB !== '';
+
+                if (isNumericA && isNumericB) {
+                    cellA = parseFloat(cellA);
+                    cellB = parseFloat(cellB);
+                } else {
+                    cellA = cellA.toLowerCase();
+                    cellB = cellB.toLowerCase();
+                }
 
                 return isAscending
-                    ? cellA.localeCompare(cellB, undefined, { numeric: true })
-                    : cellB.localeCompare(cellA, undefined, { numeric: true });
+                    ? (isNumericA && isNumericB ? cellA - cellB : cellA.localeCompare(cellB))
+                    : (isNumericA && isNumericB ? cellB - cellA : cellB.localeCompare(cellA));
             });
 
             table.querySelector("tbody").append(...rows);
             table.dataset.sortDirection = isAscending ? 'desc' : 'asc';
-            updateTable();
+            updateTable(); // Assuming this is a custom function you need to run after sorting
         }
+
 
         function updateTable() {
             const table = document.getElementById("dataTable");
@@ -1291,6 +1466,50 @@
                 this.querySelector('.tooltip').classList.remove('visible');
             });
         });
+
+        function toggleContacts(card) {
+            const contactSection = card.querySelector('.contact-persons');
+
+            // Toggle visibility
+            if (contactSection.style.maxHeight) {
+                // If maxHeight is set, it means the section is open, so we need to close it
+                contactSection.style.maxHeight = null;
+            } else {
+                // If maxHeight is not set, it means the section is closed, so we need to open it
+                contactSection.style.maxHeight = contactSection.scrollHeight + 'px';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all elements with the counter class
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+                // Get the target number from the data-target attribute
+                let target = parseInt(counter.getAttribute('data-target'), 10);
+
+                // Animate from 0 to the target number
+                let count = 0;
+                const increment = target / 100; // Adjust the increment value as needed
+
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.textContent = `${Math.round(count)}`; // Adjust the formatting as needed
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.textContent = `${target}`; // Ensure it ends exactly at target
+                    }
+                };
+
+                // Start the count up animation
+                updateCount();
+
+                // Add the counter class to trigger CSS animation
+                counter.classList.add('counter');
+            });
+        });
+
     </script>
 </body>
 
