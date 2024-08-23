@@ -26,18 +26,65 @@
         .dropdown:focus-within .dropdown-menu {
             display: block;
         }
+
+        @keyframes morph-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes morph-out {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        .morph-text {
+            display: inline-block;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .morph-in {
+            animation: morph-in 0.3s forwards;
+        }
+
+        .morph-out {
+            animation: morph-out 0.3s forwards;
+        }
     </style>
 </head>
 
 <body class="relative">
 
-    <div
+    <!-- <div
         class="absolute top-5 left-[calc(10%-30px)] h-8 w-8 bg-white border border-gray-800 rounded-full flex justify-center items-center cursor-pointer transition-all ease duration-500 z-[1001] square">
+        <span class="text-lg font-bold text-gray-800">&lt;</span>
+    </div> -->
+    <!-- <div
+    class="absolute bottom-5 left-5 h-8 w-8 bg-white border border-gray-800 rounded-full flex justify-center items-center cursor-pointer transition-all ease duration-500 z-[1001] square">
+    <span class="text-lg font-bold text-gray-800">&lt;</span>
+</div> -->
+    <div
+        class="absolute bottom-5 left-5 h-8 w-8 bg-white border border-gray-800 rounded-full flex justify-center items-center cursor-pointer transition-all ease duration-500 z-[1001] square">
         <span class="text-lg font-bold text-gray-800">&lt;</span>
     </div>
 
+
+
     <div
-        class="fixed top-0 left-0 h-full w-1/10 bg-gray-800 pt-5 overflow-y-auto z-[20] transition-transform ease duration-500 sidebar">
+        class="fixed top-0 left-0 h-full w-auto bg-gray-800 pt-5 overflow-y-auto z-[20] transition-transform ease duration-500 sidebar">
         <a href="./AccountHome.html" class="block text-white py-2 px-3 hover:bg-gray-600">Dashboard</a>
         <div class="dropdown">
             <a href="#" class="block text-white py-2 px-3 hover:bg-gray-600 cursor-pointer dropdown-toggle">Masters</a>
@@ -72,15 +119,31 @@
             const bodyElement = document.body;
             const sidebar = document.querySelector('.sidebar');
 
+            let textState = 'open'; // Keeps track of the current text state
+
             squareButton.addEventListener("click", function () {
                 // Toggle sidebar visibility
                 sidebar.classList.toggle('-translate-x-full');
 
-                // Change text between '>' and '<' depending on sidebar state
-                if (sidebar.classList.contains('-translate-x-full')) {
-                    squareText.textContent = '>';
+                // Handle text animation
+                if (textState === 'open') {
+                    squareText.classList.add('morph-out');
+                    squareText.classList.remove('morph-in');
+                    setTimeout(() => {
+                        squareText.textContent = '>';
+                        squareText.classList.add('morph-in');
+                        squareText.classList.remove('morph-out');
+                        textState = 'closed'; // Update text state
+                    }, 300); // Match duration of morph-out animation
                 } else {
-                    squareText.textContent = '<';
+                    squareText.classList.add('morph-out');
+                    squareText.classList.remove('morph-in');
+                    setTimeout(() => {
+                        squareText.textContent = '<';
+                        squareText.classList.add('morph-in');
+                        squareText.classList.remove('morph-out');
+                        textState = 'open'; // Update text state
+                    }, 300); // Match duration of morph-out animation
                 }
             });
 
@@ -89,6 +152,7 @@
                 $(this).siblings('.dropdown-menu').toggleClass('hidden');
             });
         });
+
     </script>
 
 </body>
