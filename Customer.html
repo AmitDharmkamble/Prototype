@@ -88,11 +88,6 @@
             transition: max-height 0.5s ease-in-out;
         }
 
-        .contact-persons.open {
-            max-height: 1000px;
-            /* Adjust as needed or use scrollHeight */
-        }
-
         .tab-button {
             background-color: #f8f8f8;
             color: #333;
@@ -279,7 +274,7 @@
 
 
     <!-- Main Content -->
-    <div class="container mx-auto p-4 mb-10">
+    <div class="container mx-auto p-4">
         <div class="flex flex-col">
             <div class="relative">
                 <div class="flex border-b border-gray-200">
@@ -294,7 +289,7 @@
                 </div>
             </div>
 
-            <div id="organizationsContent" class="tab-content p-4 hidden">
+            <div id="organizationsContent" class="tab-content p-4 overflow-visible mb-20">
                 <div class="flex items-center justify-between p-4">
                     <!-- Create Organization Button -->
                     <!-- <button
@@ -318,204 +313,254 @@
                     <!-- Card 1 -->
                     <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
                         onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">I Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>10 years 4 months and 1 day</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-40 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">I Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>10 years 4 months and 1 day</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Card 2 -->
                     <!-- Card 1 -->
                     <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
                         onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">My Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>5 years 1 month and 15 days</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-40 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">My Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>5 years 1 month and 15 days</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Card 2 -->
                     <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
                         onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>1 year 4 months and 1 day</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-40 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">Your Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>1 year 4 months and 1 day</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Card 3 -->
                     <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
                         onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Our Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>1 year 4 months and 1 day</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-32 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">Our Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>1 year 4 months and 1 day</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Card 4 -->
-                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
-                        onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">Their Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
+                    <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform 
+                    hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer" onclick="toggleContacts(this)">
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>1 year 4 months and 1 day</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-32 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">Their Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>1 year 4 months and 1 day</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
+
                     <!-- Card 5 -->
                     <div class="relative bg-white p-6 rounded-lg shadow-lg border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-xl hover:bg-gray-50 cursor-pointer"
                         onclick="toggleContacts(this)">
-                        <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
-                        <h2 class="text-xl font-bold text-gray-900 mt-1">More Knowledge Factory</h2>
-                        <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
-                            Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
-                        <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
-                        <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" class="toggle text-blue-500" checked />
-                            <span class="ml-2 text-gray-600">Active</span>
-                        </div>
 
-                        <!-- Contact Persons Section -->
-                        <div
-                            class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
-                            <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
-                            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
-                                <li>John Doe - johndoe@example.com - +91-12345-67890</li>
-                                <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
-                            </ul>
-                            <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
-                            <p>1 year 4 months and 1 day</p>
-                        </div>
+                        <!-- Image Section -->
+                        <img class="w-full h-32 object-cover rounded-t-lg" src="https://picsum.photos/400/200"
+                            alt="Hotel Image">
 
-                        <!-- Edit Icon -->
-                        <button
-                            class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
-                            data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
+                            <h2 class="text-xl font-bold text-gray-900 mt-1">More Knowledge Factory</h2>
+                            <p class="text-sm text-gray-600 mt-2">6th Floor, International Business Bay (IBB), Opp Kumar
+                                Pacific Mall, Shankar Sheth Rd, Guru Nanak Nagar, Pune – 411042, Maharashtra, India</p>
+                            <p class="text-sm text-gray-600 mt-1">29GGGGG1314R9Z6</p>
+                            <a href="http://abc.com" class="text-blue-500 hover:underline mt-2 block">abc.com</a>
+                            <div class="mt-4 flex items-center">
+                                <input type="checkbox" class="toggle text-blue-500" checked />
+                                <span class="ml-2 text-gray-600">Active</span>
+                            </div>
+
+                            <!-- Contact Persons Section -->
+                            <div
+                                class="contact-persons mt-4 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out">
+                                <h4 class="text-md font-semibold text-gray-700">Contact Persons:</h4>
+                                <ul class="text-sm text-gray-600 mt-2 list-disc list-inside">
+                                    <li>John Doe - johndoe@example.com - +91-12345-67890</li>
+                                    <li>Jane Smith - janesmith@example.com - +91-09876-54321</li>
+                                </ul>
+                                <h4 class="text-md font-semibold text-gray-700 mt-4">Customer Since:</h4>
+                                <p>1 year 4 months and 1 day</p>
+                            </div>
+
+                            <!-- Edit Icon -->
+                            <button
+                                class="absolute bottom-4 right-4 bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+                                data-modal-action="edit" data-record-id="1" onclick="event.stopPropagation();">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
 
+
                 </div>
+
+                <div>AMIT</div>
             </div>
 
             <!-- <div class="w-3/4 p-4 bg-gray-100 border-l border-border rounded-lg"> -->
@@ -574,6 +619,11 @@
                                         <option value="No">No</option>
                                     </select>
                                 </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="avatar">Upload Avatar</label>
+                                    <input id="avatar" type="file" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        accept="image/*">
+                                </div>
                                 <div class="flex justify-end">
                                     <button type="button" id="modal-close"
                                         class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
@@ -581,6 +631,7 @@
                                         class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
 
@@ -629,16 +680,16 @@
                         class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                         <thead>
                             <tr class="bg-gray-200 text-gray-700">
+                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
+                                    Avatar</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
                                     Organization</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">
-                                    Name</th>
+                                    Name/ Designation</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(2)">
                                     Phone Number</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(3)">
                                     Email Id</th>
-                                <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(4)">
-                                    Designation</th>
                                 <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(5)">
                                     Is Primary</th>
                                 <th class="border border-gray-300 p-4 text-left">Actions</th>
@@ -646,11 +697,16 @@
                         </thead>
                         <tbody>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">IKF</td>
-                                <td class="border border-gray-300 p-4">Amit Dharmkamble</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Amit Dharmkamble</div>
+                                    <div class="text-xs text-gray-500">Manager</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+91 123 456 7890</td>
                                 <td class="border border-gray-300 p-4">amit.dharmkamble@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">Manager</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -663,16 +719,20 @@
                                         data-record-id="123">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-
-
                                 </td>
                             </tr>
+
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
-                                <td class="border border-gray-300 p-4">Steven Mcguire</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Steven Mcguire</div>
+                                    <div class="text-xs text-gray-500">Director</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+1 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">steven.mcguire@mail.com</td>
-                                <td class="border border-gray-300 p-4">Director</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -689,11 +749,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
-                                <td class="border border-gray-300 p-4">Zoe Jacobson</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Zoe Jacobson</div>
+                                    <div class="text-xs text-gray-500">Executive</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+44 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">zoe.jacobson@g.com</td>
-                                <td class="border border-gray-300 p-4">Executive</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -710,11 +775,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
-                                <td class="border border-gray-300 p-4">Emily Davis</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Emily Davis</div>
+                                    <div class="text-xs text-gray-500">HR Manager</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">emily.davis@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">HR Manager</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -727,15 +797,20 @@
                                         data-record-id="123">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-
                                 </td>
                             </tr>
+
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
-                                <td class="border border-gray-300 p-4">Michael Johnson</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Michael Johnson</div>
+                                    <div class="text-xs text-gray-500">Sales Lead</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">michael.johnson@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">Sales Lead</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -752,11 +827,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
-                                <td class="border border-gray-300 p-4">Olivia Martinez</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Olivia Martinez</div>
+                                    <div class="text-xs text-gray-500">Marketing Specialist</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+66 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">olivia.martinez@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">Marketing Specialist</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -773,11 +853,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
-                                <td class="border border-gray-300 p-4">James Wilson</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">James Wilson</div>
+                                    <div class="text-xs text-gray-500">Product Manager</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+77 890 123 4567</td>
                                 <td class="border border-gray-300 p-4">james.wilson@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">Product Manager</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -794,11 +879,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
-                                <td class="border border-gray-300 p-4">Sophia Brown</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Sophia Brown</div>
+                                    <div class="text-xs text-gray-500">Business Analyst</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+88 901 234 5678</td>
                                 <td class="border border-gray-300 p-4">sophia.brown@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">Business Analyst</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -815,11 +905,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
-                                <td class="border border-gray-300 p-4">Liam Thompson</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Liam Thompson</div>
+                                    <div class="text-xs text-gray-500">Customer Support</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+99 012 345 6789</td>
                                 <td class="border border-gray-300 p-4">liam.thompson@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">Customer Support</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -836,11 +931,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">IKF</td>
-                                <td class="border border-gray-300 p-4">Mia Anderson</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Mia Anderson</div>
+                                    <div class="text-xs text-gray-500">Lead Developer</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+11 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">mia.anderson@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">Lead Developer</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -857,11 +957,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
-                                <td class="border border-gray-300 p-4">Noah Walker</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Noah Walker</div>
+                                    <div class="text-xs text-gray-500">Financial Analyst</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+22 345 678 9012</td>
                                 <td class="border border-gray-300 p-4">noah.walker@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">Financial Analyst</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -878,11 +983,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
-                                <td class="border border-gray-300 p-4">Isabella Lee</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Isabella Lee</div>
+                                    <div class="text-xs text-gray-500">Operations Manager</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">isabella.lee@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">Operations Manager</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -899,11 +1009,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
-                                <td class="border border-gray-300 p-4">Ethan Harris</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Ethan Harris</div>
+                                    <div class="text-xs text-gray-500">HR Coordinator</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+44 567 890 1234</td>
                                 <td class="border border-gray-300 p-4">ethan.harris@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">HR Coordinator</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -920,11 +1035,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
-                                <td class="border border-gray-300 p-4">Ava Martinez</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Ava Martinez</div>
+                                    <div class="text-xs text-gray-500">Product Specialist</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">ava.martinez@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">Product Specialist</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -941,11 +1061,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
-                                <td class="border border-gray-300 p-4">William King</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">William King</div>
+                                    <div class="text-xs text-gray-500">Business Development</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+66 789 012 3456</td>
                                 <td class="border border-gray-300 p-4">william.king@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">Business Development</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -962,11 +1087,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
-                                <td class="border border-gray-300 p-4">Charlotte Wright</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Charlotte Wright</div>
+                                    <div class="text-xs text-gray-500">Customer Success</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+77 890 123 4567</td>
                                 <td class="border border-gray-300 p-4">charlotte.wright@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">Customer Success</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -983,11 +1113,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">IKF</td>
-                                <td class="border border-gray-300 p-4">Lucas Scott</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Lucas Scott</div>
+                                    <div class="text-xs text-gray-500">Lead Designer</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+88 901 234 5678</td>
                                 <td class="border border-gray-300 p-4">lucas.scott@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">Lead Designer</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1004,11 +1139,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">LMN Inc</td>
-                                <td class="border border-gray-300 p-4">Mason Green</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Mason Green</div>
+                                    <div class="text-xs text-gray-500">Financial Planner</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+99 012 345 6789</td>
                                 <td class="border border-gray-300 p-4">mason.green@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">Financial Planner</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1025,11 +1165,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">OPQ Ltd</td>
-                                <td class="border border-gray-300 p-4">Amelia Adams</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Amelia Adams</div>
+                                    <div class="text-xs text-gray-500">Operations Analyst</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+11 234 567 8901</td>
                                 <td class="border border-gray-300 p-4">amelia.adams@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">Operations Analyst</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1046,11 +1191,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">RST Corp</td>
-                                <td class="border border-gray-300 p-4">Evelyn Evans</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Evelyn Evans</div>
+                                    <div class="text-xs text-gray-500">HR Assistant</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+22 345 678 9012</td>
                                 <td class="border border-gray-300 p-4">evelyn.evans@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">HR Assistant</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1067,11 +1217,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">UVW Inc</td>
-                                <td class="border border-gray-300 p-4">Henry Carter</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Henry Carter</div>
+                                    <div class="text-xs text-gray-500">Product Development</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+33 456 789 0123</td>
                                 <td class="border border-gray-300 p-4">henry.carter@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">Product Development</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1088,11 +1243,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">XYZ Ltd</td>
-                                <td class="border border-gray-300 p-4">Isabella Phillips</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Isabella Phillips</div>
+                                    <div class="text-xs text-gray-500">Marketing Manager</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+44 567 890 1234</td>
                                 <td class="border border-gray-300 p-4">isabella.phillips@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">Marketing Manager</td>
                                 <td class="border border-gray-300 p-4">No</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1109,11 +1269,16 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                                <td class="border border-gray-300 p-4">
+                                    <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
+                                </td>
                                 <td class="border border-gray-300 p-4">ABC Corp</td>
-                                <td class="border border-gray-300 p-4">Owen Rivera</td>
+                                <td class="border border-gray-300 p-4">
+                                    <div class="text-sm font-semibold">Owen Rivera</div>
+                                    <div class="text-xs text-gray-500">Customer Support</div>
+                                </td>
                                 <td class="border border-gray-300 p-4">+55 678 901 2345</td>
                                 <td class="border border-gray-300 p-4">owen.rivera@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">Customer Support</td>
                                 <td class="border border-gray-300 p-4">Yes</td>
                                 <td class="border border-gray-300 p-4 flex space-x-2">
                                     <button
@@ -1497,6 +1662,17 @@
 
                 // Add the counter class to trigger CSS animation
                 counter.classList.add('counter');
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const rows = document.querySelectorAll("#dataTable tbody tr");
+
+            rows.forEach(row => {
+                const isPrimaryCell = row.cells[4]; // 5th column (index 4)
+                if (isPrimaryCell.textContent.trim().toLowerCase() === "yes") {
+                    row.classList.add("bg-green-100");
+                }
             });
         });
 
