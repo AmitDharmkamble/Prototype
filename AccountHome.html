@@ -453,10 +453,10 @@
                 const updateCount = () => {
                     if (count < target) {
                         count += increment;
-                        counter.textContent = `₹${Math.round(count)}`; // Adjust the formatting as needed
+                        counter.textContent = `${Math.round(count)}`; // Adjust the formatting as needed
                         setTimeout(updateCount, 10);
                     } else {
-                        counter.textContent = `₹${target}`; // Ensure it ends exactly at target
+                        counter.textContent = `${target}`; // Ensure it ends exactly at target
                     }
                 };
 
