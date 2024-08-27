@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
+    <title>Taxes</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -76,32 +76,30 @@
 
     <div class="container mx-auto p-4">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold">Services</h1>
-            <a id="createServiceBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
-                Create New Service
+            <h1 class="text-2xl font-bold">Taxes</h1>
+            <a id="createTaxBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
+                Create New Tax
             </a>
         </div>
 
-        <div id="serviceModal"
-            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div id="taxModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 max-w-lg w-full">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 id="modalTitle" class="text-2xl font-bold">Create New Service</h2>
+                    <h2 id="modalTitle" class="text-2xl font-bold">Create New Tax</h2>
                     <button id="closeModal" class="text-gray-500 hover:text-gray-700">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <form id="serviceForm">
-                    <input type="hidden" id="serviceId" name="serviceId">
+                <form id="taxForm">
+                    <input type="hidden" id="taxId" name="taxId">
                     <div class="mb-4">
-                        <label for="serviceName" class="block text-sm font-medium text-gray-700">Service Name</label>
-                        <input type="text" id="serviceName" name="serviceName"
+                        <label for="taxName" class="block text-sm font-medium text-gray-700">Tax Name</label>
+                        <input type="text" id="taxName" name="taxName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4">
-                        <label for="serviceSACCode" class="block text-sm font-medium text-gray-700">Service SAC
-                            Code</label>
-                        <input type="text" id="serviceSACCode" name="serviceSACCode"
+                        <label for="taxPercentage" class="block text-sm font-medium text-gray-700">Tax Percentage</label>
+                        <input type="text" id="taxPercentage" name="taxPercentage"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4">
@@ -127,12 +125,12 @@
             <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="service_id">
-                            Service ID</th>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="tax_id">
+                            Tax ID</th>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="tax_name">Tax
+                            Name</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                            data-sort="service_name">Service Name</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                            data-sort="service_sac_code">SAC Code</th>
+                            data-sort="tax_sac_code">Tax Percentage</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
                             Active</th>
                         <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
@@ -156,9 +154,9 @@
     <script>
         const sidebarContainer = document.getElementById("sidebar-container");
         const tableBody = document.getElementById('tableBody');
-        const serviceModal = document.getElementById('serviceModal');
+        const taxModal = document.getElementById('taxModal');
         const modalTitle = document.getElementById('modalTitle');
-        const serviceForm = document.getElementById('serviceForm');
+        const taxForm = document.getElementById('taxForm');
         const closeModal = document.getElementById('closeModal');
 
         fetch("./Sidebar.html")
@@ -195,7 +193,7 @@
             const pageInfo = document.getElementById("pageInfo");
 
             async function fetchData() {
-                const response = await fetch("./Data/services.json");
+                const response = await fetch("./Data/taxes.json");
                 data = await response.json();
                 displayData();
             }
@@ -207,9 +205,9 @@
 
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                    <td class="px-4 py-2 border border-gray-300">${item.service_id}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.service_name}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.service_sac_code}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.tax_id}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.tax_name}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.tax_percentage}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
                     <td class="px-4 py-2 border border-gray-300">
                         <button 
@@ -219,7 +217,7 @@
                         </button>
                         <button 
                             class="text-black px-2 py-1 rounded" 
-                            onclick="deleteService(${item.service_id})">
+                            onclick="deleteTax(${item.tax_id})">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </td>
@@ -251,9 +249,9 @@
             function filterData(data) {
                 const query = searchInput.value.toLowerCase();
                 return data.filter(item => {
-                    return item.service_name.toLowerCase().includes(query) ||
-                        item.service_sac_code.toLowerCase().includes(query) ||
-                        item.service_id.toString().includes(query) ||
+                    return item.tax_name.toLowerCase().includes(query) ||
+                        item.tax_percentage.toString().toLowerCase().includes(query) ||
+                        item.tax_id.toString().includes(query) ||
                         (item.is_active ? 'active' : 'inactive').includes(query);
                 });
             }
@@ -296,60 +294,60 @@
             fetchData();
         });
 
-        function deleteService(service_id) {
-                const confirmed = confirm(`Are you sure you want to delete the service with ID: ${service_id}?`);
-                if (confirmed) {
-                    alert("Service deleted successfully");
-                }
+        function deleteTax(tax_id) {
+            const confirmed = confirm(`Are you sure you want to delete the tax with ID: ${tax_id}?`);
+            if (confirmed) {
+                alert("Tax deleted successfully");
             }
-            
-        // Add event listener to the "Create New Service" button
-        document.getElementById('createServiceBtn').addEventListener('click', () => openModal());
+        }
+
+        // Add event listener to the "Create New Tax" button
+        document.getElementById('createTaxBtn').addEventListener('click', () => openModal());
 
         // Function to open the modal
-        function openModal(service = null) {
-            if (service) {
-                // Edit Service
-                modalTitle.textContent = 'Edit Service';
-                const serviceId = service.service_id;
-                const serviceName = service.service_name;
-                const serviceSACCode = service.service_sac_code;
-                const isActive = service.is_active;
+        function openModal(tax = null) {
+            if (tax) {
+                // Edit tax
+                modalTitle.textContent = 'Edit tax';
+                const taxId = tax.tax_id;
+                const taxName = tax.tax_name;
+                const taxPercentage = tax.tax_percentage;
+                const isActive = tax.is_active;
 
                 // Assign values to form fields
-                document.getElementById('serviceName').value = serviceName;
-                document.getElementById('serviceSACCode').value = serviceSACCode;
+                document.getElementById('taxName').value = taxName;
+                document.getElementById('taxPercentage').value = taxPercentage;
                 document.getElementById('isActive').checked = isActive;
             } else {
-                // Create New Service
-                modalTitle.textContent = 'Create New Service';
-                serviceForm.reset(); // Clear the form
+                // Create New tax
+                modalTitle.textContent = 'Create New tax';
+                taxForm.reset(); // Clear the form
             }
-            serviceModal.classList.remove('hidden'); // Show the modal
+            taxModal.classList.remove('hidden'); // Show the modal
         }
 
         // Function to close the modal
         document.getElementById('closeModal').addEventListener('click', () => {
-            serviceModal.classList.add('hidden'); // Hide the modal
+            taxModal.classList.add('hidden'); // Hide the modal
         });
 
         // Handle form submission
-        document.getElementById('serviceForm').addEventListener('submit', (e) => {
+        document.getElementById('taxForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const serviceData = {
-                service_id: document.getElementById('serviceId').value,
-                service_name: document.getElementById('serviceName').value,
-                service_sac_code: document.getElementById('serviceSACCode').value,
+            const taxData = {
+                tax_id: document.getElementById('taxId').value,
+                tax_name: document.getElementById('taxName').value,
+                tax_percentage: document.getElementById('taxPercentage').value,
                 is_active: document.getElementById('isActive').checked,
             };
-            if (serviceData.service_id) {
-                // Call your edit service API or function here
-                console.log('Edit Service', serviceData);
+            if (taxData.tax_id) {
+                // Call your edit tax API or function here
+                console.log('Edit tax', taxData);
             } else {
-                // Call your create service API or function here
-                console.log('Create New Service', serviceData);
+                // Call your create tax API or function here
+                console.log('Create New tax', taxData);
             }
-            serviceModal.classList.add('hidden'); // Hide the modal after submission
+            taxModal.classList.add('hidden'); // Hide the modal after submission
         });
 
 

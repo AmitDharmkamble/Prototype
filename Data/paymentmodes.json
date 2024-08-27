@@ -1,0 +1,27 @@
+[
+    {
+        "payment_mode_id": 1,
+        "payment_mode_name": "Cash",
+        "is_active": true
+    },
+    {
+        "payment_mode_id": 2,
+        "payment_mode_name": "Cheque",
+        "is_active": false
+    },
+    {
+        "payment_mode_id": 3,
+        "payment_mode_name": "Online",
+        "is_active": false
+    },
+    {
+        "payment_mode_id": 4,
+        "payment_mode_name": "TDS",
+        "is_active": false
+    },
+    {
+        "payment_mode_id": 5,
+        "payment_mode_name": "Write Off",
+        "is_active": false
+    }
+]
