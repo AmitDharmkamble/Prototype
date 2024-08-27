@@ -1,0 +1,652 @@
+[
+    {
+        "template_id": 1,
+        "template_name": "Invoice Template 1",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Services Rendered",
+        "template_body": "Dear [Customer],\n\nPlease find attached your invoice for services rendered.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 2,
+        "template_name": "Outstanding Reminder Template 1",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Overdue Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a reminder that your payment is overdue.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 3,
+        "template_name": "Receipt Template 1",
+        "template_usage": "receipt",
+        "template_subject": "Receipt for Payment",
+        "template_body": "Dear [Customer],\n\nPlease find attached your receipt for payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 4,
+        "template_name": "Invoice Template 2",
+        "template_usage": "invoice",
+        "template_subject": "Your Invoice for This Month",
+        "template_body": "Dear [Customer],\n\nPlease find attached your invoice for this month.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 5,
+        "template_name": "Outstanding Reminder Template 2",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Reminder: Payment Overdue",
+        "template_body": "Dear [Customer],\n\nThis is a second reminder that your payment is overdue. Please make payment at your earliest convenience.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 6,
+        "template_name": "Receipt Template 2",
+        "template_usage": "receipt",
+        "template_subject": "Payment Receipt Confirmation",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Please find your receipt attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 7,
+        "template_name": "Invoice Template 3",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Last Month’s Services",
+        "template_body": "Dear [Customer],\n\nAttached is your invoice for services provided last month. Please review and process payment accordingly.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 8,
+        "template_name": "Outstanding Reminder Template 3",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is the final reminder for your overdue payment. Immediate action is required to avoid service disruption.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 9,
+        "template_name": "Receipt Template 3",
+        "template_usage": "receipt",
+        "template_subject": "Thank You for Your Payment",
+        "template_body": "Dear [Customer],\n\nWe have received your payment. Please find the receipt attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 10,
+        "template_name": "Invoice Template 4",
+        "template_usage": "invoice",
+        "template_subject": "Your Monthly Invoice",
+        "template_body": "Dear [Customer],\n\nPlease find attached your invoice for this month’s services.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 11,
+        "template_name": "Outstanding Reminder Template 4",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Urgent: Payment Overdue",
+        "template_body": "Dear [Customer],\n\nYour payment is still overdue. Please settle the outstanding amount as soon as possible to avoid penalties.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 12,
+        "template_name": "Receipt Template 4",
+        "template_usage": "receipt",
+        "template_subject": "Payment Acknowledgement",
+        "template_body": "Dear [Customer],\n\nWe acknowledge receipt of your payment. Please find your receipt attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 13,
+        "template_name": "Invoice Template 5",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Services Provided",
+        "template_body": "Dear [Customer],\n\nYour invoice for the services provided has been attached. Please process the payment by the due date.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 14,
+        "template_name": "Outstanding Reminder Template 5",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Overdue Payment Notice",
+        "template_body": "Dear [Customer],\n\nThis is your final notice for the overdue payment. Please ensure the payment is made immediately.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 15,
+        "template_name": "Receipt Template 5",
+        "template_usage": "receipt",
+        "template_subject": "Receipt of Your Payment",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Please find the receipt attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 16,
+        "template_name": "Invoice Template 6",
+        "template_usage": "invoice",
+        "template_subject": "Service Invoice",
+        "template_body": "Dear [Customer],\n\nYour service invoice is attached. Please review and complete payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 17,
+        "template_name": "Outstanding Reminder Template 6",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Important: Overdue Payment Reminder",
+        "template_body": "Dear [Customer],\n\nPlease be advised that your payment is overdue. Kindly make the payment to avoid any late fees.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 18,
+        "template_name": "Receipt Template 6",
+        "template_usage": "receipt",
+        "template_subject": "Your Payment Receipt",
+        "template_body": "Dear [Customer],\n\nWe have received your payment. The receipt is attached for your records.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 19,
+        "template_name": "Invoice Template 7",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Professional Services",
+        "template_body": "Dear [Customer],\n\nPlease find attached your invoice for the professional services rendered.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 20,
+        "template_name": "Outstanding Reminder Template 7",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Second Notice: Overdue Payment",
+        "template_body": "Dear [Customer],\n\nThis is a second notice regarding your overdue payment. Please settle the outstanding amount.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 21,
+        "template_name": "Receipt Template 7",
+        "template_usage": "receipt",
+        "template_subject": "Payment Confirmation",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Your receipt is attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 22,
+        "template_name": "Invoice Template 8",
+        "template_usage": "invoice",
+        "template_subject": "Your Service Invoice",
+        "template_body": "Dear [Customer],\n\nAttached is your service invoice. Please process the payment by the due date.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 23,
+        "template_name": "Outstanding Reminder Template 8",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a final reminder regarding your overdue payment. Immediate payment is required.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 24,
+        "template_name": "Receipt Template 8",
+        "template_usage": "receipt",
+        "template_subject": "Receipt for Your Payment",
+        "template_body": "Dear [Customer],\n\nYour payment has been received. The receipt is attached for your reference.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 25,
+        "template_name": "Invoice Template 9",
+        "template_usage": "invoice",
+        "template_subject": "Monthly Service Invoice",
+        "template_body": "Dear [Customer],\n\nPlease find your monthly service invoice attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 26,
+        "template_name": "Outstanding Reminder Template 9",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Overdue Payment Notice",
+        "template_body": "Dear [Customer],\n\nYour payment is overdue. Please settle the outstanding amount as soon as possible.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 27,
+        "template_name": "Receipt Template 9",
+        "template_usage": "receipt",
+        "template_subject": "Acknowledgement of Payment",
+        "template_body": "Dear [Customer],\n\nWe acknowledge the receipt of your payment. The receipt is attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 28,
+        "template_name": "Invoice Template 10",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Provided Services",
+        "template_body": "Dear [Customer],\n\nAttached is your invoice for the services provided. Please process the payment promptly.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 29,
+        "template_name": "Outstanding Reminder Template 10",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Overdue Payment Notice",
+        "template_body": "Dear [Customer],\n\nThis is the final notice for your overdue payment. Please ensure payment is made to avoid penalties.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 30,
+        "template_name": "Receipt Template 10",
+        "template_usage": "receipt",
+        "template_subject": "Payment Receipt",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Your receipt is attached for your records.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 31,
+        "template_name": "Invoice Template 11",
+        "template_usage": "invoice",
+        "template_subject": "Service Invoice",
+        "template_body": "Dear [Customer],\n\nYour invoice for the services provided is attached. Please review and process payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 32,
+        "template_name": "Outstanding Reminder Template 11",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Overdue Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a reminder that your payment is overdue. Please make the payment as soon as possible.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 33,
+        "template_name": "Receipt Template 11",
+        "template_usage": "receipt",
+        "template_subject": "Payment Confirmation",
+        "template_body": "Dear [Customer],\n\nWe have received your payment. The receipt is attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 34,
+        "template_name": "Invoice Template 12",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Last Month’s Services",
+        "template_body": "Dear [Customer],\n\nAttached is your invoice for services provided last month. Please review and process payment accordingly.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 35,
+        "template_name": "Outstanding Reminder Template 12",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a final reminder regarding your overdue payment. Immediate payment is required.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 36,
+        "template_name": "Receipt Template 12",
+        "template_usage": "receipt",
+        "template_subject": "Receipt for Your Payment",
+        "template_body": "Dear [Customer],\n\nYour payment has been received. The receipt is attached for your reference.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 37,
+        "template_name": "Invoice Template 13",
+        "template_usage": "invoice",
+        "template_subject": "Professional Services Invoice",
+        "template_body": "Dear [Customer],\n\nAttached is your invoice for the professional services rendered. Please process the payment by the due date.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 38,
+        "template_name": "Outstanding Reminder Template 13",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Notice",
+        "template_body": "Dear [Customer],\n\nThis is your final notice for the overdue payment. Please ensure the payment is made immediately.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 39,
+        "template_name": "Receipt Template 13",
+        "template_usage": "receipt",
+        "template_subject": "Payment Receipt Confirmation",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Please find the receipt attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 40,
+        "template_name": "Invoice Template 14",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Services",
+        "template_body": "Dear [Customer],\n\nYour invoice for the services rendered is attached. Please review and complete payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 41,
+        "template_name": "Outstanding Reminder Template 14",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Overdue Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a reminder that your payment is overdue. Please make the payment as soon as possible.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 42,
+        "template_name": "Receipt Template 14",
+        "template_usage": "receipt",
+        "template_subject": "Payment Confirmation",
+        "template_body": "Dear [Customer],\n\nWe have received your payment. The receipt is attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 43,
+        "template_name": "Invoice Template 15",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Monthly Services",
+        "template_body": "Dear [Customer],\n\nPlease find attached your invoice for monthly services. Kindly process the payment by the due date.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 44,
+        "template_name": "Outstanding Reminder Template 15",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Notice",
+        "template_body": "Dear [Customer],\n\nThis is your final notice for the overdue payment. Please ensure the payment is made immediately.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 45,
+        "template_name": "Receipt Template 15",
+        "template_usage": "receipt",
+        "template_subject": "Payment Receipt",
+        "template_body": "Dear [Customer],\n\nThank you for your payment. Your receipt is attached for your records.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 46,
+        "template_name": "Invoice Template 16",
+        "template_usage": "invoice",
+        "template_subject": "Service Invoice",
+        "template_body": "Dear [Customer],\n\nYour invoice for the services provided is attached. Please review and process payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "finance@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 47,
+        "template_name": "Outstanding Reminder Template 16",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Overdue Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is a reminder that your payment is overdue. Please make the payment as soon as possible.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 48,
+        "template_name": "Receipt Template 16",
+        "template_usage": "receipt",
+        "template_subject": "Payment Confirmation",
+        "template_body": "Dear [Customer],\n\nWe have received your payment. The receipt is attached.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "accounting@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    },
+    {
+        "template_id": 49,
+        "template_name": "Invoice Template 17",
+        "template_usage": "invoice",
+        "template_subject": "Invoice for Services",
+        "template_body": "Dear [Customer],\n\nYour invoice for the services rendered is attached. Please review and complete payment.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "billing@example.com"
+        ],
+        "template_bcc": [
+            "supervisor@example.com"
+        ]
+    },
+    {
+        "template_id": 50,
+        "template_name": "Outstanding Reminder Template 17",
+        "template_usage": "outstanding reminder",
+        "template_subject": "Final Payment Reminder",
+        "template_body": "Dear [Customer],\n\nThis is your final reminder regarding your overdue payment. Immediate payment is required.\n\nBest regards,\n[Your Name]",
+        "template_cc": [
+            "collections@example.com"
+        ],
+        "template_bcc": [
+            "manager@example.com"
+        ]
+    }
+]

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cities</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .transition-max-height {
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filters>div {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="">
+
+    <div id="sidebar-container"></div>
+
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Cities</h1>
+            <a id="createCityBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
+                Create New City
+            </a>
+        </div>
+
+        <div id="cityModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-lg w-full">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold">Create New City</h2>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="cityForm">
+                    <input type="hidden" id="cityId" name="cityId">
+                    <div class="mb-4">
+                        <label for="cityName" class="block text-sm font-medium text-gray-700">City Name</label>
+                        <input type="text" id="cityName" name="cityName"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="cityStateName" class="block text-sm font-medium text-gray-700">City State Name</label>
+                        <input type="text" id="cityStateName" name="cityStateName"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="isActive" class="block text-sm font-medium text-gray-700">Active</label>
+                        <input type="checkbox" id="isActive" name="isActive" class="mt-1">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="my-4 border-t border-gray-300"></div>
+
+        <div class="mb-4">
+            <input type="text" id="searchInput" placeholder="Search..." class="border rounded px-3 py-2 w-full">
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="city_id">
+                            City ID</th>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="city_name">City Name</th>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                            data-sort="city_state_name">City State Name</th>
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
+                            Active</th>
+                        <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-4 flex justify-between items-center">
+            <button id="prevPage" class="bg-blue-500 text-white px-3 py-2 rounded">Previous</button>
+            <span id="pageInfo" class="text-gray-700"></span>
+            <button id="nextPage" class="bg-blue-500 text-white px-3 py-2 rounded">Next</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+        const sidebarContainer = document.getElementById("sidebar-container");
+        const tableBody = document.getElementById('tableBody');
+        const cityModal = document.getElementById('cityModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const cityForm = document.getElementById('cityForm');
+        const closeModal = document.getElementById('closeModal');
+
+        fetch("./Sidebar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(html => {
+                sidebarContainer.innerHTML = html;
+
+                // Extract and execute scripts
+                const scripts = sidebarContainer.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.text = script.innerHTML;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let data = [];
+            let currentPage = 1;
+            const rowsPerPage = 10;
+            let currentSortColumn = "";
+            let currentSortOrder = "asc";
+
+            const tableBody = document.getElementById("tableBody");
+            const searchInput = document.getElementById("searchInput");
+            const pageInfo = document.getElementById("pageInfo");
+
+            async function fetchData() {
+                const response = await fetch("./Data/cities.json");
+                data = await response.json();
+                displayData();
+            }
+
+            function displayData() {
+                const filteredData = filterData(data);
+                const sortedData = sortData(filteredData);
+                const paginatedData = paginateData(sortedData);
+
+                tableBody.innerHTML = paginatedData.map(item => `
+                <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                    <td class="px-4 py-2 border border-gray-300">${item.city_id}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.city_name}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.city_state_name}</td>
+                    <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
+                    <td class="px-4 py-2 border border-gray-300">
+                        <button 
+                            class="text-black px-2 py-1 rounded mr-2" 
+                            onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button 
+                            class="text-black px-2 py-1 rounded" 
+                            onclick="deleteCity(${item.city_id})">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join("");
+
+
+
+                pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredData.length / rowsPerPage)}`;
+            }
+
+            function paginateData(data) {
+                const start = (currentPage - 1) * rowsPerPage;
+                return data.slice(start, start + rowsPerPage);
+            }
+
+            function sortData(data) {
+                if (!currentSortColumn) return data;
+                return data.sort((a, b) => {
+                    const valA = a[currentSortColumn];
+                    const valB = b[currentSortColumn];
+
+                    if (valA < valB) return currentSortOrder === "asc" ? -1 : 1;
+                    if (valA > valB) return currentSortOrder === "asc" ? 1 : -1;
+                    return 0;
+                });
+            }
+
+            function filterData(data) {
+                const query = searchInput.value.toLowerCase();
+                return data.filter(item => {
+                    return item.city_id.toLowerCase().includes(query) ||
+                        item.city_state_name.toString().toLowerCase().includes(query) ||
+                        item.city_name.toString().includes(query) ||
+                        (item.is_active ? 'active' : 'inactive').includes(query);
+                });
+            }
+
+            function handleSort(e) {
+                const column = e.target.dataset.sort;
+                if (currentSortColumn === column) {
+                    currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+                } else {
+                    currentSortOrder = "asc";
+                    currentSortColumn = column;
+                }
+                displayData();
+            }
+
+            function handlePagination(direction) {
+                const filteredData = filterData(data);
+                const maxPage = Math.ceil(filteredData.length / rowsPerPage);
+
+                if (direction === "next" && currentPage < maxPage) {
+                    currentPage++;
+                } else if (direction === "prev" && currentPage > 1) {
+                    currentPage--;
+                }
+                displayData();
+            }
+
+            document.querySelectorAll("th[data-sort]").forEach(header => {
+                header.addEventListener("click", handleSort);
+            });
+
+            document.getElementById("nextPage").addEventListener("click", () => handlePagination("next"));
+            document.getElementById("prevPage").addEventListener("click", () => handlePagination("prev"));
+
+            searchInput.addEventListener("input", () => {
+                currentPage = 1;
+                displayData();
+            });
+
+            fetchData();
+        });
+
+        function deleteCity(city_id) {
+            const confirmed = confirm(`Are you sure you want to delete the city with ID: ${city_id}?`);
+            if (confirmed) {
+                alert("City deleted successfully");
+            }
+        }
+
+        // Add event listener to the "Create New City" button
+        document.getElementById('createCityBtn').addEventListener('click', () => openModal());
+
+        // Function to open the modal
+        function openModal(city = null) {
+            if (city) {
+                // Edit City
+                modalTitle.textContent = 'Edit City';
+                const cityId = city.city_id;
+                const cityName = city.city_name;
+                const cityStateName = city.city_state_name;
+                const isActive = city.is_active;
+
+                // Assign values to form fields
+                document.getElementById('cityName').value = cityName;
+                document.getElementById('cityStateName').value = cityStateName;
+                document.getElementById('isActive').checked = isActive;
+            } else {
+                // Create New city
+                modalTitle.textContent = 'Create New City';
+                cityForm.reset(); // Clear the form
+            }
+            cityModal.classList.remove('hidden'); // Show the modal
+        }
+
+        // Function to close the modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            cityModal.classList.add('hidden'); // Hide the modal
+        });
+
+        // Handle form submission
+        document.getElementById('cityForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const cityData = {
+                city_id: document.getElementById('cityId').value,
+                city_name: document.getElementById('cityName').value,
+                city_state_name: document.getElementById('cityStateName').value,
+                is_active: document.getElementById('isActive').checked,
+            };
+            if (cityData.city_id) {
+                // Call your edit city API or function here
+                console.log('Edit City', cityData);
+            } else {
+                // Call your create city API or function here
+                console.log('Create New City', cityData);
+            }
+            cityModal.classList.add('hidden'); // Hide the modal after submission
+        });
+
+
+    </script>
+</body>
+
+</html>
