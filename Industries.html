@@ -23,6 +23,10 @@
             display: flex;
             align-items: center;
         }
+
+        .group:hover .tooltip {
+            display: block;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -120,13 +124,13 @@
             <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="industry_id">
-                            Industry ID</th>
+                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="industry_id">
+                            Industry ID</th> -->
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="industry_name">Industry
                             Name</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
                             Active</th>
-                        <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                        <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -198,20 +202,25 @@
 
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                    <td class="px-4 py-2 border border-gray-300">${item.industry_id}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.industry_name}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
-                    <td class="px-4 py-2 border border-gray-300">
-                        <button 
-                            class="text-black px-2 py-1 rounded mr-2" 
-                            onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button 
-                            class="text-black px-2 py-1 rounded" 
-                            onclick="deleteIndustry(${item.industry_id})">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                    <td class="border border-gray-300 text-center">
+                        <div class="flex justify-center items-center space-x-2 relative">
+                            <button 
+                                class="text-black rounded mr-2 relative group" 
+                                onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                                data-tooltip="Edit">
+                                <i class="fas fa-edit"></i>
+                                <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                            </button>
+                            <button 
+                                class="text-black rounded relative group" 
+                                onclick="deleteIndustry(${item.industry_id})"
+                                data-tooltip="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                                <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Delete</span>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             `).join("");

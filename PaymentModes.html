@@ -23,6 +23,10 @@
             display: flex;
             align-items: center;
         }
+
+        .group:hover .tooltip {
+            display: block;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -77,12 +81,14 @@
     <div class="container mx-auto p-4">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold">Payment Modes</h1>
-            <a id="createPaymentModeBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
+            <a id="createPaymentModeBtn"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
                 Create New Payment Mode
             </a>
         </div>
 
-        <div id="paymentModeModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div id="paymentModeModal"
+            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 max-w-lg w-full">
                 <div class="flex justify-between items-center mb-4">
                     <h2 id="modalTitle" class="text-2xl font-bold">Create New Payment Mode</h2>
@@ -93,7 +99,8 @@
                 <form id="paymentModeForm">
                     <input type="hidden" id="paymentModeId" name="paymentModeId">
                     <div class="mb-4">
-                        <label for="paymentModeName" class="block text-sm font-medium text-gray-700">Payment Mode Name</label>
+                        <label for="paymentModeName" class="block text-sm font-medium text-gray-700">Payment Mode
+                            Name</label>
                         <input type="text" id="paymentModeName" name="paymentModeName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -120,12 +127,13 @@
             <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="payment_mode_id">
-                            Payment Mode ID</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="payment_mode_name">Payment Mode Name</th>
+                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="payment_mode_id">
+                            Payment Mode ID</th> -->
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                            data-sort="payment_mode_name">Payment Mode Name</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
                             Active</th>
-                        <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                        <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -197,20 +205,26 @@
 
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                    <td class="px-4 py-2 border border-gray-300">${item.payment_mode_id}</td>
+                    
                     <td class="px-4 py-2 border border-gray-300">${item.payment_mode_name}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
-                    <td class="px-4 py-2 border border-gray-300">
-                        <button 
-                            class="text-black px-2 py-1 rounded mr-2" 
-                            onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button 
-                            class="text-black px-2 py-1 rounded" 
-                            onclick="deletePaymentMode(${item.payment_mode_id})">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                    <td class="border border-gray-300 text-center">
+                        <div class="flex justify-center items-center space-x-2 relative">
+                            <button 
+                                class="text-black rounded mr-2 relative group" 
+                                onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                                data-tooltip="Edit">
+                                <i class="fas fa-edit"></i>
+                                <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                            </button>
+                            <button 
+                                class="text-black rounded relative group" 
+                                onclick="deletePaymentMode(${item.payment_mode_id})"
+                                data-tooltip="Delete">
+                                <i class="fas fa-trash-alt"></i>
+                                <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Delete</span>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             `).join("");

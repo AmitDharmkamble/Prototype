@@ -25,6 +25,10 @@
             overflow: hidden;
             transition: max-height 0.5s ease-in-out;
         }
+
+        .group:hover .tooltip {
+            display: block;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -121,8 +125,8 @@
                                 class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                                            data-sort="template_id">Template ID</th>
+                                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_id">Template ID</th> -->
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_name">Template Name</th>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
@@ -145,8 +149,8 @@
                                 class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                                            data-sort="template_id">Template ID</th>
+                                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_id">Template ID</th> -->
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_name">Template Name</th>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
@@ -183,8 +187,8 @@
                                 class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                                            data-sort="template_id">Template ID</th>
+                                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_id">Template ID</th> -->
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_name">Template Name</th>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
@@ -283,17 +287,26 @@
         const tableBody = document.getElementById(tableBodyId);
         tableBody.innerHTML = filteredData.map(item => `
         <tr class="table-row hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <td class="px-4 py-2 border border-gray-300">${item.template_id}</td>
             <td class="px-4 py-2 border border-gray-300">${item.template_name}</td>
             <td class="px-4 py-2 border border-gray-300">${item.template_cc}</td>
             <td class="px-4 py-2 border border-gray-300">${item.template_bcc}</td>
-            <td class="px-4 py-2 border border-gray-300">
-                <button class="text-black px-2 py-1 rounded mr-2" onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="text-black px-2 py-1 rounded" onclick="deleteTemplate(${item.template_id})">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
+            <td class="border border-gray-300 text-center">
+                <div class="flex justify-center items-center space-x-2 relative">
+                    <button 
+                        class="text-black rounded mr-2 relative group" 
+                        onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                        data-tooltip="Edit">
+                        <i class="fas fa-edit"></i>
+                        <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                    </button>
+                    <button 
+                        class="text-black rounded relative group" 
+                        onclick="deleteCity(${item.city_id})"
+                        data-tooltip="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                        <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Delete</span>
+                    </button>
+                </div>
             </td>
         </tr>
     `).join("");
@@ -347,20 +360,20 @@
         }
 
         function setupModal() {
-        const modal = document.getElementById('detailsModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const modalContent = document.getElementById('modalContent');
+            const modal = document.getElementById('detailsModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const modalContent = document.getElementById('modalContent');
 
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-    }
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+        }
 
-    function openModal(data) {
-        const modal = document.getElementById('detailsModal');
-        const modalContent = document.getElementById('modalContent');
+        function openModal(data) {
+            const modal = document.getElementById('detailsModal');
+            const modalContent = document.getElementById('modalContent');
 
-        modalContent.innerHTML = `
+            modalContent.innerHTML = `
             <p><strong>Email Template ID:</strong> ${data.template_id}</p>
             <p><strong>Template Name:</strong> ${data.template_name}</p>
             <p><strong>CC:</strong> ${data.template_cc}</p>
@@ -372,8 +385,8 @@
             <p>Best regards,</p>
             <p>Company Team</p>
         `;
-        modal.classList.remove('hidden');
-    }
+            modal.classList.remove('hidden');
+        }
     }
 </script>
 
