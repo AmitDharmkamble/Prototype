@@ -218,26 +218,43 @@
                         <!-- Accordion Row for Additional Details -->
                         <tr class="accordion-row hidden">
                             <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
+                                <div class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
                                     <p class="text-gray-700">Customer <span class="font-semibold">A</span> has placed
                                         Purchase Order <span class="font-semibold">PO001</span> with the title <span
                                             class="font-semibold">Title A</span> for a total amount of <span
-                                            class="font-semibold">₹5000</span>.</p>
+                                            class="font-semibold">₹5000</span>.
+                                    </p>
                                     <p class="text-gray-600 mt-2">The services included in this order are:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Web Development - ₹2000</li>
-                                        <li>SEO Optimization - ₹1500</li>
-                                        <li>Content Writing - ₹1000</li>
-                                        <li>Email Marketing - ₹500</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">This order is handled by <span
-                                            class="font-semibold">Salesperson A</span> with payment terms of <span
-                                            class="font-semibold">30 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Proposal reference: <span
-                                            class="font-semibold">Proposal
-                                            A</span></p>
+                                    <table class="min-w-full bg-white border border-gray-300">
+                                        <thead>
+                                            <tr>
+                                                <th class="px-4 py-2 border-b">Service</th>
+                                                <th class="px-4 py-2 border-b">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="px-4 py-2 border-b">Web Development</td>
+                                                <td class="px-4 py-2 border-b">₹2000</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2 border-b">SEO Optimization</td>
+                                                <td class="px-4 py-2 border-b">₹1500</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2 border-b">Content Writing</td>
+                                                <td class="px-4 py-2 border-b">₹1000</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-2 border-b">Email Marketing</td>
+                                                <td class="px-4 py-2 border-b">₹500</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="text-gray-600 mt-2">This order is handled by <span class="font-semibold">Salesperson A</span> with payment terms of <span class="font-semibold">30 days</span>.</p>
+                                    <p class="text-gray-600 mt-2">Proposal reference: <span class="font-semibold">Proposal A</span></p>
                                 </div>
+                                
                             </td>
                         </tr>
                         <tr
@@ -477,7 +494,7 @@
 
         <script>
             let currentPage = 1;
-            const rowsPerPage = 5;
+            const rowsPerPage = 10;
 
             function renderTable() {
                 const table = document.getElementById("purchaseOrdersTable");
