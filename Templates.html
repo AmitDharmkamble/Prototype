@@ -19,6 +19,12 @@
             border-bottom: 2px solid #000;
             /* Change the color to match your theme */
         }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -76,6 +82,20 @@
                 Create New Template
             </a>
         </div>
+        <div id="detailsModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black bg-opacity-50">
+            <div class="flex items-center justify-center min-h-screen">
+                <div class="bg-white rounded-lg shadow-lg p-6 max-w-2xl w-full">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold">Template Details</h2>
+                        <button id="closeModal" class="text-black px-2 py-1 rounded"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <div id="modalContent">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container mx-auto p-4 mb-20">
             <div class="flex flex-col">
                 <div class="relative">
@@ -96,23 +116,13 @@
                 </div>
                 <div id="tabContent">
                     <div id="invoiceContent" class="tab-content active-content">
-                        <!-- Invoice Template content goes here -->
-                        <p>This is the invoice template section.</p>
-                    </div>
-                    <div id="outstandingContent" class="tab-content">
-                        <!-- Outstanding Reminder Template content goes here -->
-                        <p>This is the outstanding reminder template section.</p>
-                    </div>
-                    <div id="receiptsContent" class="tab-content">
-                        <!-- Receipts content goes here -->
                         <div class="overflow-x-auto">
                             <table
                                 class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                                 <thead>
                                     <tr>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
-                                            data-sort="template_id">
-                                            Template ID</th>
+                                            data-sort="template_id">Template ID</th>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_name">Template Name</th>
                                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
@@ -122,161 +132,249 @@
                                         <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tableBody">
+                                <tbody id="invoiceTableBody">
                                     <!-- Data will be inserted here dynamically -->
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mt-4 flex justify-between items-center">
-                            <button id="prevPage" class="bg-blue-500 text-white px-3 py-2 rounded">Previous</button>
-                            <span id="pageInfo" class="text-gray-700"></span>
-                            <button id="nextPage" class="bg-blue-500 text-white px-3 py-2 rounded">Next</button>
+                    </div>
+
+                    <div id="outstandingContent" class="tab-content">
+                        <div class="overflow-x-auto">
+                            <table
+                                class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_id">Template ID</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_name">Template Name</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_cc">Template CC</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_bcc">Template BCC</th>
+                                        <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="outstandingTableBody">
+                                    <tr class="" data-template-id="1">
+                                        <td class="px-4 py-2 border-b">1</td>
+                                        <td class="px-4 py-2 border-b">Template 1</td>
+                                        <td class="px-4 py-2 border-b">cc@example.com</td>
+                                        <td class="px-4 py-2 border-b">bcc@example.com</td>
+                                        <td class="px-4 py-2 border-b">Edit | Delete</td>
+                                    </tr>
+                                    <tr class="accordion-content hidden">
+                                        <td colspan="5" class="p-4 bg-gray-100">
+                                            <!-- Additional details go here -->
+                                            <p>More details about Template 1...</p>
+                                        </td>
+                                    </tr>
+                                    <!-- Repeat above structure for other rows -->
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div id="receiptsContent" class="tab-content">
+                        <div class="overflow-x-auto">
+                            <table
+                                class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_id">Template ID</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_name">Template Name</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_cc">Template CC</th>
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                            data-sort="template_bcc">Template BCC</th>
+                                        <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="receiptsTableBody">
+                                    <!-- Data will be inserted here dynamically -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
 <script>
-    const sidebarContainer = document.getElementById("sidebar-container");
-    fetch("./Sidebar.html")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.text();
-        })
-        .then(html => {
-            sidebarContainer.innerHTML = html;
+    document.addEventListener("DOMContentLoaded", () => {
+        // Load the sidebar
+        loadSidebar();
 
-            // Extract and execute scripts
-            const scripts = sidebarContainer.querySelectorAll("script");
-            scripts.forEach(script => {
-                const newScript = document.createElement("script");
-                newScript.text = script.innerHTML;
-                document.body.appendChild(newScript);
-            });
-        })
-        .catch(error => {
-            console.error("There was a problem with the fetch operation:", error);
-        });
+        // Set up tab navigation
+        setupTabNavigation();
 
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            tabButtons.forEach((btn) => btn.classList.remove('active-tab'));
-            button.classList.add('active-tab');
-
-            tabContents.forEach((content) => content.classList.remove('active-content'));
-            tabContents[index].classList.add('active-content');
-        });
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        let data = [];
-        let currentPage = 1;
-        const rowsPerPage = 10;
-        let currentSortColumn = "";
-        let currentSortOrder = "asc";
-
-        const tableBody = document.getElementById("tableBody");
-        const searchInput = document.getElementById("searchInput");
-        const pageInfo = document.getElementById("pageInfo");
-
-        async function fetchData() {
-            const response = await fetch("./Data/templates.json");
-            data = await response.json();
-            displayData();
-        }
-
-        function displayData() {
-            const filteredData = filterData(data);
-            const sortedData = sortData(filteredData);
-            const paginatedData = paginateData(sortedData);
-
-            tableBody.innerHTML = paginatedData.map(item => `
-            <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                <td class="px-4 py-2 border border-gray-300">${item.template_id}</td>
-                <td class="px-4 py-2 border border-gray-300">${item.template_name}</td>
-                <td class="px-4 py-2 border border-gray-300">${item.template_cc}</td>
-                <td class="px-4 py-2 border border-gray-300">${item.template_bcc}</td>
-                <td class="px-4 py-2 border border-gray-300">
-                    <button 
-                        class="text-black px-2 py-1 rounded mr-2" 
-                        onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button 
-                        class="text-black px-2 py-1 rounded" 
-                        onclick="deleteTemplate(${item.template_id})">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-            </tr>
-        `).join("");
-            pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredData.length / rowsPerPage)}`;
-        }
-
-        function paginateData(data) {
-            const start = (currentPage - 1) * rowsPerPage;
-            return data.slice(start, start + rowsPerPage);
-        }
-
-        function sortData(data) {
-            if (!currentSortColumn) return data;
-            return data.sort((a, b) => {
-                const valA = a[currentSortColumn];
-                const valB = b[currentSortColumn];
-
-                if (valA < valB) return currentSortOrder === "asc" ? -1 : 1;
-                if (valA > valB) return currentSortOrder === "asc" ? 1 : -1;
-                return 0;
-            });
-        }
-
-        function filterData(data) {
-            return data.filter(item => item.template_usage.toLowerCase() === 'receipt');
-        }
-
-
-        function handleSort(e) {
-            const column = e.target.dataset.sort;
-            if (currentSortColumn === column) {
-                currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
-            } else {
-                currentSortOrder = "asc";
-                currentSortColumn = column;
-            }
-            displayData();
-        }
-
-        function handlePagination(direction) {
-            const filteredData = filterData(data);
-            const maxPage = Math.ceil(filteredData.length / rowsPerPage);
-
-            if (direction === "next" && currentPage < maxPage) {
-                currentPage++;
-            } else if (direction === "prev" && currentPage > 1) {
-                currentPage--;
-            }
-            displayData();
-        }
-
-        document.querySelectorAll("th[data-sort]").forEach(header => {
-            header.addEventListener("click", handleSort);
-        });
-
-        document.getElementById("nextPage").addEventListener("click", () => handlePagination("next"));
-        document.getElementById("prevPage").addEventListener("click", () => handlePagination("prev"));
-
+        // Fetch and display data
         fetchData();
     });
 
+    function loadSidebar() {
+        const sidebarContainer = document.getElementById("sidebar-container");
+        fetch("./Sidebar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(html => {
+                sidebarContainer.innerHTML = html;
+                executeSidebarScripts(sidebarContainer);
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+    }
+
+    function executeSidebarScripts(container) {
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(script => {
+            const newScript = document.createElement("script");
+            newScript.text = script.innerHTML;
+            document.body.appendChild(newScript);
+        });
+    }
+
+    function setupTabNavigation() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+                button.classList.add('active-tab');
+
+                tabContents.forEach(content => content.classList.remove('active-content'));
+                tabContents[index].classList.add('active-content');
+            });
+        });
+    }
+
+    async function fetchData() {
+        try {
+            const response = await fetch("./Data/templates.json");
+            const data = await response.json();
+            displayData("invoiceTableBody", "invoice", data);
+            displayData("outstandingTableBody", "outstanding reminder", data);
+            displayData("receiptsTableBody", "receipt", data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+        // Set up row click event for accordion
+        setupModal();
+    }
+
+    function displayData(tableBodyId, usageType, data) {
+        const filteredData = data.filter(item => item.template_usage.toLowerCase() === usageType);
+        const tableBody = document.getElementById(tableBodyId);
+        tableBody.innerHTML = filteredData.map(item => `
+        <tr class="table-row hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+            <td class="px-4 py-2 border border-gray-300">${item.template_id}</td>
+            <td class="px-4 py-2 border border-gray-300">${item.template_name}</td>
+            <td class="px-4 py-2 border border-gray-300">${item.template_cc}</td>
+            <td class="px-4 py-2 border border-gray-300">${item.template_bcc}</td>
+            <td class="px-4 py-2 border border-gray-300">
+                <button class="text-black px-2 py-1 rounded mr-2" onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="text-black px-2 py-1 rounded" onclick="deleteTemplate(${item.template_id})">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+    `).join("");
+    }
+
+
+    function setupModal() {
+        const tableRows = document.querySelectorAll('.table-row');
+        const modal = document.getElementById('detailsModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalContent = document.getElementById('modalContent');
+
+        tableRows.forEach(row => {
+            row.addEventListener('click', function () {
+                const rowData = {
+                    template_id: row.querySelector('td:nth-child(1)').innerText,
+                    template_name: row.querySelector('td:nth-child(2)').innerText,
+                    template_cc: row.querySelector('td:nth-child(3)').innerText,
+                    template_bcc: row.querySelector('td:nth-child(4)').innerText
+                };
+                showModal(rowData);
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        function showModal(data) {
+            modalContent.innerHTML = `
+            <p><strong>Email Template ID:</strong> ${data.template_id}</p>
+            <p><strong>Template Name:</strong> ${data.template_name}</p>
+            <p><strong>CC:</strong> ${data.template_cc}</p>
+            <p><strong>BCC:</strong> ${data.template_bcc}</p>
+            <p><strong>Subject:</strong> ${data.template_subject}</p>
+            <p><strong>Body:</strong></p>
+            <p>${data.template_body}</p>
+        `;
+            modal.classList.remove('hidden');
+        }
+
+        async function searchTemplateById(templateId) {
+            const response = await fetch("./Data/templates.json");
+            const data = await response.json();
+            const template = data.find(item => item.template_id === templateId);
+            if (template) {
+                openModal(template);
+            } else {
+                alert("Template not found");
+            }
+        }
+
+        function setupModal() {
+        const modal = document.getElementById('detailsModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalContent = document.getElementById('modalContent');
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    }
+
+    function openModal(data) {
+        const modal = document.getElementById('detailsModal');
+        const modalContent = document.getElementById('modalContent');
+
+        modalContent.innerHTML = `
+            <p><strong>Email Template ID:</strong> ${data.template_id}</p>
+            <p><strong>Template Name:</strong> ${data.template_name}</p>
+            <p><strong>CC:</strong> ${data.template_cc}</p>
+            <p><strong>BCC:</strong> ${data.template_bcc}</p>
+            <p><strong>Subject:</strong> Welcome to Our Service</p>
+            <p><strong>Body:</strong></p>
+            <p>Dear [Name],</p>
+            <p>Thank you for choosing our service. We are excited to have you on board.</p>
+            <p>Best regards,</p>
+            <p>Company Team</p>
+        `;
+        modal.classList.remove('hidden');
+    }
+    }
 </script>
 
 </html>
