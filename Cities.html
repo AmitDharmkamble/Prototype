@@ -129,8 +129,8 @@
             <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="city_id">
-                            City ID</th>
+                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="city_id">
+                            City ID</th> -->
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="city_name">City Name</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                             data-sort="city_state_name">City State Name</th>
@@ -208,7 +208,6 @@
 
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                    <td class="px-4 py-2 border border-gray-300">${item.city_id}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.city_name}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.city_state_name}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
