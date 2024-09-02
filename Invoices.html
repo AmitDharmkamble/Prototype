@@ -4,92 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background-color: #343a40;
-            padding-top: 20px;
-            overflow-y: auto;
-        }
-
-        .sidebar a {
-            color: #fff;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        /* Dropdown Toggle */
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none;
-            background-color: #343a40;
-            padding-left: 20px;
-            border-left: 2px solid #495057;
-        }
-
-        .dropdown-menu a {
-            padding: 8px 10px;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #495057;
-        }
-
-        /* Show dropdown menu on hover */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            position: relative;
-        }
-    </style>
+    <title>Invoices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="./AccountHome.html">Dashboard</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle">Masters</a>
-            <div class="dropdown-menu">
-                <a href="#">Services</a>
-                <a href="#">Taxes</a>
-                <a href="#">Payment Modes</a>
-                <a href="#">Industries</a>
-                <a href="#">Cities</a>
-                <a href="#">Templates</a>
-            </div>
-        </div>
-        <a href="#">Customers</a>
-        <a href="./PurchaseOrders.html">Purchase Orders</a>
-        <a href="./Invoices.html">Invoices</a>
-        <a href="#">Receipts</a>
-        <a href="#">Reports</a>
-        <a href="#">Settings</a>
+    <div id="sidebar-container">
+
     </div>
 
     <div class="container">
@@ -103,118 +26,29 @@
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var salesPieChart;
-    var topCustomersBarChart;
-
-    createSalesPieChart();
-
-    createTopCustomersBarChart()
-
-    function createSalesPieChart() {
-        var ctx = document.getElementById('salesPieChart').getContext('2d');
-
-        // Destroy existing chart if it exists
-        if (salesPieChart) {
-            salesPieChart.destroy();
-        }
-
-        // Create a new chart
-        salesPieChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['SMM', 'SEO', 'G-Suite'],
-                datasets: [{
-                    data: [300, 50, 100],
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107'],
-                    hoverBackgroundColor: ['#0056b3', '#218838', '#e0a800'],
-                    hoverBorderColor: ['#004085', '#155724', '#856404'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            var label = data.labels[tooltipItem.index] || '';
-                            var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                            if (label) {
-                                label += ': ';
-                            }
-                            label += value + ' units';
-                            return label;
-                        }
-                    }
-                }
+    const sidebarContainer = document.getElementById("sidebar-container");
+    fetch("./Sidebar.html")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
             }
+            return response.text();
+        })
+        .then(html => {
+            sidebarContainer.innerHTML = html;
+
+            // Extract and execute scripts
+            const scripts = sidebarContainer.querySelectorAll("script");
+            scripts.forEach(script => {
+                const newScript = document.createElement("script");
+                newScript.text = script.innerHTML;
+                document.body.appendChild(newScript);
+            });
+        })
+        .catch(error => {
+            console.error("There was a problem with the fetch operation:", error);
         });
-    }
-
-    // Call the function to create the pie chart
-
-    function createTopCustomersBarChart() {
-        var ctx = document.getElementById('topCustomersBarChart').getContext('2d');
-
-        // Destroy existing chart if it exists
-        if (topCustomersBarChart) {
-            topCustomersBarChart.destroy();
-        }
-
-        // Create a new chart
-        var topCustomersBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Customer A', 'Customer B', 'Customer C', 'Customer D', 'Customer E'],
-                datasets: [{
-                    label: 'Transaction Amount ($)',
-                    data: [1200, 950, 800, 750, 600],
-                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8'],
-                    hoverBackgroundColor: ['#0056b3', '#218838', '#e0a800', '#c82333', '#138496'],
-                    borderColor: ['#0056b3', '#218838', '#e0a800', '#c82333', '#138496'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function (value) {
-                                return '$' + value;
-                            }
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Transaction Amount ($)'
-                        }
-                    }],
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Customers'
-                        }
-                    }]
-                },
-                tooltips: {
-                    callbacks: {
-                        label: function (tooltipItem, data) {
-                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            label += '$' + tooltipItem.yLabel;
-                            return label;
-                        }
-                    }
-                }
-            }
-        });
-    }
 </script>
 </body>
 
