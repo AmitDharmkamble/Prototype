@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .group:hover .tooltip {
+            display: block;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div id="sidebar-container"></div>
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Roles</h1>
+            <a id="createRoleBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
+                Create New Role
+            </a>
+        </div>
+        <div class="my-4 border-t border-gray-300"></div>
+
+        <div class="mb-4">
+            <input type="text" id="searchInput" placeholder="Search..." class="border rounded px-3 py-2 w-full">
+        </div>
+        <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="role_name">Role Name</th>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="role_description">Role Description</th>
+                    <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+        <div class="mt-4 flex justify-between items-center">
+            <button id="prevPage" class="bg-blue-500 text-white px-3 py-2 rounded">Previous</button>
+            <span id="pageInfo" class="text-gray-700"></span>
+            <button id="nextPage" class="bg-blue-500 text-white px-3 py-2 rounded">Next</button>
+        </div>
+    </div>
+
+    <div id="roleModal"
+            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-lg w-full">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold">Create New Service</h2>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="roleForm">
+                    <input type="hidden" id="roleId" name="roleId">
+                    <div class="mb-4">
+                        <label for="roleName" class="block text-sm font-medium text-gray-700">Role Name</label>
+                        <input type="text" id="roleName" name="roleName"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="roleDescription" class="block text-sm font-medium text-gray-700">Role Description</label>
+                        <input type="text" id="roleDescription" name="roleDescription"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label for="roleRights" class="block text-sm font-medium text-gray-700">Assign Pages</label>
+                        <div id="pagesContainer" class="mt-2 space-y-2">
+                            <!-- Pages checkboxes will be populated here -->
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load the sidebar
+            loadSidebar();
+        });
+
+        function loadSidebar() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            fetch("./Sidebar.html")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    sidebarContainer.innerHTML = html;
+                    executeSidebarScripts(sidebarContainer);
+                })
+                .catch(error => {
+                    console.error("There was a problem with the fetch operation:", error);
+                });
+        }
+
+        function executeSidebarScripts(container) {
+            const scripts = container.querySelectorAll("script");
+            scripts.forEach(script => {
+                const newScript = document.createElement("script");
+                newScript.text = script.innerHTML;
+                document.body.appendChild(newScript);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let data = [];
+            let currentPage = 1;
+            const rowsPerPage = 10;
+            let currentSortColumn = "";
+            let currentSortOrder = "asc";
+
+            const tableBody = document.getElementById("tableBody");
+            const searchInput = document.getElementById("searchInput");
+            const pageInfo = document.getElementById("pageInfo");
+
+            async function fetchData() {
+                const response = await fetch("./Data/roles.json");
+                data = await response.json();
+                displayData();
+            }
+
+            function displayData() {
+                const filteredData = filterData(data);
+                const sortedData = sortData(filteredData);
+                const paginatedData = paginateData(sortedData);
+
+                tableBody.innerHTML = paginatedData.map(item => `
+                    <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <td class="px-4 py-2 border border-gray-300">${item.role_name}</td>
+                        <td class="px-4 py-2 border border-gray-300">${item.role_description}</td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <div class="flex justify-center items-center space-x-2 relative">
+                                <button class="text-black rounded mr-2 relative group" 
+                                    onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                                    data-tooltip="Edit">
+                                    <i class="fas fa-edit"></i>
+                                    <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                                </button>
+                                <button class="text-black rounded relative group" 
+                                    onclick="deleteRole('${item.role_name}')"
+                                    data-tooltip="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join("");
+                pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredData.length / rowsPerPage)}`;
+            }
+
+            function filterData(data) {
+                const searchText = searchInput.value.toLowerCase();
+                return data.filter(item => item.role_name.toLowerCase().includes(searchText) ||
+                    item.role_description.toLowerCase().includes(searchText));
+            }
+
+            function sortData(data) {
+                if (!currentSortColumn) return data;
+                return data.sort((a, b) => {
+                    const aValue = a[currentSortColumn];
+                    const bValue = b[currentSortColumn];
+                    if (currentSortOrder === "asc") {
+                        return aValue.localeCompare(bValue);
+                    } else {
+                        return bValue.localeCompare(aValue);
+                    }
+                });
+            }
+
+            function paginateData(data) {
+                const startIndex = (currentPage - 1) * rowsPerPage;
+                const endIndex = startIndex + rowsPerPage;
+                return data.slice(startIndex, endIndex);
+            }
+
+            searchInput.addEventListener("input", () => {
+                currentPage = 1;
+                displayData();
+            });
+
+            document.querySelectorAll("[data-sort]").forEach(header => {
+                header.addEventListener("click", () => {
+                    const column = header.getAttribute("data-sort");
+                    if (currentSortColumn === column) {
+                        currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+                    } else {
+                        currentSortColumn = column;
+                        currentSortOrder = "asc";
+                    }
+                    displayData();
+                });
+            });
+
+            document.getElementById("prevPage").addEventListener("click", () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayData();
+                }
+            });
+
+            document.getElementById("nextPage").addEventListener("click", () => {
+                const filteredData = filterData(data);
+                if (currentPage < Math.ceil(filteredData.length / rowsPerPage)) {
+                    currentPage++;
+                    displayData();
+                }
+            });
+
+            fetchData();
+        });
+
+        function deleteRole(role_name){
+            const confirmed = confirm(`Are you sure you want to delete the role : ${role_name}?`);
+            if (confirmed) {
+                alert("Role deleted successfully");
+            }
+        }
+
+        document.getElementById('createRoleBtn').addEventListener('click', () => openModal());
+
+        function openModal(role = null) {
+            if (role) {
+                // Edit Service
+                modalTitle.textContent = 'Edit Role';
+                const roleId = role.role_id;
+                const roleName = role.role_name;
+                const roleDescription = role.role_description;
+
+                // Assign values to form fields
+                document.getElementById('roleName').value = roleName;
+                document.getElementById('roleDescription').value = roleDescription;
+            } else {
+                // Create New Service
+                modalTitle.textContent = 'Create New Role';
+                roleForm.reset(); // Clear the form
+            }
+            roleModal.classList.remove('hidden'); // Show the modal
+        }
+
+        // Function to close the modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            roleModal.classList.add('hidden'); // Hide the modal
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('./Data/pages.json')
+                .then(response => response.json())
+                .then(data => {
+                    const pagesContainer = document.getElementById('pagesContainer');
+                    data.pages.forEach(page => {
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.id = `page${page.pageId}`;
+                        checkbox.name = 'roleRights';
+                        checkbox.value = `page${page.pageId}`;
+
+                        const label = document.createElement('label');
+                        label.htmlFor = `page${page.pageId}`;
+                        label.textContent = page.pageName;
+                        label.className = 'text-sm text-gray-700 ml-2';
+
+                        const div = document.createElement('div');
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+
+                        pagesContainer.appendChild(div);
+                    });
+                })
+                .catch(error => console.error('Error fetching pages:', error));
+        });
+    </script>
+</body>
+
+</html>

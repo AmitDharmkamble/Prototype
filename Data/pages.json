@@ -1,0 +1,55 @@
+{
+    "pages": [
+      {
+        "pageId": 1,
+        "pageName": "Create Customer",
+        "description": "Page to create new customers."
+      },
+      {
+        "pageId": 2,
+        "pageName": "Services",
+        "description": "Page to manage services."
+      },
+      {
+        "pageId": 3,
+        "pageName": "Invoices",
+        "description": "Page to manage invoices."
+      },
+      {
+        "pageId": 4,
+        "pageName": "Purchase Orders",
+        "description": "Page to manage purchase orders."
+      },
+      {
+        "pageId": 5,
+        "pageName": "Receipts",
+        "description": "Page to manage receipts."
+      },
+      {
+        "pageId": 6,
+        "pageName": "Reports",
+        "description": "Page to view and generate reports."
+      },
+      {
+        "pageId": 7,
+        "pageName": "Dashboard",
+        "description": "Main dashboard page."
+      },
+      {
+        "pageId": 8,
+        "pageName": "Settings",
+        "description": "Page to manage application settings."
+      },
+      {
+        "pageId": 9,
+        "pageName": "User Management",
+        "description": "Page to manage users and roles."
+      },
+      {
+        "pageId": 10,
+        "pageName": "Support",
+        "description": "Page to manage customer support tickets."
+      }
+    ]
+  }
+  

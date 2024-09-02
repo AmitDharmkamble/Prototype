@@ -1,0 +1,39 @@
+[
+    {
+      "role_id": 1,
+      "role_name": "Superadmin",
+      "role_description": "Responsible for managing users and overseeing all operations within the system. Has access to all data and reports.",
+      "permissions": [
+        "manage_users",
+        "view_reports",
+        "access_all_data"
+      ]
+    },
+    {
+      "role_id": 2,
+      "role_name": "Accountant",
+      "role_description": "Handles financial records, including creating invoices and receipts. Can view financial reports.",
+      "permissions": [
+        "create_invoices",
+        "create_receipts",
+        "view_reports"
+      ]
+    },
+    {
+      "role_id": 3,
+      "role_name": "Sales",
+      "role_description": "Manages sales operations by uploading and tracking purchase orders from clients.",
+      "permissions": [
+        "upload_purchase_orders"
+      ]
+    },
+    {
+      "role_id": 4,
+      "role_name": "Support",
+      "role_description": "Provides customer support services related to invoices and ensures client satisfaction.",
+      "permissions": [
+        "provide_services_for_invoices"
+      ]
+    }
+  ]
+  
