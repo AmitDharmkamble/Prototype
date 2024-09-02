@@ -23,7 +23,7 @@
         </div>
 
         <div class="mb-4">
-            <label for="poDate" >PO Date</label>
+            <label for="poDate">PO Date</label>
             <input type="date" class="w-full border border-gray-300 rounded px-3 py-2"></input>
         </div>
 
@@ -84,8 +84,6 @@
                 <td>
                     <select class="border border-gray-300 rounded px-3 py-2 service-select" required>
                         <option disabled selected>Select Service</option>
-                        <option>Service A</option>
-                        <option>Service B</option>
                     </select>
                 </td>
                 <td>
@@ -257,6 +255,22 @@
                 return `${day}-${month}-${year}`;
             }
         });
+
+        // Fetch services from API or JSON file
+        fetch('./Data/services.json') // or API endpoint
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.querySelector('.service-select');
+
+                // Iterate over each service and append an option
+                data.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.service_id;
+                    option.text = service.service_name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching services:', error));
     </script>
 </body>
 
