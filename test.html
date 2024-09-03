@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Solid Color Background</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div id="background-container" class="w-full h-screen flex items-center justify-center">
+    <p class="text-lg font-semibold text-gray-800">Random Solid Color Background</p>
+  </div>
+
+  <script>
+    function getRandomColor() {
+      const colors = [
+        '#f8f9fa', // Light Gray
+        '#e9ecef', // Light Gray
+        '#f1f3f5', // Very Light Gray
+        '#f5f5f5', // Extra Light Gray
+        '#e2e6ea', // Light Blue Gray
+        '#f0f4f8', // Very Light Blue
+        '#d6d8db', // Light Gray
+        '#ced4da', // Gray
+        '#e3f2fd', // Light Blue
+        '#d1c4e9'  // Light Purple
+      ];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[randomIndex];
+    }
+
+    function applyRandomBackground() {
+      const container = document.getElementById('background-container');
+      const color = getRandomColor();
+      container.style.backgroundColor = color;
+    }
+
+    // Apply a random background color on page load
+    applyRandomBackground();
+  </script>
+</body>
+</html>

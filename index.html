@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,38 +8,131 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        /* .background-image {
+            background-image: url('bg.svg');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        } */
+
         body {
-            font-family: 'Inter', sans-serif;
+            cursor: url(pointinghand.svg), auto;
+            animation: bookOpen 1s ease-out forwards;
         }
+
+        @keyframes bookOpen {
+            0% {
+                transform: perspective(600px) rotateY(90deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: perspective(600px) rotateY(0);
+                opacity: 1;
+            }
+        }
+
+        form {
+            padding: 20px 0;
+            position: relative;
+            z-index: 2;
+
+            input[type="text"],
+            input[type="password"] {
+                display: block;
+                appearance: none;
+                outline: 0;
+                border: 1px solid fade(white, 40%);
+                background-color: fade(white, 20%);
+                width: 250px;
+
+                border-radius: 3px;
+                padding: 10px 15px;
+                margin: 0 auto 10px auto;
+                display: block;
+                text-align: center;
+                font-size: 18px;
+
+                color: black;
+
+                transition-duration: 0.25s;
+                font-weight: 300;
+
+                &:hover {
+                    background-color: fade(white, 40%);
+                }
+
+                &:focus {
+                    background-color: white;
+                    width: 300px;
+                    color: black;
+                }
+            }
+        }
+
+        
     </style>
 </head>
-<body class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 flex items-center justify-center min-h-screen">
 
-    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+<body class="flex items-center justify-center min-h-screen background-image" id="background-container">
+
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md " >
         <h2 class="text-3xl font-bold text-center text-gray-700 mb-6">Please Login</h2>
-        
+
         <form action="AccountHome.html" method="get" class="space-y-6">
             <div class="relative">
                 <input type="text" name="username" placeholder="Email Address" required autofocus
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+                    autocomplete="off">
             </div>
-            
+
             <div class="relative">
                 <input type="password" name="password" placeholder="Password" required
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm">
             </div>
 
             <div class="flex items-center justify-between">
                 <label class="flex items-center text-gray-600">
-                    <input type="checkbox" name="rememberMe" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <input type="checkbox" name="rememberMe"
+                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
                     <span class="ml-2">Remember me</span>
                 </label>
                 <a href="#" class="text-sm text-blue-500 hover:underline">Forgot password?</a>
             </div>
 
-            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:bg-gradient-to-l hover:from-purple-600 hover:to-blue-500 transition duration-200 transform hover:scale-105 shadow-lg">Login</button>
+            <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 rounded-lg hover:bg-gradient-to-l hover:from-purple-600 hover:to-blue-500 transition duration-200 transform hover:scale-105 shadow-lg">Login</button>
         </form>
     </div>
 
 </body>
+<script>
+    function getRandomColor() {
+      const colors = [
+        '#f8f9fa', // Light Gray
+        '#e9ecef', // Light Gray
+        '#f1f3f5', // Very Light Gray
+        '#f5f5f5', // Extra Light Gray
+        '#e2e6ea', // Light Blue Gray
+        '#f0f4f8', // Very Light Blue
+        '#d6d8db', // Light Gray
+        '#ced4da', // Gray
+        '#e3f2fd', // Light Blue
+        '#d1c4e9'  // Light Purple
+      ];
+      const randomIndex = Math.floor(Math.random() * colors.length);
+      return colors[randomIndex];
+    }
+
+    function applyRandomBackground() {
+      const container = document.getElementById('background-container');
+      const color = getRandomColor();
+      container.style.backgroundColor = color;
+    }
+
+    // Apply a random background color on page load
+    applyRandomBackground();
+</script>
 </html>
