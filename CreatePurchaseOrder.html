@@ -4,316 +4,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            background-color: #343a40;
-            padding-top: 20px;
-            overflow-y: auto;
-        }
-
-        .sidebar a {
-            color: #fff;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        /* Dropdown Toggle */
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none;
-            background-color: #343a40;
-            padding-left: 20px;
-            border-left: 2px solid #495057;
-        }
-
-        .dropdown-menu a {
-            padding: 8px 10px;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #495057;
-        }
-
-        /* Show dropdown menu on hover */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            position: relative;
-        }
-
-        .info-card {
-            display: none;
-            /* Hidden by default */
-            margin-top: 20px;
-        }
-
-        .info-card.active {
-            display: block;
-            /* Show when active */
-        }
-
-        .info-card .card {
-            position: relative;
-        }
-
-        .info-card .card-title {
-            font-size: 1.5rem;
-            /* Large font size */
-            font-weight: bold;
-            /* Bold text */
-        }
-
-        .info-card .card-text {
-            font-size: 0.875rem;
-            /* Smaller text */
-        }
-
-        .info-card .card-text a {
-            color: #007bff;
-            /* Bootstrap primary color for links */
-            text-decoration: none;
-            /* Remove underline from links */
-        }
-
-        .info-card .card-text a:hover {
-            text-decoration: underline;
-            /* Underline on hover */
-        }
-
-        .current-outstanding {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-weight: lighter;
-            font-size: small;
-        }
-
-        .status-indicator {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: green;
-            /* Status dot color */
-        }
-
-        .info-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .info-button {
-            background: none;
-            border: none;
-            color: #007bff;
-            /* Bootstrap primary color */
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .info-tooltip {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 200px;
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .info-container:hover .info-tooltip {
-            display: block;
-        }
-    </style>
+    <title>Purcahse Order - Create</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="m-0 p-0 h-screen w-screen overflow-scroll box-border">
+    <div class="mx-auto p-8 border border-gray-300 shadow-lg text-gray-700 text-base w-9/12">
+        <h1 class="text-2xl font-bold mb-6">Create Purchase Order</h1>
+        <div class="flex justify-between space-x-4">
+            <div class="w-1/2 mb-4">
+                <label for="customer" class="block font-bold mb-1">Customer</label>
+                <select class="w-full border border-gray-300 rounded px-3 py-2" id="customer" name="customer" required>
+                    <option value="" disabled selected>Select a customer</option>
+                    <option value="customerA">Customer A</option>
+                    <option value="customerB">Customer B</option>
+                    <option value="customerC">Customer C</option>
+                    <option value="customerD">Customer D</option>
+                    <option value="customerE">Customer E</option>
+                </select>
+            </div>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="./AccountHome.html">Dashboard</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle">Masters</a>
-            <div class="dropdown-menu">
-                <a href="#">Services</a>
-                <a href="#">Taxes</a>
-                <a href="#">Payment Modes</a>
-                <a href="#">Industries</a>
-                <a href="#">Cities</a>
-                <a href="#">Templates</a>
+            <div class="w-1/2 max-w-sm p-5 border border-gray-300 shadow-md rounded-lg hidden" id="customerCard">
+                <img src="https://www.ikf.co.in/wp-content/uploads/ikf-logo-svg.svg" alt="IKF Logo"
+                    class="w-full h-24 object-contain mb-4">
+
+                <div class="flex justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-800">Customer Details</h2>
+                        <p class="text-sm font-bold text-gray-800">29GGGGG1314R9Z6</p>
+                        <p class="text-sm"><strong>Since:</strong> January 1, 2024</p>
+                        <p class="text-sm"><strong>Outstanding:</strong> ₹50,000/-</p>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-800">Company Info</h2>
+                        <p class="text-sm font-bold text-gray-800">I Knowledge Factory, Inc.</p>
+                        <p class="text-sm">12345 Guru Nanak Nagar</p>
+                        <p class="text-sm">Pune, Maharashtra 411042</p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Contact Info</h2>
+                    <p class="text-sm font-bold text-gray-800">Amit Dharmkamble</p>
+                    <p class="text-sm">Software Developer</p>
+                    <p class="text-sm">amit@amitpaints.com</p>
+                </div>
+
+                <div class="text-sm text-gray-600">
+                    <p>This is a note from customer master.</p>
+                </div>
             </div>
         </div>
-        <a href="#">Customers</a>
-        <a href="./PurchaseOrders.html">Purchase Orders</a>
-        <a href="./Invoices.html">Invoices</a>
-        <a href="#">Receipts</a>
-        <a href="#">Reports</a>
-        <a href="#">Settings</a>
-    </div>
 
-    <div class="container">
-        <h1 class="mb-4">Create New Purchase Orders</h1>
-        <form id="purchaseOrderForm">
-            <div class="row col-md-12">
-                <div class="form-group col-md-6">
-                    <label for="customer">Customer</label>
-                    <select class="form-control" id="customer" name="customer" required>
-                        <option value="" disabled selected>Select a customer</option>
-                        <option value="customerA">Customer A</option>
-                        <option value="customerB">Customer B</option>
-                        <option value="customerC">Customer C</option>
-                        <option value="customerD">Customer D</option>
-                        <option value="customerE">Customer E</option>
+
+        <div class="flex justify-between space-x-4 mb-4">
+            <div class="w-1/2">
+                <label for="poDate" class="block font-bold mb-1">PO Date</label>
+                <input type="date" class="w-full border border-gray-300 rounded px-3 py-2" id="poDate" name="poDate">
+            </div>
+            <div class="w-1/2">
+                <label for="poNumber" class="block font-bold mb-1">PO Number</label>
+                <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" id="poNumber" name="poNumber"
+                    required>
+            </div>
+
+        </div>
+        <div class="mb-4">
+            <label for="clientBrief" class="block font-bold mb-1">Client Brief</label>
+            <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="clientBrief" name="clientBrief"
+                required></textarea>
+        </div>
+
+
+        <table class="w-full mb-4">
+            <tr class="bg-gray-200 border-b border-gray-300 font-bold">
+                <td class="py-2">Service</td>
+                <td class="py-2">Tenure</td>
+                <td class="py-2">Unit Cost</td>
+                <td class="py-2">Quantity</td>
+                <td class="py-2">Price</td>
+                <td class="py-2">Start Date</td>
+                <td class="py-2">End Date</td>
+                <td class="py-2">Man Hours</td>
+                <td class="py-2">Action</td>
+            </tr>
+
+            <tr class="item border-b border-gray-300">
+                <td>
+                    <select class="border border-gray-300 rounded px-3 py-2 service-select" required
+                        onchange="showManHours(this)">
+                        <option disabled selected>Select Service</option>
                     </select>
-                </div>
+                </td>
+                <td>
+                    <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
+                        <option disabled selected>Select Tenure</option>
+                        <option value="one-time">One Time</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="6-monthly">6 Monthly</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </td>
+                <td>₹<input type="number" class="w-20 border border-gray-300 rounded px-3 py-2" value="300"></td>
+                <td><input type="number" class="w-16 border border-gray-300 rounded px-3 py-2" value="1"></td>
+                <td>₹300.00</td>
 
-                <div class="info-card col-md-6" id="customerInfoCard">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="current-outstanding" id="outstanding"></div>
-                            <br>
-                            <h5 class="card-title" id="companyName">Company Name</h5>
-                            <p class="card-text"> <span id="address"></span></p>
-                            <p class="card-text"> <span id="gstin"></span></p>
-                            <p class="card-text"> <a id="email" href="#"></a></p>
-                            <p class="card-text"> <a id="website" href="#" target="_blank"></a></p>
-                            <p class="card-text"> <a id="phoneNumber" href="#"></a></p>
-                            <div class="status-indicator" id="status"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="poNumber">PO Number</label>
-                <input type="text" class="form-control" id="poNumber" name="poNumber" required>
-                <div class="info-container">
-                    <button class="info-button" aria-label="More info">ℹ️</button>
-                    <div class="info-tooltip">
-                        Use this field to store PO number of PO provided by client.
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="proposal">Proposal</label>
-                <textarea class="form-control" id="proposal" name="proposal" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="soldBy">Sold by</label>
-                <input type="text" class="form-control" id="soldBy" name="soldBy" required>
-            </div>
-            <div class="form-group">
-                <label for="paymentTerms">Payment Terms</label>
-                <input type="text" class="form-control" id="paymentTerms" name="paymentTerms" required>
-            </div>
-            <div class="form-group">
-                <label for="clientBrief">Client Brief</label>
-                <textarea class="form-control" id="clientBrief" name="clientBrief" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Attachment">Attach</label>
-                <input type="file" class="form-control" id="attachment" name="attachment" required></input>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                <td class="py-2">
+                    <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden" value="today">
+                </td>
+                <td class="py-2">
+                    <input type="text" class="border border-gray-300 rounded px-3 py-2 end-date hidden" readonly>
+                </td>
+                <td class="py-2">
+                    <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
+                </td>
+                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">Remove</button></td>
+            </tr>
+
+            <tr>
+                <td colspan="8" class="py-2"></td>
+            </tr>
+        </table>
+
+        <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
+        <tr class="">
+            <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
+        </tr>
+
+        <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
+            <option disabled selected>Sold By</option>
+            <option>Salesperson 1</option>
+        </select>
+
+        <br><br>
+        <label class="block font-bold mb-1">Upload Attachment:</label>
+        <input type="file" class="w-full border border-gray-300 rounded px-3 py-2">
+        <br><br>
+        <a id="modal-submit" href="PurchaseOrders.html"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</a>
+        <br><br>
     </div>
 
-</body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(function () {
+            const calculateTotals = () => {
+                let total = 0;
+                $('.item').each(function () {
+                    const quantity = $(this).find('input:eq(1)').val();
+                    const price = $(this).find('input:eq(0)').val();
+                    const subtotal = quantity * price;
+                    $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
+                    total += subtotal;
+                });
+                $('#total').text(`Total: ₹${total.toFixed(2)}`);
+            };
 
+            $('table').on('input', 'input[type=number]', calculateTotals);
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    $(document).ready(function () {
-        // Sample data for demonstration
-        const customerData = {
-            customerA: {
-                companyName: "Company A",
-                address: "123 Street, City, Country",
-                gstin: "ABC123456",
-                email: "contact@companya.com",
-                website: "http://www.companya.com",
-                phoneNumber: "+1234567890",
-                outstanding: "₹1000",
-                status: "Active"
-            },
-            customerB: {
-                companyName: "Company B",
-                address: "456 Avenue, City, Country",
-                gstin: "DEF654321",
-                email: "contact@companyb.com",
-                website: "http://www.companyb.com",
-                phoneNumber: "+0987654321",
-                outstanding: "₹500",
-                status: "Inactive"
-            }
-            // Add more customers as needed
-        };
+            $('.btn-add-row').click(function () {
+                const newRow = $('.item:first').clone();
+                newRow.find('input').val('');
+                newRow.find('td:eq(4)').text('');
+                newRow.appendTo('table');
 
-        $('#customer').change(function () {
-            const selectedCustomer = $(this).val();
-            const customerInfo = customerData[selectedCustomer];
+                // Re-add event listeners for new rows
+                handleRowEvents(newRow);
+            });
 
-            if (customerInfo) {
-                $('#companyName').text(customerInfo.companyName);
-                $('#address').text(customerInfo.address);
-                $('#gstin').text(customerInfo.gstin);
-                $('#email').text(customerInfo.email).attr('href', 'mailto:' + customerInfo.email);
-                $('#website').text(customerInfo.website).attr('href', customerInfo.website);
-                $('#phoneNumber').text(customerInfo.phoneNumber).attr('href', 'tel:' + customerInfo.phoneNumber);
-                $('#outstanding').text('Current Outstanding: ' + customerInfo.outstanding);
-                $('#status').css('background-color', customerInfo.status === 'Active' ? 'green' : 'red');
+            $('table').on('click', '.remove-row', function () {
+                $(this).closest('tr').remove();
+                calculateTotals();
+            });
 
-                $('#customerInfoCard').addClass('active');
-            } else {
-                $('#customerInfoCard').removeClass('active');
+            const handleRowEvents = (row) => {
+                // Handle changes in the tenure-select dropdown
+                row.find('.tenure-select').off('change').on('change', function () {
+                    const tenureSelect = $(this);
+                    const startDateInput = tenureSelect.closest('tr').find('.start-date');
+                    const endDateInput = tenureSelect.closest('tr').find('.end-date');
+                    const tenure = tenureSelect.val();
+
+                    if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
+                        startDateInput.removeClass('hidden');
+                        endDateInput.removeClass('hidden');
+                    } else {
+                        startDateInput.addClass('hidden');
+                        endDateInput.addClass('hidden');
+                        endDateInput.val('');
+                        return;
+                    }
+
+                    // Trigger start date calculation if a new tenure is selected
+                    const startDate = new Date(startDateInput.val());
+                    let endDate = new Date(startDate);
+                    if (isNaN(startDate.getTime())) {
+                        console.error('Invalid start date');
+                        endDateInput.val(''); // Optionally clear end date or handle error
+                    } else {
+                        switch (tenure) {
+                            case 'monthly':
+                                endDate.setMonth(endDate.getMonth() + 1);
+                                break;
+                            case 'quarterly':
+                                endDate.setMonth(endDate.getMonth() + 3);
+                                break;
+                            case '6-monthly':
+                                endDate.setMonth(endDate.getMonth() + 6);
+                                break;
+                            case 'annually':
+                                endDate.setFullYear(endDate.getFullYear() + 1);
+                                break;
+                        }
+                        endDateInput.val(formatDate(endDate));
+                    }
+                });
+
+                // Handle changes in the start-date input field
+                row.find('.start-date').off('change').on('change', function () {
+                    const startDate = new Date(this.value);
+                    const tenureSelect = $(this).closest('tr').find('.tenure-select');
+                    const endDateInput = $(this).closest('tr').find('.end-date');
+                    const tenure = tenureSelect.val();
+                    let endDate = new Date(startDate);
+
+                    switch (tenure) {
+                        case 'monthly':
+                            endDate.setMonth(endDate.getMonth() + 1);
+                            break;
+                        case 'quarterly':
+                            endDate.setMonth(endDate.getMonth() + 3);
+                            break;
+                        case '6-monthly':
+                            endDate.setMonth(endDate.getMonth() + 6);
+                            break;
+                        case 'annually':
+                            endDate.setFullYear(endDate.getFullYear() + 1);
+                            break;
+                    }
+
+                    endDateInput.val(formatDate(endDate));
+                });
+            };
+
+            // Initialize events for existing rows
+            $('table .item').each(function () {
+                handleRowEvents($(this));
+            });
+
+            // Customer change event handler
+            document.getElementById('customer').addEventListener('change', function () {
+                const card = document.getElementById('customerCard');
+                if (this.value) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Format date function
+            function formatDate(date) {
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
             }
         });
-    });
-</script>
+
+        // Fetch services from API or JSON file
+        fetch('./Data/services.json') // or API endpoint
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.querySelector('.service-select');
+
+                // Iterate over each service and append an option
+                data.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.service_id;
+                    option.text = service.service_name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching services:', error));
+
+        function showManHours(selectElement) {
+            const selectedService = selectElement.value;
+            const row = selectElement.closest('tr'); // Find the closest row
+            const manHoursField = row.querySelector('.man-hours'); // Find the man-hours field within the row
+
+            if (manHoursField) {
+                if (selectedService == 9) {
+                    manHoursField.classList.remove('hidden'); // Show the man-hours field
+                } else {
+                    manHoursField.classList.add('hidden'); // Hide the man-hours field
+                }
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>
