@@ -30,16 +30,21 @@
 
                 <!-- Notification Dropdown -->
                 <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
-                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit Paints is pending.</a>
-                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date today.</a>
-                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this week.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
                 </div>
             </div>
             <div class="relative dropdown">
-                <button class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
                     <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
                     <span class="font-semibold">Krupali</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
@@ -68,8 +73,10 @@
         <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
             <thead>
                 <tr>
-                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="role_name">Role Name</th>
-                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="role_description">Role Description</th>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="role_name">Role
+                        Name</th>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                        data-sort="role_description">Role Description</th>
                     <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
                 </tr>
             </thead>
@@ -84,42 +91,43 @@
         </div>
     </div>
 
-    <div id="roleModal"
-            class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
-            <div class="bg-white rounded-lg p-6 max-w-lg w-full">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 id="modalTitle" class="text-2xl font-bold">Create New Service</h2>
-                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <form id="roleForm">
-                    <input type="hidden" id="roleId" name="roleId">
-                    <div class="mb-4">
-                        <label for="roleName" class="block text-sm font-medium text-gray-700">Role Name</label>
-                        <input type="text" id="roleName" name="roleName"
-                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                    </div>
-                    <div class="mb-4">
-                        <label for="roleDescription" class="block text-sm font-medium text-gray-700">Role Description</label>
-                        <input type="text" id="roleDescription" name="roleDescription"
-                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
-                    </div>
-                    <div class="mb-4">
-                        <label for="roleRights" class="block text-sm font-medium text-gray-700">Assign Pages</label>
-                        <div id="pagesContainer" class="mt-2 space-y-2">
-                            <!-- Pages checkboxes will be populated here -->
-                        </div>
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="submit"
-                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
-                    </div>
-                </form>
+    <div id="roleModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitle" class="text-2xl font-bold">Create New Service</h2>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
+            <form id="roleForm">
+                <input type="hidden" id="roleId" name="roleId">
+                <div class="mb-4">
+                    <label for="roleName" class="block text-sm font-medium text-gray-700">Role Name</label>
+                    <input type="text" id="roleName" name="roleName"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="roleDescription" class="block text-sm font-medium text-gray-700">Role
+                        Description</label>
+                    <input type="text" id="roleDescription" name="roleDescription"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="roleRights" class="block text-sm font-medium text-gray-700">Assign Pages</label>
+                    <div id="pagesContainer" class="mt-2 space-y-2">
+                        <!-- Pages checkboxes will be populated here -->
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Save</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             // Load the sidebar
@@ -261,7 +269,7 @@
             fetchData();
         });
 
-        function deleteRole(role_name){
+        function deleteRole(role_name) {
             const confirmed = confirm(`Are you sure you want to delete the role : ${role_name}?`);
             if (confirmed) {
                 alert("Role deleted successfully");
@@ -294,7 +302,7 @@
             roleModal.classList.add('hidden'); // Hide the modal
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             fetch('./Data/pages.json')
                 .then(response => response.json())
                 .then(data => {

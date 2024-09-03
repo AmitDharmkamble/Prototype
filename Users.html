@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div id="sidebar-container"></div>
     <header class="bg-blue-600 text-black p-4">
@@ -50,6 +53,75 @@
             </div>
         </div>
     </header>
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Users</h1>
+            <a id="createUserBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer">
+                Create New User
+            </a>
+        </div>
+        <div class="my-4 border-t border-gray-300"></div>
+        <div class="mb-4">
+            <input type="text" id="searchInput" placeholder="Search..." class="border rounded px-3 py-2 w-full">
+        </div>
+        <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="username">
+                        Username</th>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="email">Email</th>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="roles">Roles</th>
+                    <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+        <div class="mt-4 flex justify-between items-center">
+            <button id="prevPage" class="bg-blue-500 text-white px-3 py-2 rounded">Previous</button>
+            <span id="pageInfo" class="text-gray-700"></span>
+            <button id="nextPage" class="bg-blue-500 text-white px-3 py-2 rounded">Next</button>
+        </div>
+    </div>
+
+    <div id="userModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="modalTitle" class="text-2xl font-bold">Create New User</h2>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="userForm">
+                <input type="hidden" id="user_id" name="userid">
+                <div class="mb-4" id="employeeSelectContainer">
+                    <!-- Employee select will be added here by JavaScript -->
+                </div>
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="text" id="email" name="email"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="roles" class="block text-sm font-medium text-gray-700">Roles</label>
+                    <div id="rolesContainer" class="mt-2 space-y-2">
+                        <!-- Roles checkboxes will be populated here -->
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                        onclick="alert('Email Sent to user with credentials')">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
@@ -85,5 +157,219 @@
             document.body.appendChild(newScript);
         });
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let data = [];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        let currentSortColumn = "";
+        let currentSortOrder = "asc";
+
+        const tableBody = document.getElementById("tableBody");
+        const searchInput = document.getElementById("searchInput");
+        const pageInfo = document.getElementById("pageInfo");
+
+        async function fetchData() {
+            const response = await fetch("./Data/users.json");
+            data = await response.json();
+            displayData();
+        }
+
+        function displayData() {
+            const filteredData = filterData(data);
+            const sortedData = sortData(filteredData);
+            const paginatedData = paginateData(sortedData);
+
+            tableBody.innerHTML = paginatedData.map(item => `
+                    <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <td class="px-4 py-2 border border-gray-300">${item.username}</td>
+                        <td class="px-4 py-2 border border-gray-300">${item.email}</td>
+                        <td class="px-4 py-2 border border-gray-300">${item.roles}</td>
+                        <td class="px-4 py-2 border border-gray-300 text-center">
+                            <div class="flex justify-center items-center space-x-2 relative">
+                                <button class="text-black rounded mr-2 relative group" 
+                                    onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
+                                    data-tooltip="Edit">
+                                    <i class="fas fa-edit"></i>
+                                    <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                                </button>
+                                <button class="text-black rounded relative group" 
+                                    onclick="deleteUser('${item.username}')"
+                                    data-tooltip="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Delete</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join("");
+            pageInfo.textContent = `Page ${currentPage} of ${Math.ceil(filteredData.length / rowsPerPage)}`;
+        }
+
+        function filterData(data) {
+            const searchText = searchInput.value.toLowerCase();
+            return data.filter(item => item.username.toLowerCase().includes(searchText) ||
+                item.roles.toLowerCase().includes(searchText));
+        }
+
+        function sortData(data) {
+            if (!currentSortColumn) return data;
+            return data.sort((a, b) => {
+                const aValue = a[currentSortColumn];
+                const bValue = b[currentSortColumn];
+                if (currentSortOrder === "asc") {
+                    return aValue.localeCompare(bValue);
+                } else {
+                    return bValue.localeCompare(aValue);
+                }
+            });
+        }
+
+        function paginateData(data) {
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            return data.slice(startIndex, endIndex);
+        }
+
+        searchInput.addEventListener("input", () => {
+            currentPage = 1;
+            displayData();
+        });
+
+        document.querySelectorAll("[data-sort]").forEach(header => {
+            header.addEventListener("click", () => {
+                const column = header.getAttribute("data-sort");
+                if (currentSortColumn === column) {
+                    currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+                } else {
+                    currentSortColumn = column;
+                    currentSortOrder = "asc";
+                }
+                displayData();
+            });
+        });
+
+        document.getElementById("prevPage").addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayData();
+            }
+        });
+
+        document.getElementById("nextPage").addEventListener("click", () => {
+            const filteredData = filterData(data);
+            if (currentPage < Math.ceil(filteredData.length / rowsPerPage)) {
+                currentPage++;
+                displayData();
+            }
+        });
+
+        fetchData();
+    });
+
+    function deleteUser(username) {
+        const confirmed = confirm(`Are you sure you want to delete the user : ${username}?`);
+        if (confirmed) {
+            alert("User deleted successfully");
+        }
+    }
+
+    document.getElementById('createUserBtn').addEventListener('click', () => openModal());
+
+    function openModal(user = null) {
+        if (user) {
+            // Edit Service
+            modalTitle.textContent = 'Edit User';
+            const username = user.username;
+            const email = user.email;
+            const roles = user.roles;
+
+            // Assign values to form fields
+            document.getElementById('username').value = username;
+            document.getElementById('email').value = email;
+            document.getElementById('employeeSelect').setAttribute("disabled", "disabled");
+        } else {
+            // Create New Service
+            modalTitle.textContent = 'Create New User';
+            userForm.reset(); // Clear the form
+        }
+        userModal.classList.remove('hidden'); // Show the modal
+    }
+
+    // Function to close the modal
+    document.getElementById('closeModal').addEventListener('click', () => {
+        userModal.classList.add('hidden'); // Hide the modal
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch roles and employees data concurrently
+        Promise.all([
+            fetch('./Data/roles.json').then(response => response.json()),
+            fetch('./Data/employees.json').then(response => response.json())
+        ])
+            .then(([rolesData, employeesData]) => {
+                const rolesContainer = document.getElementById('rolesContainer');
+
+                // Create and populate employee select dropdown
+                const employeeSelectContainer = document.getElementById('employeeSelectContainer');
+                const selectLabel = document.createElement('label');
+                selectLabel.htmlFor = 'employeeSelect';
+                selectLabel.className = 'block text-sm font-medium text-gray-700';
+                selectLabel.textContent = 'Select Employee';
+
+                const select = document.createElement('select');
+                select.id = 'employeeSelect';
+                select.name = 'employeeSelect';
+                select.className = 'mt-1 block w-full p-2 border border-gray-300 rounded-md';
+                select.innerHTML = '<option value="">Select an Employee</option>';
+
+                employeesData.employees.forEach(employee => {
+                    const option = document.createElement('option');
+                    option.value = employee.employee_id;
+                    option.textContent = employee.employee_full_name;
+                    select.appendChild(option);
+                });
+
+                employeeSelectContainer.appendChild(selectLabel);
+                employeeSelectContainer.appendChild(select);
+
+                // Add event listener to fill email field based on employee selection
+                select.addEventListener('change', function () {
+                    const selectedEmployee = employeesData.employees.find(emp => emp.employee_id === select.value);
+                    const email = document.getElementById('email');
+                    if (selectedEmployee) {
+                        email.value = selectedEmployee.employee_email_id;
+                    } else {
+                        email.value = '';
+                    }
+                });
+
+                // Populate roles checkboxes
+
+                rolesData.forEach(role => {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `role${role.role_id}`;
+                    checkbox.name = 'userRoles';
+                    checkbox.value = `role${role.role_name}`;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = `role${role.role_id}`;
+                    label.textContent = role.role_name;
+                    label.className = 'text-sm text-gray-700 ml-2';
+
+                    const div = document.createElement('div');
+                    div.appendChild(checkbox);
+                    div.appendChild(label);
+
+                    rolesContainer.appendChild(div);
+                });
+
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
 </script>
+
 </html>

@@ -1,0 +1,27 @@
+[
+    {
+      "user_id": 1,
+      "username": "superadmin_user",
+      "email": "superadmin@example.com",
+      "roles": "Superadmin"
+    },
+    {
+      "user_id": 2,
+      "username": "accountant_user",
+      "email": "accountant@example.com",
+      "roles": "Accountant"
+    },
+    {
+      "user_id": 3,
+      "username": "sales_user",
+      "email": "sales@example.com",
+      "roles": "Sales"
+    },
+    {
+      "user_id": 4,
+      "username": "support_user",
+      "email": "support@example.com",
+      "roles": "Support"
+    }
+  ]
+  

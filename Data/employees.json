@@ -1,0 +1,45 @@
+{
+    "employees": [
+      {
+        "employee_id": "1",
+        "employee_full_name": "John Doe",
+        "employee_designation": "Software Engineer",
+        "employee_department": "Development",
+        "employee_email_id": "john.doe@example.com",
+        "employee_is_active": true
+      },
+      {
+        "employee_id": "2",
+        "employee_full_name": "Jane Smith",
+        "employee_designation": "Project Manager",
+        "employee_department": "Management",
+        "employee_email_id": "jane.smith@example.com",
+        "employee_is_active": true
+      },
+      {
+        "employee_id": "3",
+        "employee_full_name": "Alice Johnson",
+        "employee_designation": "Quality Assurance",
+        "employee_department": "Testing",
+        "employee_email_id": "alice.johnson@example.com",
+        "employee_is_active": false
+      },
+      {
+        "employee_id": "4",
+        "employee_full_name": "Bob Brown",
+        "employee_designation": "UX Designer",
+        "employee_department": "Design",
+        "employee_email_id": "bob.brown@example.com",
+        "employee_is_active": true
+      },
+      {
+        "employee_id": "5",
+        "employee_full_name": "Charlie Davis",
+        "employee_designation": "System Analyst",
+        "employee_department": "IT Support",
+        "employee_email_id": "charlie.davis@example.com",
+        "employee_is_active": true
+      }
+    ]
+  }
+  
