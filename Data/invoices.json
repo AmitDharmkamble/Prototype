@@ -1,0 +1,132 @@
+{
+    "invoices": [
+      {
+        "invoice_id": "INV-001",
+        "date": "2024-09-01",
+        "customer_name": "Customer 1",
+        "customer_id": "CUST-001",
+        "services": [
+          {
+            "service_id": "SVC-001",
+            "service_name": "Web Hosting",
+            "service_sac_code": "998431",
+            "quantity": 1,
+            "rate": 100,
+            "total": 100,
+            "start_date": "2024-09-01",
+            "end_date": "2025-09-01",
+            "man_hours": 10,
+            "tenure": "1 Year"
+          },
+          {
+            "service_id": "SVC-002",
+            "service_name": "Domain Registration",
+            "service_sac_code": "998432",
+            "quantity": 1,
+            "rate": 15,
+            "total": 15,
+            "start_date": "2024-09-01",
+            "end_date": "2025-09-01",
+            "man_hours": 2,
+            "tenure": "1 Year"
+          }
+        ],
+        "subtotal": 115,
+        "tax": 10.35,
+        "total_amount": 125.35
+      },
+      {
+        "invoice_id": "INV-002",
+        "date": "2024-09-02",
+        "customer_name": "Customer 2",
+        "customer_id": "CUST-002",
+        "services": [
+          {
+            "service_id": "SVC-003",
+            "service_name": "SEO Optimization",
+            "service_sac_code": "998433",
+            "quantity": 2,
+            "rate": 50,
+            "total": 100,
+            "start_date": "2024-09-02",
+            "end_date": "2024-10-02",
+            "man_hours": 5,
+            "tenure": "1 Month"
+          }
+        ],
+        "subtotal": 100,
+        "tax": 9,
+        "total_amount": 109
+      },
+      {
+        "invoice_id": "INV-003",
+        "date": "2024-09-03",
+        "customer_name": "Customer 3",
+        "customer_id": "CUST-003",
+        "services": [
+          {
+            "service_id": "SVC-004",
+            "service_name": "Graphic Design",
+            "service_sac_code": "998434",
+            "quantity": 3,
+            "rate": 75,
+            "total": 225,
+            "start_date": "2024-09-03",
+            "end_date": "2024-09-10",
+            "man_hours": 12,
+            "tenure": "1 Week"
+          }
+        ],
+        "subtotal": 225,
+        "tax": 20.25,
+        "total_amount": 245.25
+      },
+      {
+        "invoice_id": "INV-004",
+        "date": "2024-09-04",
+        "customer_name": "Customer 4",
+        "customer_id": "CUST-004",
+        "services": [
+          {
+            "service_id": "SVC-005",
+            "service_name": "Consulting",
+            "service_sac_code": "998435",
+            "quantity": 1,
+            "rate": 200,
+            "total": 200,
+            "start_date": "2024-09-04",
+            "end_date": "2024-09-05",
+            "man_hours": 8,
+            "tenure": "2 Days"
+          }
+        ],
+        "subtotal": 200,
+        "tax": 18,
+        "total_amount": 218
+      },
+      {
+        "invoice_id": "INV-005",
+        "date": "2024-09-05",
+        "customer_name": "Customer 5",
+        "customer_id": "CUST-005",
+        "services": [
+          {
+            "service_id": "SVC-006",
+            "service_name": "IT Support",
+            "service_sac_code": "998436",
+            "quantity": 1,
+            "rate": 150,
+            "total": 150,
+            "start_date": "2024-09-05",
+            "end_date": "2024-09-30",
+            "man_hours": 20,
+            "tenure": "1 Month"
+          }
+        ],
+        "subtotal": 150,
+        "tax": 13.5,
+        "total_amount": 163.5
+      }
+    ]
+  }
+  
