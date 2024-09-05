@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 p-8">
+    <div id="sidebar-container">
+    </div>
+    <div class="flex max-w-6xl mx-auto bg-white rounded-lg shadow-lg">
+        <!-- Tabs on the left -->
+        <div class="w-1/4 border-r bg-gray-50">
+            <ul class="space-y-4 p-4">
+                <li>
+                    <button id="tab-personal"
+                        class="w-full text-left py-2 px-4 bg-gray-200 rounded-md text-gray-700 hover:bg-gray-300">Personal
+                        Settings</button>
+                </li>
+                <li>
+                    <button id="tab-notifications"
+                        class="w-full text-left py-2 px-4 rounded-md text-gray-700 hover:bg-gray-300">Notification
+                        Settings</button>
+                </li>
+                <li>
+                    <button id="tab-other"
+                        class="w-full text-left py-2 px-4 rounded-md text-gray-700 hover:bg-gray-300">Other
+                        Settings</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Content area -->
+        <div class="w-3/4 p-8">
+            <!-- Personal Settings content -->
+            <div id="content-personal" class="tab-content">
+                <h2 class="text-2xl font-bold mb-4">Personal Settings</h2>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Name</label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Email</label>
+                        <input type="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-md">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Notification Settings content -->
+            <div id="content-notifications" class="tab-content hidden">
+                <h2 class="text-2xl font-bold mb-4">Notification Settings</h2>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Receive Email Notifications</label>
+                        <input type="checkbox" class="mt-1 block">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Receive SMS Notifications</label>
+                        <input type="checkbox" class="mt-1 block">
+                    </div>
+                    <button class="bg-blue-500 text-white py-2 px-4 rounded-md">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Other Settings content -->
+            <div id="content-other" class="tab-content hidden">
+                <h2 class="text-2xl font-bold mb-4">Other Settings</h2>
+                <p>Other settings content goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        
+    <script>
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('button[id^="tab-"]');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove hidden class from selected content and add hidden to others
+                contents.forEach(content => content.classList.add('hidden'));
+                document.getElementById(`content-${tab.id.split('-')[1]}`).classList.remove('hidden');
+
+                // Update active tab styling
+                tabs.forEach(t => t.classList.remove('bg-gray-200'));
+                tab.classList.add('bg-gray-200');
+            });
+        });
+
+        const sidebarContainer = document.getElementById("sidebar-container");
+
+        fetch("./Sidebar.html")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.text();
+            })
+            .then(html => {
+                sidebarContainer.innerHTML = html;
+
+                // Extract and execute scripts
+                const scripts = sidebarContainer.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.text = script.innerHTML;
+                    document.body.appendChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+    </script>
+</body>
+
+</html>

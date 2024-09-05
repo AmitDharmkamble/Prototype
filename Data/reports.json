@@ -1,0 +1,77 @@
+{
+    "reports": [
+      {
+        "report_id": "1",
+        "report_name": "Sales Summary Report",
+        "description": "Provides a summary of all sales transactions for the selected period, including total revenue, number of invoices, and taxes collected.",
+        "category": "Sales",
+        "frequency": "Monthly",
+        "columns": ["Invoice ID", "Customer Name", "Date", "Total Amount", "Tax", "Net Amount"],
+        "date_range": true
+      },
+      {
+        "report_id": "2",
+        "report_name": "Outstanding Payments Report",
+        "description": "Shows all unpaid or partially paid invoices, along with the outstanding balance and due dates.",
+        "category": "Payments",
+        "frequency": "Weekly",
+        "columns": ["Invoice ID", "Customer Name", "Due Date", "Total Amount", "Paid Amount", "Outstanding Balance"],
+        "date_range": false
+      },
+      {
+        "report_id": "3",
+        "report_name": "Customer Balance Report",
+        "description": "Displays the current balance for each customer, including outstanding invoices and total payments made.",
+        "category": "Customer",
+        "frequency": "Monthly",
+        "columns": ["Customer Name", "Total Invoices", "Total Paid", "Outstanding Balance"],
+        "date_range": true
+      },
+      {
+        "report_id": "4",
+        "report_name": "Tax Summary Report",
+        "description": "Provides a breakdown of taxes collected over a selected period, grouped by tax type and rate.",
+        "category": "Taxes",
+        "frequency": "Monthly",
+        "columns": ["Tax Type", "Rate", "Total Amount", "Collected Tax"],
+        "date_range": true
+      },
+      {
+        "report_id": "5",
+        "report_name": "Invoice Aging Report",
+        "description": "Shows aging of invoices based on their due dates, grouped by 30, 60, 90+ day periods.",
+        "category": "Payments",
+        "frequency": "Monthly",
+        "columns": ["Customer Name", "Invoice ID", "Due Date", "Outstanding Balance", "Days Overdue"],
+        "date_range": false
+      },
+      {
+        "report_id": "6",
+        "report_name": "Payment History Report",
+        "description": "Lists all payments received over the selected period, including the invoice number and payment method.",
+        "category": "Payments",
+        "frequency": "Weekly",
+        "columns": ["Payment ID", "Invoice ID", "Customer Name", "Date", "Payment Method", "Amount"],
+        "date_range": true
+      },
+      {
+        "report_id": "7",
+        "report_name": "Product/Service Sales Report",
+        "description": "Details sales of individual products or services for the selected period, including quantities and revenue.",
+        "category": "Sales",
+        "frequency": "Monthly",
+        "columns": ["Product/Service Name", "Quantity Sold", "Total Revenue", "Total Tax", "Net Revenue"],
+        "date_range": true
+      },
+      {
+        "report_id": "8",
+        "report_name": "Customer Invoice Report",
+        "description": "Shows a list of all invoices generated for a specific customer over a selected period.",
+        "category": "Customer",
+        "frequency": "On Demand",
+        "columns": ["Invoice ID", "Customer Name", "Date", "Total Amount", "Status"],
+        "date_range": true
+      }
+    ]
+  }
+  
