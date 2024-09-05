@@ -151,7 +151,7 @@
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <p class="text-3xl font-bold text-gray-800 mb-6">Add Customer</p>
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Name</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Name<span class="text-red-500">*</span></label>
                     <div class="flex">
                         <input id="companyName" type="text" placeholder="Enter Company Name"
                             class="border border-gray-300 rounded-l-md p-3 flex-1" />
@@ -161,13 +161,13 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN<span class="text-red-500">*</span></label>
                     <input id="gstin" type="text" placeholder="Enter GSTIN"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Address</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Address<span class="text-red-500">*</span></label>
                     <input id="addressLine1" type="text" placeholder="Line 1"
                         class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
                     <input id="addressLine2" type="text" placeholder="Line 2"
@@ -177,19 +177,19 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number<span class="text-red-500">*</span></label>
                     <input id="companyPhone" type="text" placeholder="Enter Phone Number"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Website</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Website<span class="text-red-500">*</span></label>
                     <input id="companyWebsite" type="text" placeholder="Enter Website URL"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">City</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">City<span class="text-red-500">*</span></label>
                     <select id="city" class="w-full p-2 border border-gray-300 rounded-lg" required>
                         <option value="" disabled selected>Select City</option>
                         <option>Pune</option>
@@ -199,7 +199,7 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Industry</label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Industry<span class="text-red-500">*</span></label>
                     <select id="industry" class="w-full p-2 border border-gray-300 rounded-lg" required>
                         <option value="" disabled selected>Select industry</option>
                         <option>Hotel</option>
@@ -215,17 +215,17 @@
                 <div class="mb-5">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Contact Person</h2>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Name</label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Name<span class="text-red-500">*</span></label>
                         <input id="contactName" type="text" placeholder="Enter Name"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Phone</label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Phone<span class="text-red-500">*</span></label>
                         <input id="contactPhone" type="text" placeholder="Enter Phone"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Email</label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Email<span class="text-red-500">*</span></label>
                         <input id="contactEmail" type="text" placeholder="Enter Email"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
@@ -235,7 +235,7 @@
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Primary</label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Primary<span class="text-red-500">*</span></label>
                         <select id="contactIsPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
                             <option value="" disabled selected>Is Primary</option>
                             <option>Yes</option>
@@ -243,10 +243,10 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Signing Authority</label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Signing Authority<span class="text-red-500">*</span></label>
                         <select id="contactIsSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg"
                             required>
-                            <option value="" disabled selected>Is Signing Authority</option>
+                            <option value="" disabled selected>Is Signing Authority<span class="text-red-500">*</span></option>
                             <option>Yes</option>
                             <option>No</option>
                         </select>

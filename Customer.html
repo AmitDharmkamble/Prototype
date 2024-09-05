@@ -583,14 +583,12 @@
                             <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-4">Create New Record</h2>
                             <form id="modal-form">
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="name">Name</label>
-                                    <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        placeholder="Enter Name" required>
+                                    <label class="block text-gray-700 mb-2" for="name">Name <span class="text-red-500">*</span></label>
+                                    <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Name" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="organization" class="block text-gray-700 mb-2">Organization</label>
-                                    <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        required>
+                                    <label for="organization" class="block text-gray-700 mb-2">Organization <span class="text-red-500">*</span></label>
+                                    <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg" required>
                                         <option value="" disabled selected>Select an organization</option>
                                         <option>Acme, Inc.</option>
                                         <option>Another Org</option>
@@ -598,41 +596,41 @@
                                     </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="phone">Phone Number</label>
-                                    <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        placeholder="Enter Phone Number" required>
+                                    <label class="block text-gray-700 mb-2" for="phone">Phone Number <span class="text-red-500">*</span></label>
+                                    <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Phone Number" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="email">Email Id</label>
-                                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        placeholder="Enter Email Id" required>
+                                    <label class="block text-gray-700 mb-2" for="email">Email Id <span class="text-red-500">*</span></label>
+                                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Email Id" required>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 mb-2" for="designation">Designation</label>
-                                    <input id="designation" type="text"
-                                        class="w-full p-2 border border-gray-300 rounded-lg"
-                                        placeholder="Enter Designation" required>
+                                    <input id="designation" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Designation" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary</label>
-                                    <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        required>
+                                    <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary <span class="text-red-500">*</span></label>
+                                    <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 mb-2" for="isSigningAuthority">Is Signing Authority <span class="text-red-500">*</span></label>
+                                    <select id="isSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg" required>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 mb-2" for="avatar">Upload Avatar</label>
-                                    <input id="avatar" type="file" class="w-full p-2 border border-gray-300 rounded-lg"
-                                        accept="image/*">
+                                    <input id="avatar" type="file" class="w-full p-2 border border-gray-300 rounded-lg" accept="image/*">
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="button" id="modal-close"
-                                        class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
-                                    <button type="submit" id="modal-submit"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
+                                    <button type="button" id="modal-close" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
+                                    <button type="submit" id="modal-submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
                                 </div>
                             </form>
+                            
 
                         </div>
                     </div>
@@ -697,18 +695,18 @@
                         </thead>
                         <tbody>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>IKF</span>
                                 </td>
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Amit Dharmkamble</div>
                                     <div class="text-xs text-gray-500">Manager</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+91 123 456 7890</td>
-                                <td class="border border-gray-300 p-4">amit.dharmkamble@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+91 123 456 7890</td>
+                                <td class="p-4">amit.dharmkamble@ikf.co.in</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -723,18 +721,18 @@
                             </tr>
 
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
                                 </td>
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Steven Mcguire</div>
                                     <div class="text-xs text-gray-500">Director</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+1 234 567 8901</td>
-                                <td class="border border-gray-300 p-4">steven.mcguire@mail.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+1 234 567 8901</td>
+                                <td class="p-4">steven.mcguire@mail.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -749,18 +747,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
                                 </td>
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Zoe Jacobson</div>
                                     <div class="text-xs text-gray-500">Executive</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+44 789 012 3456</td>
-                                <td class="border border-gray-300 p-4">zoe.jacobson@g.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+44 789 012 3456</td>
+                                <td class="p-4">zoe.jacobson@g.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -775,18 +773,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Emily Davis</div>
                                     <div class="text-xs text-gray-500">HR Manager</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
-                                <td class="border border-gray-300 p-4">emily.davis@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+33 456 789 0123</td>
+                                <td class="p-4">emily.davis@lmninc.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -801,18 +799,18 @@
                             </tr>
 
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Michael Johnson</div>
                                     <div class="text-xs text-gray-500">Sales Lead</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
-                                <td class="border border-gray-300 p-4">michael.johnson@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+55 678 901 2345</td>
+                                <td class="p-4">michael.johnson@opqltd.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -827,18 +825,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Olivia Martinez</div>
                                     <div class="text-xs text-gray-500">Marketing Specialist</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+66 789 012 3456</td>
-                                <td class="border border-gray-300 p-4">olivia.martinez@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+66 789 012 3456</td>
+                                <td class="p-4">olivia.martinez@rstcorp.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -853,18 +851,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">James Wilson</div>
                                     <div class="text-xs text-gray-500">Product Manager</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+77 890 123 4567</td>
-                                <td class="border border-gray-300 p-4">james.wilson@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+77 890 123 4567</td>
+                                <td class="p-4">james.wilson@uvwinc.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -879,18 +877,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Sophia Brown</div>
                                     <div class="text-xs text-gray-500">Business Analyst</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+88 901 234 5678</td>
-                                <td class="border border-gray-300 p-4">sophia.brown@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+88 901 234 5678</td>
+                                <td class="p-4">sophia.brown@xyzltd.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -905,18 +903,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Liam Thompson</div>
                                     <div class="text-xs text-gray-500">Customer Support</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+99 012 345 6789</td>
-                                <td class="border border-gray-300 p-4">liam.thompson@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+99 012 345 6789</td>
+                                <td class="p-4">liam.thompson@abccorp.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -931,18 +929,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>IKF</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Mia Anderson</div>
                                     <div class="text-xs text-gray-500">Lead Developer</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+11 234 567 8901</td>
-                                <td class="border border-gray-300 p-4">mia.anderson@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+11 234 567 8901</td>
+                                <td class="p-4">mia.anderson@ikf.co.in</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -957,18 +955,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Noah Walker</div>
                                     <div class="text-xs text-gray-500">Financial Analyst</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+22 345 678 9012</td>
-                                <td class="border border-gray-300 p-4">noah.walker@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+22 345 678 9012</td>
+                                <td class="p-4">noah.walker@lmninc.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -983,18 +981,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Isabella Lee</div>
                                     <div class="text-xs text-gray-500">Operations Manager</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
-                                <td class="border border-gray-300 p-4">isabella.lee@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+33 456 789 0123</td>
+                                <td class="p-4">isabella.lee@opqltd.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1009,18 +1007,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Ethan Harris</div>
                                     <div class="text-xs text-gray-500">HR Coordinator</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+44 567 890 1234</td>
-                                <td class="border border-gray-300 p-4">ethan.harris@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+44 567 890 1234</td>
+                                <td class="p-4">ethan.harris@rstcorp.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1035,18 +1033,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Ava Martinez</div>
                                     <div class="text-xs text-gray-500">Product Specialist</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
-                                <td class="border border-gray-300 p-4">ava.martinez@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+55 678 901 2345</td>
+                                <td class="p-4">ava.martinez@uvwinc.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1061,18 +1059,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">William King</div>
                                     <div class="text-xs text-gray-500">Business Development</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+66 789 012 3456</td>
-                                <td class="border border-gray-300 p-4">william.king@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+66 789 012 3456</td>
+                                <td class="p-4">william.king@xyzltd.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1087,18 +1085,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Charlotte Wright</div>
                                     <div class="text-xs text-gray-500">Customer Success</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+77 890 123 4567</td>
-                                <td class="border border-gray-300 p-4">charlotte.wright@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+77 890 123 4567</td>
+                                <td class="p-4">charlotte.wright@abccorp.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1113,18 +1111,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>IKF</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Lucas Scott</div>
                                     <div class="text-xs text-gray-500">Lead Designer</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+88 901 234 5678</td>
-                                <td class="border border-gray-300 p-4">lucas.scott@ikf.co.in</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+88 901 234 5678</td>
+                                <td class="p-4">lucas.scott@ikf.co.in</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1139,18 +1137,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Mason Green</div>
                                     <div class="text-xs text-gray-500">Financial Planner</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+99 012 345 6789</td>
-                                <td class="border border-gray-300 p-4">mason.green@lmninc.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+99 012 345 6789</td>
+                                <td class="p-4">mason.green@lmninc.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1165,18 +1163,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Amelia Adams</div>
                                     <div class="text-xs text-gray-500">Operations Analyst</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+11 234 567 8901</td>
-                                <td class="border border-gray-300 p-4">amelia.adams@opqltd.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+11 234 567 8901</td>
+                                <td class="p-4">amelia.adams@opqltd.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1191,18 +1189,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Evelyn Evans</div>
                                     <div class="text-xs text-gray-500">HR Assistant</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+22 345 678 9012</td>
-                                <td class="border border-gray-300 p-4">evelyn.evans@rstcorp.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+22 345 678 9012</td>
+                                <td class="p-4">evelyn.evans@rstcorp.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1217,18 +1215,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Henry Carter</div>
                                     <div class="text-xs text-gray-500">Product Development</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+33 456 789 0123</td>
-                                <td class="border border-gray-300 p-4">henry.carter@uvwinc.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+33 456 789 0123</td>
+                                <td class="p-4">henry.carter@uvwinc.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1243,18 +1241,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Isabella Phillips</div>
                                     <div class="text-xs text-gray-500">Marketing Manager</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+44 567 890 1234</td>
-                                <td class="border border-gray-300 p-4">isabella.phillips@xyzltd.com</td>
-                                <td class="border border-gray-300 p-4">No</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+44 567 890 1234</td>
+                                <td class="p-4">isabella.phillips@xyzltd.com</td>
+                                <td class="p-4">No</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1269,18 +1267,18 @@
                                 </td>
                             </tr>
                             <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                                <td class="border border-gray-300 p-4 flex items-center space-x-3">
+                                <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
                                 </td>                                
-                                <td class="border border-gray-300 p-4">
+                                <td class="p-4">
                                     <div class="text-sm font-semibold">Owen Rivera</div>
                                     <div class="text-xs text-gray-500">Customer Support</div>
                                 </td>
-                                <td class="border border-gray-300 p-4">+55 678 901 2345</td>
-                                <td class="border border-gray-300 p-4">owen.rivera@abccorp.com</td>
-                                <td class="border border-gray-300 p-4">Yes</td>
-                                <td class="border border-gray-300 p-4 flex space-x-2">
+                                <td class="p-4">+55 678 901 2345</td>
+                                <td class="p-4">owen.rivera@abccorp.com</td>
+                                <td class="p-4">Yes</td>
+                                <td class="p-4 flex space-x-2">
                                     <button
                                         class="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
                                         data-modal-action="edit" data-record-id="1">
@@ -1506,6 +1504,7 @@
                     document.getElementById('email').value = record.email || '';
                     document.getElementById('designation').value = record.designation || '';
                     document.getElementById('isPrimary').value = record.isPrimary || '';
+                    document.getElementById('isSigningAuthority').value = record.isSigningAuthority || '';
                     currentRecordId = record.id;
                 } else {
                     // Clear the form for creating new records
@@ -1563,7 +1562,8 @@
                     phone: '+1 234 567 8901',
                     email: 'john.doe@example.com',
                     designation: 'Developer',
-                    isPrimary: 'Yes'
+                    isPrimary: 'Yes',
+                    isSigningAuthority: 'Yes'
                 };
             }
 

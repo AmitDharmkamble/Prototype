@@ -200,7 +200,8 @@
             </div>
         </div>
     </div>
-    <div id="createTemplateModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden overflow-auto">
+    <div id="createTemplateModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden overflow-auto">
         <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
             <h2 class="text-xl font-bold mb-4">Create New Template</h2>
             <form id="createTemplateForm">
@@ -416,14 +417,16 @@
             const modalContent = document.getElementById('modalContent');
 
             modalContent.innerHTML = `
-            <p><strong>Email Template ID:</strong> ${data.template_id}</p>
-            <p><strong>Template Name:</strong> ${data.template_name}</p>
-            <p><strong>CC:</strong> ${data.template_cc}</p>
-            <p><strong>BCC:</strong> ${data.template_bcc}</p>
-            <p><strong>Subject:</strong> ${data.template_subject}</p>
-            <p><strong>Body:</strong></p>
-            <p>${data.template_body}</p>
-        `;
+    <p><strong>Email Template ID:</strong> ${data.template_id}</p>
+    <p><strong>Template Name:</strong> ${data.template_name}</p>
+    <p><strong>CC:</strong> ${data.template_cc}</p>
+    <p><strong>BCC:</strong> ${data.template_bcc}</p>
+    <p><strong>Subject:</strong> ${data.template_subject}</p>
+    <p><strong>Body:</strong></p>
+    <p>${data.template_body}</p>
+    <br>
+    <button id="testEmailBtn" style="padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; cursor: pointer;">Test Email</button>
+`;
             modal.classList.remove('hidden');
         }
 
@@ -458,14 +461,14 @@
         // Hide the modal
         document.getElementById('createTemplateModal').classList.add('hidden');
         if (editorInstance) {
-                editorInstance.destroy()
-                    .then(() => {
-                        editorInstance = null;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-            }
+            editorInstance.destroy()
+                .then(() => {
+                    editorInstance = null;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
     }
 </script>
 

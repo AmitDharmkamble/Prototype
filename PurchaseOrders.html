@@ -86,8 +86,8 @@
                 <a href="CreatePurchaseOrder.html"
                     class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600">Create New Purchase Order</a>
             </div>
-            
-            
+
+
 
             <div class="filters mb-6 p-4 bg-white shadow-md rounded-lg">
                 <!-- Top Row: Customer, Sold by, PO Number -->
@@ -95,25 +95,59 @@
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterCustomer" class="text-sm font-medium text-gray-700">Customer:</label>
                         <select id="filterCustomer"
-                            class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <option value="">All</option>
+                            class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500" multiple>
                             <option value="Customer A">Customer A</option>
                             <option value="Customer B">Customer B</option>
+                            <option value="Customer C">Customer C</option>
+                            <option value="Customer D">Customer D</option>
+                            <option value="Customer E">Customer E</option>
+                            <option value="Customer F">Customer F</option>
+                            <option value="Customer G">Customer G</option>
+                            <option value="Customer H">Customer H</option>
+                            <option value="Customer I">Customer I</option>
+                            <option value="Customer J">Customer J</option>
+                            <option value="Customer K">Customer K</option>
+                            <option value="Customer L">Customer L</option>
+                            <option value="Customer M">Customer M</option>
+                            <option value="Customer N">Customer N</option>
+                            <option value="Customer O">Customer O</option>
+                            <option value="Customer P">Customer P</option>
+                            <option value="Customer Q">Customer Q</option>
+                            <option value="Customer R">Customer R</option>
+                            <option value="Customer S">Customer S</option>
+                            <option value="Customer T">Customer T</option>
                             <!-- Add more customer options here -->
                         </select>
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterSoldBy" class="text-sm font-medium text-gray-700">Sold by:</label>
                         <select id="filterSoldBy"
-                            class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500">
-                            <option value="">All</option>
+                            class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500" multiple>
                             <option value="Salesperson A">Salesperson A</option>
                             <option value="Salesperson B">Salesperson B</option>
+                            <option value="Salesperson C">Salesperson C</option>
+                            <option value="Salesperson D">Salesperson D</option>
+                            <option value="Salesperson E">Salesperson E</option>
+                            <option value="Salesperson F">Salesperson F</option>
+                            <option value="Salesperson G">Salesperson G</option>
+                            <option value="Salesperson H">Salesperson H</option>
+                            <option value="Salesperson I">Salesperson I</option>
+                            <option value="Salesperson J">Salesperson J</option>
+                            <option value="Salesperson K">Salesperson K</option>
+                            <option value="Salesperson L">Salesperson L</option>
+                            <option value="Salesperson M">Salesperson M</option>
+                            <option value="Salesperson N">Salesperson N</option>
+                            <option value="Salesperson O">Salesperson O</option>
+                            <option value="Salesperson P">Salesperson P</option>
+                            <option value="Salesperson Q">Salesperson Q</option>
+                            <option value="Salesperson R">Salesperson R</option>
+                            <option value="Salesperson S">Salesperson S</option>
+                            <option value="Salesperson T">Salesperson T</option>
                             <!-- Add more salesperson options here -->
                         </select>
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterPONumber" class="text-sm font-medium text-gray-700">PO Number:</label>
                         <input type="text" id="filterPONumber"
@@ -121,7 +155,7 @@
                             oninput="filterTable()">
                     </div>
                 </div>
-            
+
                 <!-- Bottom Row: From Date, To Date -->
                 <div class="flex flex-wrap gap-4 mb-4">
                     <div class="flex flex-col w-full sm:w-1/3">
@@ -130,14 +164,14 @@
                             class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500"
                             onchange="filterTable()">
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterToDate" class="text-sm font-medium text-gray-700">To Date:</label>
                         <input type="date" id="filterToDate"
                             class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500"
                             onchange="filterTable()">
                     </div>
-            
+
                     <!-- Search Box and Button -->
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="searchBox" class="text-sm font-medium text-gray-700">Search:</label>
@@ -145,14 +179,15 @@
                             <input type="text" id="searchBox" placeholder="Search..."
                                 class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 flex-grow"
                                 oninput="filterTable()">
-                            <button id="searchButton" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2" onclick="filterTable()">
+                            <button id="searchButton" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+                                onclick="filterTable()">
                                 Search
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
 
 
 
@@ -219,7 +254,8 @@
                         <!-- Accordion Row for Additional Details -->
                         <tr class="accordion-row hidden">
                             <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
+                                <div
+                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
                                     <p class="text-gray-700">Customer <span class="font-semibold">A</span> has placed
                                         Purchase Order <span class="font-semibold">PO001</span> with the title <span
                                             class="font-semibold">Title A</span> for a total amount of <span
@@ -252,10 +288,13 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <p class="text-gray-600 mt-2">This order is handled by <span class="font-semibold">Salesperson A</span> with payment terms of <span class="font-semibold">30 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Proposal reference: <span class="font-semibold">Proposal A</span></p>
+                                    <p class="text-gray-600 mt-2">This order is handled by <span
+                                            class="font-semibold">Salesperson A</span> with payment terms of <span
+                                            class="font-semibold">30 days</span>.</p>
+                                    <p class="text-gray-600 mt-2">Proposal reference: <span
+                                            class="font-semibold">Proposal A</span></p>
                                 </div>
-                                
+
                             </td>
                         </tr>
                         <tr
