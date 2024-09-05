@@ -25,6 +25,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -253,9 +254,9 @@
                         </tr>
                         <!-- Accordion Row for Additional Details -->
                         <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
+                            <td colspan="10" class="bg-gray-50 p-4 border-t">
                                 <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
+                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0 w-full">
                                     <p class="text-gray-700">Customer <span class="font-semibold">A</span> has placed
                                         Purchase Order <span class="font-semibold">PO001</span> with the title <span
                                             class="font-semibold">Title A</span> for a total amount of <span
@@ -265,26 +266,26 @@
                                     <table class="min-w-full bg-white border border-gray-300">
                                         <thead>
                                             <tr>
-                                                <th class="px-4 py-2 border-b">Service</th>
-                                                <th class="px-4 py-2 border-b">Amount</th>
+                                                <th class="px-4 py-2 border-b text-left">Service</th>
+                                                <th class="px-4 py-2 border-b text-right">Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td class="px-4 py-2 border-b">Web Development</td>
-                                                <td class="px-4 py-2 border-b">₹2000</td>
+                                                <td class="px-4 py-2 border-b text-right">₹2000</td>
                                             </tr>
                                             <tr>
                                                 <td class="px-4 py-2 border-b">SEO Optimization</td>
-                                                <td class="px-4 py-2 border-b">₹1500</td>
+                                                <td class="px-4 py-2 border-b text-right">₹1500</td>
                                             </tr>
                                             <tr>
                                                 <td class="px-4 py-2 border-b">Content Writing</td>
-                                                <td class="px-4 py-2 border-b">₹1000</td>
+                                                <td class="px-4 py-2 border-b text-right">₹1000</td>
                                             </tr>
                                             <tr>
                                                 <td class="px-4 py-2 border-b">Email Marketing</td>
-                                                <td class="px-4 py-2 border-b">₹500</td>
+                                                <td class="px-4 py-2 border-b text-right">₹500</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -531,7 +532,7 @@
 
         <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
             let currentPage = 1;
             const rowsPerPage = 10;
@@ -628,7 +629,7 @@
                 const rows = document.querySelectorAll("#purchaseOrdersTable tbody tr");
 
                 rows.forEach((row, index) => {
-                    if (index % 2 === 0) { // Target only the data rows (not the accordion rows)
+                    //if (index % 2 === 0) { // Target only the data rows (not the accordion rows)
                         row.addEventListener("click", function () {
                             const accordionRow = this.nextElementSibling;
                             const accordionContent = accordionRow.querySelector(".accordion-content");
@@ -643,8 +644,17 @@
                                 }, 500); // Wait for the animation to complete before hiding
                             }
                         });
-                    }
+                    //}
                 });
+            });
+
+
+            $(document).ready(function () {
+                $('#filterCustomer').select2();
+            });
+
+            $(document).ready(function () {
+                $('#filterSoldBy').select2();
             });
         </script>
 </body>
