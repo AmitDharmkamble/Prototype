@@ -1,132 +1,890 @@
-{
-    "invoices": [
+[
+  {
+    "invoice_id": "INV-001",
+    "date_issued": "2024-09-06",
+    "due_date": "2024-09-20",
+    "customer": {
+      "customer_id": "CUST-001",
+      "name": "John Doe",
+      "address": {
+        "street": "123 Elm Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62701",
+        "country": "USA"
+      },
+      "email": "johndoe@example.com",
+      "phone": "+1-555-123-4567"
+    },
+    "services": [
       {
-        "invoice_id": "INV-001",
-        "date": "2024-09-01",
-        "customer_name": "Customer 1",
-        "customer_id": "CUST-001",
-        "services": [
+        "service_id": "SERVICE-001",
+        "description": "Web Development Services",
+        "quantity": 1,
+        "unit_price": 1000.00,
+        "subtotal": 1000.00,
+        "taxes": [
           {
-            "service_id": "SVC-001",
-            "service_name": "Web Hosting",
-            "service_sac_code": "998431",
-            "quantity": 1,
-            "rate": 100,
-            "total": 100,
-            "start_date": "2024-09-01",
-            "end_date": "2025-09-01",
-            "man_hours": 10,
-            "tenure": "1 Year"
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 70.00
           },
           {
-            "service_id": "SVC-002",
-            "service_name": "Domain Registration",
-            "service_sac_code": "998432",
-            "quantity": 1,
-            "rate": 15,
-            "total": 15,
-            "start_date": "2024-09-01",
-            "end_date": "2025-09-01",
-            "man_hours": 2,
-            "tenure": "1 Year"
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 50.00
           }
         ],
-        "subtotal": 115,
-        "tax": 10.35,
-        "total_amount": 125.35
+        "start_date": "2024-09-01",
+        "expiry_date": "2024-12-01",
+        "man_hours_allocated": 40,
+        "total": 1120.00
       },
       {
-        "invoice_id": "INV-002",
-        "date": "2024-09-02",
-        "customer_name": "Customer 2",
-        "customer_id": "CUST-002",
-        "services": [
+        "service_id": "SERVICE-002",
+        "description": "Graphic Design Services",
+        "quantity": 2,
+        "unit_price": 500.00,
+        "subtotal": 1000.00,
+        "taxes": [
           {
-            "service_id": "SVC-003",
-            "service_name": "SEO Optimization",
-            "service_sac_code": "998433",
-            "quantity": 2,
-            "rate": 50,
-            "total": 100,
-            "start_date": "2024-09-02",
-            "end_date": "2024-10-02",
-            "man_hours": 5,
-            "tenure": "1 Month"
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 70.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 50.00
           }
         ],
-        "subtotal": 100,
-        "tax": 9,
-        "total_amount": 109
-      },
-      {
-        "invoice_id": "INV-003",
-        "date": "2024-09-03",
-        "customer_name": "Customer 3",
-        "customer_id": "CUST-003",
-        "services": [
-          {
-            "service_id": "SVC-004",
-            "service_name": "Graphic Design",
-            "service_sac_code": "998434",
-            "quantity": 3,
-            "rate": 75,
-            "total": 225,
-            "start_date": "2024-09-03",
-            "end_date": "2024-09-10",
-            "man_hours": 12,
-            "tenure": "1 Week"
-          }
-        ],
-        "subtotal": 225,
-        "tax": 20.25,
-        "total_amount": 245.25
-      },
-      {
-        "invoice_id": "INV-004",
-        "date": "2024-09-04",
-        "customer_name": "Customer 4",
-        "customer_id": "CUST-004",
-        "services": [
-          {
-            "service_id": "SVC-005",
-            "service_name": "Consulting",
-            "service_sac_code": "998435",
-            "quantity": 1,
-            "rate": 200,
-            "total": 200,
-            "start_date": "2024-09-04",
-            "end_date": "2024-09-05",
-            "man_hours": 8,
-            "tenure": "2 Days"
-          }
-        ],
-        "subtotal": 200,
-        "tax": 18,
-        "total_amount": 218
-      },
-      {
-        "invoice_id": "INV-005",
-        "date": "2024-09-05",
-        "customer_name": "Customer 5",
-        "customer_id": "CUST-005",
-        "services": [
-          {
-            "service_id": "SVC-006",
-            "service_name": "IT Support",
-            "service_sac_code": "998436",
-            "quantity": 1,
-            "rate": 150,
-            "total": 150,
-            "start_date": "2024-09-05",
-            "end_date": "2024-09-30",
-            "man_hours": 20,
-            "tenure": "1 Month"
-          }
-        ],
-        "subtotal": 150,
-        "tax": 13.5,
-        "total_amount": 163.5
+        "start_date": "2024-09-01",
+        "expiry_date": "2024-12-01",
+        "man_hours_allocated": 20,
+        "total": 1120.00
       }
-    ]
+    ],
+    "subtotal": 2000.00,
+    "tax_total": 140.00,
+    "total_amount": 2240.00,
+    "payment_terms": "Net 14",
+    "notes": "Thank you for your business!",
+    "status": "Paid"
+  },
+  {
+    "invoice_id": "INV-002",
+    "date_issued": "2024-09-07",
+    "due_date": "2024-09-21",
+    "customer": {
+      "customer_id": "CUST-002",
+      "name": "Jane Smith",
+      "address": {
+        "street": "456 Oak Avenue",
+        "city": "Metropolis",
+        "state": "NY",
+        "zip": "10001",
+        "country": "USA"
+      },
+      "email": "janesmith@example.com",
+      "phone": "+1-555-234-5678"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-003",
+        "description": "SEO Optimization",
+        "quantity": 3,
+        "unit_price": 300.00,
+        "subtotal": 900.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 63.00
+          }
+        ],
+        "start_date": "2024-09-05",
+        "expiry_date": "2024-11-05",
+        "man_hours_allocated": 15,
+        "total": 963.00
+      },
+      {
+        "service_id": "SERVICE-004",
+        "description": "Content Writing",
+        "quantity": 2,
+        "unit_price": 200.00,
+        "subtotal": 400.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 28.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 20.00
+          }
+        ],
+        "start_date": "2024-09-07",
+        "expiry_date": "2024-10-07",
+        "man_hours_allocated": 10,
+        "total": 448.00
+      }
+    ],
+    "subtotal": 1300.00,
+    "tax_total": 91.00,
+    "total_amount": 1391.00,
+    "payment_terms": "Net 14",
+    "notes": "Looking forward to continued collaboration!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-003",
+    "date_issued": "2024-09-08",
+    "due_date": "2024-09-22",
+    "customer": {
+      "customer_id": "CUST-003",
+      "name": "Alice Johnson",
+      "address": {
+        "street": "789 Pine Street",
+        "city": "Smallville",
+        "state": "TX",
+        "zip": "75001",
+        "country": "USA"
+      },
+      "email": "alicejohnson@example.com",
+      "phone": "+1-555-345-6789"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-005",
+        "description": "App Development",
+        "quantity": 1,
+        "unit_price": 5000.00,
+        "subtotal": 5000.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 350.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 250.00
+          }
+        ],
+        "start_date": "2024-09-10",
+        "expiry_date": "2024-12-10",
+        "man_hours_allocated": 100,
+        "total": 5600.00
+      }
+    ],
+    "subtotal": 5000.00,
+    "tax_total": 600.00,
+    "total_amount": 5600.00,
+    "payment_terms": "Net 30",
+    "notes": "Thank you for choosing us!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-004",
+    "date_issued": "2024-09-09",
+    "due_date": "2024-09-23",
+    "customer": {
+      "customer_id": "CUST-004",
+      "name": "Bob Williams",
+      "address": {
+        "street": "101 Maple Drive",
+        "city": "Riverside",
+        "state": "CA",
+        "zip": "90001",
+        "country": "USA"
+      },
+      "email": "bobwilliams@example.com",
+      "phone": "+1-555-456-7890"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-006",
+        "description": "Digital Marketing",
+        "quantity": 4,
+        "unit_price": 250.00,
+        "subtotal": 1000.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 70.00
+          }
+        ],
+        "start_date": "2024-09-15",
+        "expiry_date": "2024-12-15",
+        "man_hours_allocated": 20,
+        "total": 1070.00
+      }
+    ],
+    "subtotal": 1000.00,
+    "tax_total": 70.00,
+    "total_amount": 1070.00,
+    "payment_terms": "Net 15",
+    "notes": "Thanks for your business!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-005",
+    "date_issued": "2024-09-10",
+    "due_date": "2024-09-24",
+    "customer": {
+      "customer_id": "CUST-005",
+      "name": "Emily Davis",
+      "address": {
+        "street": "202 Birch Lane",
+        "city": "Lakeside",
+        "state": "FL",
+        "zip": "33101",
+        "country": "USA"
+      },
+      "email": "emilydavis@example.com",
+      "phone": "+1-555-567-8901"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-007",
+        "description": "UI/UX Design",
+        "quantity": 2,
+        "unit_price": 800.00,
+        "subtotal": 1600.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 112.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 80.00
+          }
+        ],
+        "start_date": "2024-09-20",
+        "expiry_date": "2024-11-20",
+        "man_hours_allocated": 30,
+        "total": 1792.00
+      }
+    ],
+    "subtotal": 1600.00,
+    "tax_total": 192.00,
+    "total_amount": 1792.00,
+    "payment_terms": "Net 14",
+    "notes": "Looking forward to future projects!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-006",
+    "date_issued": "2024-09-11",
+    "due_date": "2024-09-25",
+    "customer": {
+      "customer_id": "CUST-006",
+      "name": "Michael Brown",
+      "address": {
+        "street": "303 Cedar Road",
+        "city": "Oakville",
+        "state": "WA",
+        "zip": "98001",
+        "country": "USA"
+      },
+      "email": "michaelbrown@example.com",
+      "phone": "+1-555-678-9012"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-008",
+        "description": "Database Management",
+        "quantity": 1,
+        "unit_price": 1500.00,
+        "subtotal": 1500.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 105.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 75.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2024-12-25",
+        "man_hours_allocated": 50,
+        "total": 1680.00
+      }
+    ],
+    "subtotal": 1500.00,
+    "tax_total": 180.00,
+    "total_amount": 1680.00,
+    "payment_terms": "Net 30",
+    "notes": "Thanks for your trust in our services!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-007",
+    "date_issued": "2024-09-12",
+    "due_date": "2024-09-26",
+    "customer": {
+      "customer_id": "CUST-007",
+      "name": "Sophia Martinez",
+      "address": {
+        "street": "404 Walnut Street",
+        "city": "Columbus",
+        "state": "OH",
+        "zip": "43201",
+        "country": "USA"
+      },
+      "email": "sophiamartinez@example.com",
+      "phone": "+1-555-789-0123"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-009",
+        "description": "Cloud Hosting",
+        "quantity": 6,
+        "unit_price": 100.00,
+        "subtotal": 600.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 42.00
+          }
+        ],
+        "start_date": "2024-09-15",
+        "expiry_date": "2025-09-15",
+        "man_hours_allocated": 10,
+        "total": 642.00
+      }
+    ],
+    "subtotal": 600.00,
+    "tax_total": 42.00,
+    "total_amount": 642.00,
+    "payment_terms": "Net 14",
+    "notes": "Thank you for choosing our hosting service!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-008",
+    "date_issued": "2024-09-13",
+    "due_date": "2024-09-27",
+    "customer": {
+      "customer_id": "CUST-008",
+      "name": "David Wilson",
+      "address": {
+        "street": "505 Spruce Avenue",
+        "city": "Hartford",
+        "state": "CT",
+        "zip": "06101",
+        "country": "USA"
+      },
+      "email": "davidwilson@example.com",
+      "phone": "+1-555-890-1234"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-010",
+        "description": "Network Security",
+        "quantity": 1,
+        "unit_price": 2000.00,
+        "subtotal": 2000.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 140.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 100.00
+          }
+        ],
+        "start_date": "2024-09-20",
+        "expiry_date": "2024-12-20",
+        "man_hours_allocated": 60,
+        "total": 2240.00
+      }
+    ],
+    "subtotal": 2000.00,
+    "tax_total": 240.00,
+    "total_amount": 2240.00,
+    "payment_terms": "Net 30",
+    "notes": "Thanks for your continued support!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-009",
+    "date_issued": "2024-09-14",
+    "due_date": "2024-09-28",
+    "customer": {
+      "customer_id": "CUST-009",
+      "name": "Olivia Thompson",
+      "address": {
+        "street": "606 Fir Lane",
+        "city": "San Diego",
+        "state": "CA",
+        "zip": "92101",
+        "country": "USA"
+      },
+      "email": "oliviathompson@example.com",
+      "phone": "+1-555-901-2345"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-011",
+        "description": "Video Editing",
+        "quantity": 5,
+        "unit_price": 200.00,
+        "subtotal": 1000.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 70.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2024-10-25",
+        "man_hours_allocated": 25,
+        "total": 1070.00
+      }
+    ],
+    "subtotal": 1000.00,
+    "tax_total": 70.00,
+    "total_amount": 1070.00,
+    "payment_terms": "Net 14",
+    "notes": "Looking forward to more projects!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-010",
+    "date_issued": "2024-09-15",
+    "due_date": "2024-09-29",
+    "customer": {
+      "customer_id": "CUST-010",
+      "name": "James Anderson",
+      "address": {
+        "street": "707 Redwood Avenue",
+        "city": "Denver",
+        "state": "CO",
+        "zip": "80201",
+        "country": "USA"
+      },
+      "email": "jamesanderson@example.com",
+      "phone": "+1-555-012-3456"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-012",
+        "description": "Cloud Storage",
+        "quantity": 10,
+        "unit_price": 50.00,
+        "subtotal": 500.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 35.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2025-09-25",
+        "man_hours_allocated": 5,
+        "total": 535.00
+      }
+    ],
+    "subtotal": 500.00,
+    "tax_total": 35.00,
+    "total_amount": 535.00,
+    "payment_terms": "Net 14",
+    "notes": "Thank you for your trust in our services!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-011",
+    "date_issued": "2024-09-16",
+    "due_date": "2024-09-30",
+    "customer": {
+      "customer_id": "CUST-011",
+      "name": "Isabella Martinez",
+      "address": {
+        "street": "808 Poplar Street",
+        "city": "Seattle",
+        "state": "WA",
+        "zip": "98101",
+        "country": "USA"
+      },
+      "email": "isabellamartinez@example.com",
+      "phone": "+1-555-123-4568"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-013",
+        "description": "Technical Support",
+        "quantity": 10,
+        "unit_price": 150.00,
+        "subtotal": 1500.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 105.00
+          }
+        ],
+        "start_date": "2024-09-15",
+        "expiry_date": "2024-12-15",
+        "man_hours_allocated": 40,
+        "total": 1605.00
+      }
+    ],
+    "subtotal": 1500.00,
+    "tax_total": 105.00,
+    "total_amount": 1605.00,
+    "payment_terms": "Net 15",
+    "notes": "Thank you for your continued support!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-012",
+    "date_issued": "2024-09-17",
+    "due_date": "2024-10-01",
+    "customer": {
+      "customer_id": "CUST-012",
+      "name": "Liam Thomas",
+      "address": {
+        "street": "909 Maple Avenue",
+        "city": "Portland",
+        "state": "OR",
+        "zip": "97201",
+        "country": "USA"
+      },
+      "email": "liamthomas@example.com",
+      "phone": "+1-555-234-5679"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-014",
+        "description": "Software Testing",
+        "quantity": 5,
+        "unit_price": 600.00,
+        "subtotal": 3000.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 210.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 150.00
+          }
+        ],
+        "start_date": "2024-09-20",
+        "expiry_date": "2024-11-20",
+        "man_hours_allocated": 50,
+        "total": 3360.00
+      }
+    ],
+    "subtotal": 3000.00,
+    "tax_total": 360.00,
+    "total_amount": 3360.00,
+    "payment_terms": "Net 30",
+    "notes": "Thank you for your business!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-013",
+    "date_issued": "2024-09-18",
+    "due_date": "2024-10-02",
+    "customer": {
+      "customer_id": "CUST-013",
+      "name": "Mia Robinson",
+      "address": {
+        "street": "1010 Oak Lane",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "73301",
+        "country": "USA"
+      },
+      "email": "miarobinson@example.com",
+      "phone": "+1-555-345-6789"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-015",
+        "description": "Digital Advertising",
+        "quantity": 7,
+        "unit_price": 400.00,
+        "subtotal": 2800.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 196.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2024-12-25",
+        "man_hours_allocated": 35,
+        "total": 2996.00
+      }
+    ],
+    "subtotal": 2800.00,
+    "tax_total": 196.00,
+    "total_amount": 2996.00,
+    "payment_terms": "Net 15",
+    "notes": "Thanks for your partnership!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-014",
+    "date_issued": "2024-09-19",
+    "due_date": "2024-10-03",
+    "customer": {
+      "customer_id": "CUST-014",
+      "name": "Charlotte Lee",
+      "address": {
+        "street": "1111 Birch Street",
+        "city": "Philadelphia",
+        "state": "PA",
+        "zip": "19101",
+        "country": "USA"
+      },
+      "email": "charlottelee@example.com",
+      "phone": "+1-555-456-7890"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-016",
+        "description": "Consulting Services",
+        "quantity": 3,
+        "unit_price": 700.00,
+        "subtotal": 2100.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 147.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 105.00
+          }
+        ],
+        "start_date": "2024-09-30",
+        "expiry_date": "2024-12-30",
+        "man_hours_allocated": 40,
+        "total": 2352.00
+      }
+    ],
+    "subtotal": 2100.00,
+    "tax_total": 252.00,
+    "total_amount": 2352.00,
+    "payment_terms": "Net 30",
+    "notes": "Thank you for your trust in our consulting services!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-015",
+    "date_issued": "2024-09-20",
+    "due_date": "2024-10-04",
+    "customer": {
+      "customer_id": "CUST-015",
+      "name": "Ethan Walker",
+      "address": {
+        "street": "1212 Cedar Lane",
+        "city": "Jackson",
+        "state": "MS",
+        "zip": "39201",
+        "country": "USA"
+      },
+      "email": "ethanwalker@example.com",
+      "phone": "+1-555-567-8901"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-017",
+        "description": "E-commerce Setup",
+        "quantity": 2,
+        "unit_price": 1200.00,
+        "subtotal": 2400.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 168.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 120.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2024-12-25",
+        "man_hours_allocated": 50,
+        "total": 2688.00
+      }
+    ],
+    "subtotal": 2400.00,
+    "tax_total": 288.00,
+    "total_amount": 2688.00,
+    "payment_terms": "Net 15",
+    "notes": "Thanks for your business!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-016",
+    "date_issued": "2024-09-21",
+    "due_date": "2024-10-05",
+    "customer": {
+      "customer_id": "CUST-016",
+      "name": "Amelia Scott",
+      "address": {
+        "street": "1313 Willow Street",
+        "city": "San Antonio",
+        "state": "TX",
+        "zip": "78201",
+        "country": "USA"
+      },
+      "email": "ameliascott@example.com",
+      "phone": "+1-555-678-9012"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-018",
+        "description": "IT Support",
+        "quantity": 8,
+        "unit_price": 150.00,
+        "subtotal": 1200.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 84.00
+          }
+        ],
+        "start_date": "2024-09-30",
+        "expiry_date": "2024-12-30",
+        "man_hours_allocated": 30,
+        "total": 1284.00
+      }
+    ],
+    "subtotal": 1200.00,
+    "tax_total": 84.00,
+    "total_amount": 1284.00,
+    "payment_terms": "Net 30",
+    "notes": "Thank you for your continued partnership!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-017",
+    "date_issued": "2024-09-22",
+    "due_date": "2024-10-06",
+    "customer": {
+      "customer_id": "CUST-017",
+      "name": "Benjamin Clark",
+      "address": {
+        "street": "1414 Maple Lane",
+        "city": "Miami",
+        "state": "FL",
+        "zip": "33101",
+        "country": "USA"
+      },
+      "email": "benjaminclark@example.com",
+      "phone": "+1-555-789-0123"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-019",
+        "description": "SEO Optimization",
+        "quantity": 4,
+        "unit_price": 900.00,
+        "subtotal": 3600.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 252.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 180.00
+          }
+        ],
+        "start_date": "2024-09-25",
+        "expiry_date": "2024-12-25",
+        "man_hours_allocated": 60,
+        "total": 4032.00
+      }
+    ],
+    "subtotal": 3600.00,
+    "tax_total": 432.00,
+    "total_amount": 4032.00,
+    "payment_terms": "Net 30",
+    "notes": "Thank you for your continued support!",
+    "status": "Unpaid"
+  },
+  {
+    "invoice_id": "INV-018",
+    "date_issued": "2024-09-23",
+    "due_date": "2024-10-07",
+    "customer": {
+      "customer_id": "CUST-018",
+      "name": "Ella White",
+      "address": {
+        "street": "1515 Birch Avenue",
+        "city": "San Jose",
+        "state": "CA",
+        "zip": "95101",
+        "country": "USA"
+      },
+      "email": "ellawhite@example.com",
+      "phone": "+1-555-890-1234"
+    },
+    "services": [
+      {
+        "service_id": "SERVICE-020",
+        "description": "Graphic Design",
+        "quantity": 3,
+        "unit_price": 1200.00,
+        "subtotal": 3600.00,
+        "taxes": [
+          {
+            "tax_name": "VAT",
+            "tax_rate": 0.07,
+            "tax_amount": 252.00
+          },
+          {
+            "tax_name": "Service Tax",
+            "tax_rate": 0.05,
+            "tax_amount": 180.00
+          }
+        ],
+        "start_date": "2024-09-30",
+        "expiry_date": "2024-12-30",
+        "man_hours_allocated": 50,
+        "total": 4032.00
+      }
+    ],
+    "subtotal": 3600.00,
+    "tax_total": 432.00,
+    "total_amount": 4032.00,
+    "payment_terms": "Net 30",
+    "notes": "Thanks for your continued trust!",
+    "status": "Unpaid"
   }
-  
+]

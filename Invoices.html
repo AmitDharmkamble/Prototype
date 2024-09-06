@@ -23,6 +23,44 @@
             display: flex;
             align-items: center;
         }
+
+        .dropdown-content {
+            display: none;
+        }
+
+        /* Show dropdown on click */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: 1000;
+            /* Ensure it appears above other content */
+            overflow: auto;
+            /* Allow scrolling if content overflows */
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -83,11 +121,11 @@
                     <a href="https://www.notion.so/Invoice-System-Customers-Document-5a19a9e9a7ea4ffc9c6e84a1e3e62122"
                         class="text-primary underline">More information on this page.</a>
                 </div>
-                <a href="CreateInvoice.html"
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600">Create New Invoice</a>
+                <a href="CreateInvoice.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600">Create
+                    New Invoice</a>
             </div>
-            
-            
+
+
 
             <div class="filters mb-6 p-4 bg-white shadow-md rounded-lg">
                 <!-- Top Row: Customer, Sold by, PO Number -->
@@ -102,7 +140,7 @@
                             <!-- Add more customer options here -->
                         </select>
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterSoldBy" class="text-sm font-medium text-gray-700">Sold by:</label>
                         <select id="filterSoldBy"
@@ -113,7 +151,7 @@
                             <!-- Add more salesperson options here -->
                         </select>
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterPONumber" class="text-sm font-medium text-gray-700">PO Number:</label>
                         <input type="text" id="filterPONumber"
@@ -121,7 +159,7 @@
                             oninput="filterTable()">
                     </div>
                 </div>
-            
+
                 <!-- Bottom Row: From Date, To Date -->
                 <div class="flex flex-wrap gap-4 mb-4">
                     <div class="flex flex-col w-full sm:w-1/3">
@@ -130,14 +168,14 @@
                             class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500"
                             onchange="filterTable()">
                     </div>
-            
+
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="filterToDate" class="text-sm font-medium text-gray-700">To Date:</label>
                         <input type="date" id="filterToDate"
                             class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500"
                             onchange="filterTable()">
                     </div>
-            
+
                     <!-- Search Box and Button -->
                     <div class="flex flex-col w-full sm:w-1/3">
                         <label for="searchBox" class="text-sm font-medium text-gray-700">Search:</label>
@@ -145,469 +183,189 @@
                             <input type="text" id="searchBox" placeholder="Search..."
                                 class="border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 flex-grow"
                                 oninput="filterTable()">
-                            <button id="searchButton" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2" onclick="filterTable()">
+                            <button id="searchButton" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2"
+                                onclick="filterTable()">
                                 Search
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
 
-
-
-
-            <div class="table-container overflow-x-auto">
-                <table id="invoicesTable"
-                    class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
+            <div class="container mx-auto">
+                <h1 class="text-3xl font-bold mb-6">Invoices</h1>
+                <table id="invoicesTable" class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
                     <thead>
                         <tr class="bg-gray-200 text-gray-700">
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(0)">
-                                Customer</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(1)">PO
-                                Number</th>
-                            <th class="border border-gray-300 px-8 py-4 text-left cursor-pointer"
-                                onclick="sortTable(2)">PO
-                                Date</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(3)">
-                                Description</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(4)">Title
-                            </th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(5)">
-                                Proposal</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(6)">Sold
-                                by</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(7)">
-                                Payment Terms</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(8)">Total
-                                Amount</th>
-                            <th class="border border-gray-300 p-4 text-left cursor-pointer" onclick="sortTable(9)">
-                                Actions</th>
+                            <th class="py-2 px-4 border-b">Invoice ID</th>
+                            <th class="py-2 px-4 border-b">Customer</th>
+                            <th class="py-2 px-4 border-b">Date Issued</th>
+                            <th class="py-2 px-4 border-b">Total Amount</th>
+                            <th class="py-2 px-4 border-b">Status</th>
+                            <th class="py-2 px-4 border-b">Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="invoicesBody">
-                        <!-- Sample Data Rows -->
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer A</span>
-                            </td>
-                            <td class="px-4 py-2">PO001</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Description for PO001</td>
-                            <td class="px-4 py-2">Title A</td>
-                            <td class="px-4 py-2">Proposal A</td>
-                            <td class="px-4 py-2">Salesperson A</td>
-                            <td class="px-4 py-2">30 days</td>
-                            <td class="px-4 py-2">₹5000</td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- Accordion Row for Additional Details -->
-                        <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">A</span> has placed
-                                        Invoice <span class="font-semibold">PO001</span> with the title <span
-                                            class="font-semibold">Title A</span> for a total amount of <span
-                                            class="font-semibold">₹5000</span>.
-                                    </p>
-                                    <p class="text-gray-600 mt-2">The services included in this order are:</p>
-                                    <table class="min-w-full bg-white border border-gray-300">
-                                        <thead>
-                                            <tr>
-                                                <th class="px-4 py-2 border-b">Service</th>
-                                                <th class="px-4 py-2 border-b">Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="px-4 py-2 border-b">Web Development</td>
-                                                <td class="px-4 py-2 border-b">₹2000</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-4 py-2 border-b">SEO Optimization</td>
-                                                <td class="px-4 py-2 border-b">₹1500</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-4 py-2 border-b">Content Writing</td>
-                                                <td class="px-4 py-2 border-b">₹1000</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-4 py-2 border-b">Email Marketing</td>
-                                                <td class="px-4 py-2 border-b">₹500</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <p class="text-gray-600 mt-2">This invoice is handled by <span class="font-semibold">Salesperson A</span> with payment terms of <span class="font-semibold">30 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Proposal reference: <span class="font-semibold">Proposal A</span></p>
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer B</span>
-                            </td>
-                            <td class="px-4 py-2">PO002</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Description for PO002</td>
-                            <td class="px-4 py-2">Title B</td>
-                            <td class="px-4 py-2">Proposal B</td>
-                            <td class="px-4 py-2">Salesperson B</td>
-                            <td class="px-4 py-2">45 days</td>
-                            <td class="px-4 py-2">₹1000</td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">In the purchase order <span
-                                            class="font-semibold">PO002</span>
-                                        titled <span class="font-semibold">Title
-                                            B</span>, <span class="font-semibold">Customer B</span> has agreed to a
-                                        total payment of <span class="font-semibold">₹1,000</span>.</p>
-                                    <p class="text-gray-600 mt-2">This order includes the following services:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Basic Consultation - ₹500</li>
-                                        <li>Technical Support - ₹300</li>
-                                        <li>System Monitoring - ₹200</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">The order is under the supervision of <span
-                                            class="font-semibold">Salesperson B</span>, with payment terms of <span
-                                            class="font-semibold">45 days</span>. For further details, refer to <span
-                                            class="font-semibold">Proposal B</span>.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer C</span>
-                            </td>
-                            <td class="px-4 py-2">PO003</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Description for PO003</td>
-                            <td class="px-4 py-2">Title C</td>
-                            <td class="px-4 py-2">Proposal C</td>
-                            <td class="px-4 py-2">Salesperson C</td>
-                            <td class="px-4 py-2">60 days</td>
-                            <td class="px-4 py-2">₹50,000</td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">C</span> has placed
-                                        Purchase Order <span class="font-semibold">PO003</span> with the title <span
-                                            class="font-semibold">Title C</span> for a total amount of <span
-                                            class="font-semibold">₹50,000</span>.</p>
-                                    <p class="text-gray-600 mt-2">The services included in this order are:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Website Design - ₹20,000</li>
-                                        <li>Mobile App Development - ₹15,000</li>
-                                        <li>Social Media Marketing - ₹10,000</li>
-                                        <li>Technical Support - ₹5,000</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">This order is managed by <span
-                                            class="font-semibold">Salesperson C</span> with payment terms of <span
-                                            class="font-semibold">60 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Proposal reference: <span
-                                            class="font-semibold">Proposal
-                                            C</span></p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer D</span>
-                            </td>
-                            <td class="px-4 py-2">PO004</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Description for PO004</td>
-                            <td class="px-4 py-2">Title D</td>
-                            <td class="px-4 py-2">Proposal D</td>
-                            <td class="px-4 py-2">Salesperson D</td>
-                            <td class="px-4 py-2">30 days</td>
-                            <td class="px-4 py-2">₹852</td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">D</span> has placed
-                                        Purchase Order <span class="font-semibold">PO004</span> titled <span
-                                            class="font-semibold">Title D</span> with a total value of <span
-                                            class="font-semibold">₹852</span>.</p>
-                                    <p class="text-gray-600 mt-2">This order includes the following services:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Email Hosting - ₹300</li>
-                                        <li>SSL Certificate - ₹250</li>
-                                        <li>Domain Renewal - ₹200</li>
-                                        <li>Technical Support - ₹102</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">The order is handled by <span
-                                            class="font-semibold">Salesperson D</span> with a payment term of <span
-                                            class="font-semibold">30 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Refer to <span class="font-semibold">Proposal D</span>
-                                        for additional details.</p>
-
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer E</span>
-                            </td>
-                            <td class="px-4 py-2">PO005</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Description for PO005</td>
-                            <td class="px-4 py-2">Title E</td>
-                            <td class="px-4 py-2">Proposal E</td>
-                            <td class="px-4 py-2">Salesperson E</td>
-                            <td class="px-4 py-2">45 days</td>
-                            <td class="px-4 py-2">₹75,000</td>
-                            <td class="px-4 py-2 flex gap-2">
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-3 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="9" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">For Purchase Order <span class="font-semibold">PO005</span>
-                                        titled <span class="font-semibold">Title E</span>, <span
-                                            class="font-semibold">Customer E</span> has committed a total of <span
-                                            class="font-semibold">₹75,000</span>.</p>
-                                    <p class="text-gray-600 mt-2">The following services are included in this order:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Website Development - ₹50,000</li>
-                                        <li>SEO Optimization - ₹15,000</li>
-                                        <li>Content Management System (CMS) - ₹7,500</li>
-                                        <li>Monthly Maintenance - ₹2,500</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">Managed by <span class="font-semibold">Salesperson
-                                            E</span>, this order has a payment term of <span class="font-semibold">45
-                                            days</span>. For more details, please refer to <span
-                                            class="font-semibold">Proposal E</span>.</p>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody>
+                        <!-- Data will be inserted here by JavaScript -->
                     </tbody>
                 </table>
-
-                <div class="flex justify-between items-center mt-4">
-                    <!-- Left Button -->
-                    <button id="prevPage" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md" onclick="prevPage()">
-                        Previous
-                    </button>
-
-                    <!-- Center Page Info -->
-                    <span class="text-center flex-grow">
-                        Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
-                    </span>
-
-                    <!-- Right Button -->
-                    <button id="nextPage" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md" onclick="nextPage()">
-                        Next
-                    </button>
-                </div>
-
             </div>
 
-        </div>
+            <div id="invoiceModal" class="modal fixed inset-0 bg-gray-800 bg-opacity-75">
+                <div class="modal-content">
+                    <h2 class="text-2xl font-bold mb-4">Invoice Details</h2>
+                    <div id="modalContent">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                    <button id="closeModal"
+                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Close</button>
+                    <button id="editInvoice"
+                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Edit</button>
+                    <button id="sendPaymentReminder"
+                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Send Payment Reminder</button>
+                </div>
+            </div>
 
-        <script src="https://code.jquery.com/jquery-3.7.1.js"
-            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+            <script>
+                // Fetch the JSON data from the file
+                fetch('Data/invoices.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Get the table body element
+                        const tableBody = document.querySelector('#invoicesTable tbody');
+                        const modal = document.getElementById('invoiceModal');
+                        const modalContent = document.getElementById('modalContent');
+                        const closeModal = document.getElementById('closeModal');
 
-        <script>
-            let currentPage = 1;
-            const rowsPerPage = 10;
+                        // Function to show invoice details in the modal
+                        async function showInvoiceDetails(invoice_id) {
+                            try {
+                                // Fetch the invoices JSON file
+                                const response = await fetch('./Data/invoices.json');
+                                const data = await response.json();
 
-            function renderTable() {
-                const table = document.getElementById("invoicesTable");
-                const tbody = document.getElementById("invoicesBody");
-                const rows = Array.from(tbody.querySelectorAll("tr"));
-                const totalRows = rows.length;
-                const totalPages = Math.ceil(totalRows / rowsPerPage);
+                                // Find the invoice with the matching ID
+                                const invoice = data.find(invoice => invoice.invoice_id === invoice_id);
 
-                // Update page information
-                document.getElementById("currentPage").innerText = currentPage;
-                document.getElementById("totalPages").innerText = totalPages;
-
-                // Display rows based on the current page
-                rows.forEach((row, index) => {
-                    if (index >= (currentPage - 1) * rowsPerPage && index < currentPage * rowsPerPage) {
-                        row.style.display = "";
-                    } else {
-                        row.style.display = "none";
-                    }
-                });
-
-                // Update pagination buttons
-                document.getElementById("prevPage").disabled = currentPage === 1;
-                document.getElementById("nextPage").disabled = currentPage === totalPages;
-            }
-
-            function prevPage() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderTable();
-                }
-            }
-
-            function nextPage() {
-                const totalPages = Math.ceil(document.getElementById("invoicesBody").querySelectorAll("tr").length / rowsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderTable();
-                }
-            }
-
-            function sortTable(columnIndex) {
-                const table = document.getElementById("invoicesTable");
-                const tbody = document.getElementById("invoicesBody");
-                const rows = Array.from(tbody.querySelectorAll("tr"));
-                const isAscending = table.dataset.sortDirection === 'asc';
-
-                rows.sort((rowA, rowB) => {
-                    const cellA = rowA.children[columnIndex].innerText;
-                    const cellB = rowB.children[columnIndex].innerText;
-
-                    return isAscending
-                        ? cellA.localeCompare(cellB, undefined, { numeric: true })
-                        : cellB.localeCompare(cellA, undefined, { numeric: true });
-                });
-
-                tbody.append(...rows);
-                table.dataset.sortDirection = isAscending ? 'desc' : 'asc';
-                renderTable();
-            }
-
-            document.addEventListener("DOMContentLoaded", () => {
-                renderTable();
-            });
-
-
-            const sidebarContainer = document.getElementById("sidebar-container");
-            fetch("./Sidebar.html")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    sidebarContainer.innerHTML = html;
-
-                    // Extract and execute scripts
-                    const scripts = sidebarContainer.querySelectorAll("script");
-                    scripts.forEach(script => {
-                        const newScript = document.createElement("script");
-                        newScript.text = script.innerHTML;
-                        document.body.appendChild(newScript);
-                    });
-                })
-                .catch(error => {
-                    console.error("There was a problem with the fetch operation:", error);
-                });
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const rows = document.querySelectorAll("#invoicesTable tbody tr");
-
-                rows.forEach((row, index) => {
-                    if (index % 2 === 0) { // Target only the data rows (not the accordion rows)
-                        row.addEventListener("click", function () {
-                            const accordionRow = this.nextElementSibling;
-                            const accordionContent = accordionRow.querySelector(".accordion-content");
-
-                            if (accordionRow.classList.contains("hidden")) {
-                                accordionRow.classList.remove("hidden");
-                                accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                            } else {
-                                accordionContent.style.maxHeight = "0px";
-                                setTimeout(() => {
-                                    accordionRow.classList.add("hidden");
-                                }, 500); // Wait for the animation to complete before hiding
+                                if (invoice) {
+                                    modalContent.innerHTML = `
+                                        <div class="relative">
+                                            <!-- Status Ribbon -->
+                                            <div class="absolute top-0 right-0 mt-4 mr-4 px-4 py-2 text-white font-bold text-xs uppercase rounded-full ${invoice.status === 'Paid' ? 'bg-green-500' : 'bg-red-500'}">
+                                                ${invoice.status}
+                                            </div>
+                                            <!-- Modal Content -->
+                                            <p><strong>Invoice ID:</strong> ${invoice.invoice_id}</p>
+                                            <p><strong>Date Issued:</strong> ${invoice.date_issued}</p>
+                                            <p><strong>Due Date:</strong> ${invoice.due_date}</p>
+                                            <p><strong>Customer:</strong> ${invoice.customer.name}</p>
+                                            <p><strong>Address:</strong> ${invoice.customer.address.street}, ${invoice.customer.address.city}, ${invoice.customer.address.state}, ${invoice.customer.address.zip}, ${invoice.customer.address.country}</p>
+                                            <p><strong>Email:</strong> ${invoice.customer.email}</p>
+                                            <p><strong>Phone:</strong> ${invoice.customer.phone}</p>
+                                            <p><strong>Payment Terms:</strong> ${invoice.payment_terms}</p>
+                                            <p><strong>Notes:</strong> ${invoice.notes || 'N/A'}</p>
+                                            <h3 class="text-xl font-semibold mt-4 mb-2">Services</h3>
+                                            <table class="min-w-full divide-y divide-gray-200">
+                                                <thead class="bg-gray-100">
+                                                    <tr>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service ID</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit Price</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Man Hours</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
+                                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expiry Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="bg-white divide-y divide-gray-200">
+                                                    ${invoice.services.map(service => `
+                                                        <tr>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${service.service_id}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.description}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.quantity}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.unit_price.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.subtotal.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.total.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.man_hours_allocated}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.start_date}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.expiry_date}</td>
+                                                        </tr>
+                                                    `).join('')}
+                                                </tbody>
+                                            </table>
+                                            <div class="flex justify-end mt-4">
+                                                <div class="text-right">
+                                                    <p><strong>Subtotal:</strong> $${invoice.subtotal.toFixed(2)}</p>
+                                                    <p><strong>Tax Total:</strong> $${invoice.tax_total.toFixed(2)}</p>
+                                                    <p><strong>Total Amount:</strong> $${invoice.total_amount.toFixed(2)}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    modal.classList.add('active');
+                                } else {
+                                    modalContent.innerHTML = `<p>Invoice not found.</p>`;
+                                    modal.classList.add('active');
+                                }
+                            } catch (error) {
+                                console.error('Error fetching invoice data:', error);
+                                modalContent.innerHTML = `<p>There was an error loading the invoice details.</p>`;
+                                modal.classList.add('active');
                             }
+                        }
+
+                        // Function to close the modal
+                        function closeModalHandler() {
+                            modal.classList.remove('active');
+                        }
+
+                        // Add event listener to close the modal
+                        closeModal.addEventListener('click', closeModalHandler);
+
+                        // Iterate over the invoices and create table rows
+                        data.forEach(invoice => {
+                            const row = document.createElement('tr');
+                            row.classList.add('hover:bg-gray-100', 'transition-colors', 'duration-300');
+                            row.addEventListener('click', () => showInvoiceDetails(invoice.invoice_id));
+
+                            row.innerHTML = `
+                                <td class="py-2 px-4 border-b">${invoice.invoice_id}</td>
+                                <td class="py-2 px-4 border-b">${invoice.customer.name}</td>
+                                <td class="py-2 px-4 border-b">${invoice.date_issued}</td>
+                                <td class="py-2 px-4 border-b">$${invoice.total_amount.toFixed(2)}</td>
+                                <td class="py-2 px-4 border-b">${invoice.status}</td>
+                                <td class="py-2 px-4 border-b relative">
+                                    <!-- More Options Button -->
+                                    <div class="dropdown">
+                                        <button class="bg-gray-300 text-gray-700 px-3 py-1 rounded hover:bg-gray-400 focus:outline-none">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="dropdown-content absolute right-0 mt-1 bg-white border border-gray-300 rounded shadow-lg z-10">
+                                            <button class="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-100 w-full text-left">
+                                                <i class="fas fa-eye mr-2"></i> View
+                                            </button>
+                                            <button class="flex items-center px-4 py-2 text-yellow-600 hover:bg-yellow-100 w-full text-left">
+                                                <i class="fas fa-pencil-alt mr-2"></i> Edit
+                                            </button>
+                                            <button class="flex items-center px-4 py-2 text-red-600 hover:bg-red-100 w-full text-left">
+                                                <i class="fas fa-times mr-2"></i> Cancel
+                                            </button>
+                                            <button class="flex items-center px-4 py-2 text-green-600 hover:bg-green-100 w-full text-left">
+                                                <i class="fas fa-bell mr-2"></i> Send Payment Reminder
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            `;
+
+                            tableBody.appendChild(row);
                         });
-                    }
-                });
-            });
-        </script>
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            </script>
+
 </body>
 
 </html>
