@@ -193,7 +193,6 @@
             </div>
 
             <div class="container mx-auto">
-                <h1 class="text-3xl font-bold mb-6">Invoices</h1>
                 <table id="invoicesTable" class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
                     <thead>
                         <tr class="bg-gray-200 text-gray-700">
@@ -320,9 +319,9 @@
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${service.service_id}</td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.description}</td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.quantity}</td>
-                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.unit_price.toFixed(2)}</td>
-                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.subtotal.toFixed(2)}</td>
-                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">$${service.total.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${service.unit_price.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${service.subtotal.toFixed(2)}</td>
+                                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹${service.total.toFixed(2)}</td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.man_hours_allocated}</td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.start_date}</td>
                                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${service.expiry_date}</td>
@@ -332,9 +331,9 @@
                                             </table>
                                             <div class="flex justify-end mt-4">
                                                 <div class="text-right">
-                                                    <p><strong>Subtotal:</strong> $${invoice.subtotal.toFixed(2)}</p>
-                                                    <p><strong>Tax Total:</strong> $${invoice.tax_total.toFixed(2)}</p>
-                                                    <p><strong>Total Amount:</strong> $${invoice.total_amount.toFixed(2)}</p>
+                                                    <p><strong>Subtotal:</strong> ₹${invoice.subtotal.toFixed(2)}</p>
+                                                    <p><strong>Tax Total:</strong> ₹${invoice.tax_total.toFixed(2)}</p>
+                                                    <p><strong>Total Amount:</strong> ₹${invoice.total_amount.toFixed(2)}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,7 +368,7 @@
                                 <td class="py-2 px-4 border-b">${invoice.invoice_id}</td>
                                 <td class="py-2 px-4 border-b">${invoice.customer.name}</td>
                                 <td class="py-2 px-4 border-b">${invoice.date_issued}</td>
-                                <td class="py-2 px-4 border-b">$${invoice.total_amount.toFixed(2)}</td>
+                                <td class="py-2 px-4 border-b">₹${invoice.total_amount.toFixed(2)}</td>
                                 <td class="py-2 px-4 border-b">${invoice.status}</td>
                                 <td class="py-2 px-4 border-b relative">
                                     <!-- More Options Button -->

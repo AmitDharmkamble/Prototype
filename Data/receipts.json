@@ -1,0 +1,44 @@
+[
+  {
+    "receipt_id": "REC-001",
+    "invoice_id": "INV-001",
+    "customer": {
+      "customer_id": "CUST-001",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phone": "+1-555-123-4567"
+    },
+    "date_received": "2024-09-10",
+    "payment_method": "Credit Card",
+    "amount_received": 1120.00,
+    "notes": "Partial payment for web development services"
+  },
+  {
+    "receipt_id": "REC-002",
+    "invoice_id": "INV-002",
+    "customer": {
+      "customer_id": "CUST-002",
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "phone": "+1-555-987-6543"
+    },
+    "date_received": "2024-09-11",
+    "payment_method": "Bank Transfer",
+    "amount_received": 2240.00,
+    "notes": "Full payment for graphic design services"
+  },
+  {
+    "receipt_id": "REC-003",
+    "invoice_id": "INV-001",
+    "customer": {
+      "customer_id": "CUST-001",
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "phone": "+1-555-123-4567"
+    },
+    "date_received": "2024-09-15",
+    "payment_method": "PayPal",
+    "amount_received": 1120.00,
+    "notes": "Final payment for web development services"
+  }
+]
