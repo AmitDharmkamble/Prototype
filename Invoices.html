@@ -222,11 +222,46 @@
                     <button id="editInvoice"
                         class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Edit</button>
                     <button id="sendPaymentReminder"
-                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Send Payment Reminder</button>
+                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Send Payment
+                        Reminder</button>
+                    <button id="createReceipt"
+                        class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Create Receipt</button>
                 </div>
             </div>
-
+            <script src="https://code.jquery.com/jquery-3.7.1.js"
+                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
             <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    // Load the sidebar
+                    loadSidebar();
+                });
+                function loadSidebar() {
+                    const sidebarContainer = document.getElementById("sidebar-container");
+                    fetch("./Sidebar.html")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            return response.text();
+                        })
+                        .then(html => {
+                            sidebarContainer.innerHTML = html;
+                            executeSidebarScripts(sidebarContainer);
+                        })
+                        .catch(error => {
+                            console.error("There was a problem with the fetch operation:", error);
+                        });
+                }
+
+                function executeSidebarScripts(container) {
+                    const scripts = container.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        newScript.text = script.innerHTML;
+                        document.body.appendChild(newScript);
+                    });
+                }
+
                 // Fetch the JSON data from the file
                 fetch('Data/invoices.json')
                     .then(response => response.json())
@@ -355,6 +390,10 @@
                                             <button class="flex items-center px-4 py-2 text-green-600 hover:bg-green-100 w-full text-left">
                                                 <i class="fas fa-bell mr-2"></i> Send Payment Reminder
                                             </button>
+                                            <button class="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-100 w-full text-left">
+                                                <i class="fas fa-receipt mr-2"></i> Create Receipt
+                                            </button>
+
                                         </div>
                                     </div>
                                 </td>
