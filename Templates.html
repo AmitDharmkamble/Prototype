@@ -93,7 +93,7 @@
             <div class="flex items-center justify-center min-h-screen">
                 <div class="bg-white rounded-lg shadow-lg p-6 max-w-2xl w-full">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-semibold">Template Details</h2>
+                        <h2 class="text-xl font-semibold modal-heading">Template Details</h2>
                         <button id="closeModal" class="text-black px-2 py-1 rounded"><i
                                 class="fas fa-times"></i></button>
                     </div>
@@ -130,11 +130,11 @@
                                     <tr>
                                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_id">Template ID</th> -->
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_name">Template Name</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_cc">Template CC</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_bcc">Template BCC</th>
                                         <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
                                     </tr>
@@ -154,11 +154,11 @@
                                     <tr>
                                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_id">Template ID</th> -->
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_name">Template Name</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_cc">Template CC</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_bcc">Template BCC</th>
                                         <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
                                     </tr>
@@ -179,11 +179,11 @@
                                     <tr>
                                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
                                             data-sort="template_id">Template ID</th> -->
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_name">Template Name</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_cc">Template CC</th>
-                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                                             data-sort="template_bcc">Template BCC</th>
                                         <th class="px-4 py-2 border-b bg-gray-200 text-gray-700">Actions</th>
                                     </tr>
@@ -205,11 +205,13 @@
             <h2 class="text-xl font-bold mb-4">Create New Template</h2>
             <form id="createTemplateForm">
                 <div class="mb-4">
-                    <label for="templateName" class="block text-sm font-medium text-gray-700">Template Name</label>
+                    <label for="templateName" class="block text-sm font-medium text-gray-700">Template Name<span
+                            class="text-red-500">*</span></label>
                     <input type="text" id="templateName" name="templateName" class="mt-1 p-2 w-full border rounded">
                 </div>
                 <div class="mb-4">
-                    <label for="templateUsage" class="block text-sm font-medium text-gray-700">Template Usage</label>
+                    <label for="templateUsage" class="block text-sm font-medium text-gray-700">Template Usage<span
+                            class="text-red-500">*</span></label>
                     <select id="templateUsage" name="templateUsage" class="mt-1 p-2 w-full border rounded">
                         <option value="invoice">Invoice</option>
                         <option value="receipt">Receipt</option>
@@ -219,20 +221,23 @@
                 </div>
                 <div class="mb-4">
                     <label for="templateSubject" class="block text-sm font-medium text-gray-700">Template
-                        Subject</label>
+                        Subject<span class="text-red-500">*</span></label>
                     <input type="text" id="templateSubject" name="templateSubject"
                         class="mt-1 p-2 w-full border rounded">
                 </div>
                 <div class="mb-4">
-                    <label for="templateBody" class="block text-sm font-medium text-gray-700">Template Body</label>
+                    <label for="templateBody" class="block text-sm font-medium text-gray-700">Template Body<span
+                            class="text-red-500">*</span></label>
                     <textarea id="templateBody" name="templateBody" class="mt-1 p-2 w-full border rounded"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="templateCc" class="block text-sm font-medium text-gray-700">Template CC</label>
+                    <label for="templateCc" class="block text-sm font-medium text-gray-700">Template CC<span
+                            class="text-red-500">*</span></label>
                     <input type="text" id="templateCc" name="templateCc" class="mt-1 p-2 w-full border rounded">
                 </div>
                 <div class="mb-4">
-                    <label for="templateBcc" class="block text-sm font-medium text-gray-700">Template BCC</label>
+                    <label for="templateBcc" class="block text-sm font-medium text-gray-700">Template BCC<span
+                            class="text-red-500">*</span></label>
                     <input type="text" id="templateBcc" name="templateBcc" class="mt-1 p-2 w-full border rounded">
                 </div>
                 <div class="flex justify-end">
@@ -342,7 +347,7 @@
             <td class="border border-gray-300 text-center">
                 <div class="flex justify-center items-center space-x-2 relative">
                     <button 
-                        class="text-black rounded mr-2 relative group" 
+                        class="text-black rounded relative group" 
                         onclick="editTemplate(event, ${JSON.stringify(item).replace(/"/g, '&quot;')})"
                         data-tooltip="Edit">
                         <i class="fas fa-edit"></i>
@@ -414,18 +419,21 @@
         function openModal(data) {
             const modal = document.getElementById('detailsModal');
             const modalContent = document.getElementById('modalContent');
+            const modalHeaderText = document.getElementsByClassName('modal-heading');
 
+            if (modalHeaderText.length > 0) {
+                modalHeaderText[0].textContent = data.template_usage + ' - ' + data.template_name;
+            }
             modalContent.innerHTML = `
-    <p><strong>Email Template ID:</strong> ${data.template_id}</p>
-    <p><strong>Template Name:</strong> ${data.template_name}</p>
-    <p><strong>CC:</strong> ${data.template_cc}</p>
-    <p><strong>BCC:</strong> ${data.template_bcc}</p>
-    <p><strong>Subject:</strong> ${data.template_subject}</p>
-    <p><strong>Body:</strong></p>
-    <p>${data.template_body}</p>
-    <br>
-    <button id="testEmailBtn" style="padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; cursor: pointer;">Test Email</button>
-`;
+                <p><strong>Template Name:</strong> ${data.template_name}</p>
+                <p><strong>CC:</strong> ${data.template_cc}</p>
+                <p><strong>BCC:</strong> ${data.template_bcc}</p>
+                <p><strong>Subject:</strong> ${data.template_subject}</p>
+                <p><strong>Body:</strong></p>
+                <p>${data.template_body}</p>
+                <br>
+                <button id="testEmailBtn" style="padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; cursor: pointer;">Test Email</button>
+            `;
             modal.classList.remove('hidden');
         }
 

@@ -97,12 +97,12 @@
                 <form id="taxForm">
                     <input type="hidden" id="taxId" name="taxId">
                     <div class="mb-4">
-                        <label for="taxName" class="block text-sm font-medium text-gray-700">Tax Name</label>
+                        <label for="taxName" class="block text-sm font-medium text-gray-700">Tax Name<span class="text-red-500">*</span></label>
                         <input type="text" id="taxName" name="taxName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4">
-                        <label for="taxPercentage" class="block text-sm font-medium text-gray-700">Tax Percentage</label>
+                        <label for="taxPercentage" class="block text-sm font-medium text-gray-700">Tax Percentage<span class="text-red-500">*</span></label>
                         <input type="text" id="taxPercentage" name="taxPercentage"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -129,11 +129,9 @@
             <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
                 <thead>
                     <tr>
-                        <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="tax_id">
-                            Tax ID</th> -->
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="tax_name">Tax
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left" data-sort="tax_name">Tax
                             Name</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-right"
                             data-sort="tax_sac_code">Tax Percentage</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
                             Active</th>
@@ -210,8 +208,8 @@
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
                     <td class="px-4 py-2 border border-gray-300">${item.tax_name}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.tax_percentage}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
+                    <td class="px-4 py-2 border border-gray-300 text-right">${item.tax_percentage}</td>
+                    <td class="px-4 py-2 border border-gray-300 text-center">${item.is_active ? 'Active' : 'Inactive'}</td>
                     <td class="px-4 py-2 border border-gray-300 text-center">
                         <div class="flex justify-center items-center space-x-2 relative">
                             <button 

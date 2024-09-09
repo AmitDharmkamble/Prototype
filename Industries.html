@@ -97,7 +97,7 @@
                 <form id="industryForm">
                     <input type="hidden" id="industryId" name="industryId">
                     <div class="mb-4">
-                        <label for="industryName" class="block text-sm font-medium text-gray-700">Industry Name</label>
+                        <label for="industryName" class="block text-sm font-medium text-gray-700">Industry Name<span class="text-red-500">*</span></label>
                         <input type="text" id="industryName" name="industryName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -126,9 +126,9 @@
                     <tr>
                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="industry_id">
                             Industry ID</th> -->
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="industry_name">Industry
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left" data-sort="industry_name">Industry
                             Name</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-center" data-sort="is_active">Is
                             Active</th>
                         <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
@@ -203,7 +203,7 @@
                 tableBody.innerHTML = paginatedData.map(item => `
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
                     <td class="px-4 py-2 border border-gray-300">${item.industry_name}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
+                    <td class="px-4 py-2 border border-gray-300 text-center">${item.is_active ? 'Active' : 'Inactive'}</td>
                     <td class="border border-gray-300 text-center">
                         <div class="flex justify-center items-center space-x-2 relative">
                             <button 

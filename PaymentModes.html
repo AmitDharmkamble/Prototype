@@ -100,7 +100,7 @@
                     <input type="hidden" id="paymentModeId" name="paymentModeId">
                     <div class="mb-4">
                         <label for="paymentModeName" class="block text-sm font-medium text-gray-700">Payment Mode
-                            Name</label>
+                            Name<span class="text-red-500">*</span></label>
                         <input type="text" id="paymentModeName" name="paymentModeName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -129,9 +129,9 @@
                     <tr>
                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="payment_mode_id">
                             Payment Mode ID</th> -->
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                             data-sort="payment_mode_name">Payment Mode Name</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-center data-sort="is_active">Is
                             Active</th>
                         <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
@@ -207,7 +207,7 @@
                 <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
                     
                     <td class="px-4 py-2 border border-gray-300">${item.payment_mode_name}</td>
-                    <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
+                    <td class="px-4 py-2 border border-gray-300 text-center">${item.is_active ? 'Active' : 'Inactive'}</td>
                     <td class="border border-gray-300 text-center">
                         <div class="flex justify-center items-center space-x-2 relative">
                             <button 

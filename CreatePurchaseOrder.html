@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purcahse Order - Create</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/sumoselect.min.css" rel="stylesheet" />
 </head>
 
 <body class="m-0 p-0 h-screen w-screen overflow-scroll box-border">
@@ -151,7 +152,11 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
+
     <script>
+        $('#customer').SumoSelect({ search: true, searchText: 'Select customer.' });
+
         $(function () {
             const calculateTotals = () => {
                 let total = 0;
@@ -258,7 +263,7 @@
             });
 
             // Customer change event handler
-            document.getElementById('customer').addEventListener('change', function () {
+            $('#customer').on('change', function () {
                 const card = document.getElementById('customerCard');
                 if (this.value) {
                     card.style.display = 'block';

@@ -98,13 +98,13 @@
                 <form id="serviceForm">
                     <input type="hidden" id="serviceId" name="serviceId">
                     <div class="mb-4">
-                        <label for="serviceName" class="block text-sm font-medium text-gray-700">Service Name</label>
+                        <label for="serviceName" class="block text-sm font-medium text-gray-700">Service Name<span class="text-red-500">*</span></label>
                         <input type="text" id="serviceName" name="serviceName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4">
                         <label for="serviceSACCode" class="block text-sm font-medium text-gray-700">Service SAC
-                            Code</label>
+                            Code<span class="text-red-500">*</span></label>
                         <input type="text" id="serviceSACCode" name="serviceSACCode"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -133,11 +133,11 @@
                     <tr>
                         <!-- <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="service_id">
                             Service ID</th> -->
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                             data-sort="service_name">Service Name</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700"
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                             data-sort="service_sac_code">SAC Code</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="is_active">Is
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left" data-sort="is_active">Is
                             Active</th>
                         <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
@@ -215,10 +215,10 @@
                     <td class="px-4 py-2 border border-gray-300">${item.service_name}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.service_sac_code}</td>
                     <td class="px-4 py-2 border border-gray-300">${item.is_active ? 'Active' : 'Inactive'}</td>
-                    <td class="px-4 py-2 border border-gray-300 text-center">
+                    <td class="py-2 border border-gray-300 text-center">
                         <div class="flex justify-center items-center space-x-2 relative">
                             <button 
-                                class="text-black rounded mr-2 relative group" 
+                                class="text-black rounded relative group" 
                                 onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})"
                                 data-tooltip="Edit">
                                 <i class="fas fa-edit"></i>
