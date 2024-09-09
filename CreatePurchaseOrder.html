@@ -14,7 +14,7 @@
         <h1 class="text-2xl font-bold mb-6">Add Purchase Order</h1>
         <div class="flex justify-between space-x-4">
             <div class="w-1/2 mb-4">
-                <label for="customer" class="block font-bold mb-1">Customer</label>
+                <label for="customer" class="block font-bold mb-1">Customer<span class="text-red-500">*</span></label>
                 <select class="w-full border border-gray-300 rounded px-3 py-2" id="customer" name="customer" required>
                     <option value="" disabled selected>Select a customer</option>
                     <option value="customerA">Customer A</option>
@@ -60,18 +60,18 @@
 
         <div class="flex justify-between space-x-4 mb-4">
             <div class="w-1/2">
-                <label for="poDate" class="block font-bold mb-1">PO Date</label>
+                <label for="poDate" class="block font-bold mb-1">PO Date<span class="text-red-500">*</span></label>
                 <input type="date" class="w-full border border-gray-300 rounded px-3 py-2" id="poDate" name="poDate">
             </div>
             <div class="w-1/2">
-                <label for="poNumber" class="block font-bold mb-1">PO Number</label>
+                <label for="poNumber" class="block font-bold mb-1">PO Number<span class="text-red-500">*</span></label>
                 <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" id="poNumber" name="poNumber"
                     required>
             </div>
 
         </div>
         <div class="mb-4">
-            <label for="clientBrief" class="block font-bold mb-1">Client Brief</label>
+            <label for="clientBrief" class="block font-bold mb-1">Client Brief<span class="text-red-500">*</span></label>
             <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="clientBrief" name="clientBrief"
                 required></textarea>
         </div>
@@ -79,13 +79,13 @@
 
         <table class="w-full mb-4">
             <tr class="bg-gray-200 border-b border-gray-300 font-bold">
-                <td class="py-2">Service</td>
-                <td class="py-2">Tenure</td>
-                <td class="py-2">Unit Cost</td>
-                <td class="py-2">Quantity</td>
-                <td class="py-2">Price</td>
-                <td class="py-2">Start Date</td>
-                <td class="py-2">End Date</td>
+                <td class="py-2">Service<span class="text-red-500">*</span></td>
+                <td class="py-2">Tenure<span class="text-red-500">*</span></td>
+                <td class="py-2">Unit Cost<span class="text-red-500">*</span></td>
+                <td class="py-2">Quantity<span class="text-red-500">*</span></td>
+                <td class="py-2">Price<span class="text-red-500">*</span></td>
+                <td class="py-2">Start Date<span class="text-red-500">*</span></td>
+                <td class="py-2">End Date<span class="text-red-500">*</span></td>
                 <td class="py-2">Man Hours</td>
                 <td class="py-2">Action</td>
             </tr>
@@ -133,13 +133,14 @@
             <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
         </tr>
 
+        <label class="block font-bold mb-1">Sold By:<span class="text-red-500">*</span></label>
         <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
             <option disabled selected>Sold By</option>
             <option>Salesperson 1</option>
         </select>
 
         <br><br>
-        <label class="block font-bold mb-1">Upload Attachment:</label>
+        <label class="block font-bold mb-1">Upload Attachment:<span class="text-red-500">*</span></label>
         <input type="file" class="w-full border border-gray-300 rounded px-3 py-2">
         <br>
         <label class="block font-bold mb-1">Upload Proposal:</label>
