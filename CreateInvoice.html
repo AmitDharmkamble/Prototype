@@ -7,10 +7,63 @@
     <title>Invoice - Create</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .dropdown-content {
+            display: none;
+        }
+
+        /* Show dropdown on click */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 
-<body class="m-0 p-0 h-screen w-screen overflow-scroll box-border">
-    <div class="mx-auto p-8 border border-gray-300 shadow-lg text-gray-700 text-base w-9/12">
+<body class="">
+    <div id="sidebar-container"></div>
+    <header class="bg-blue-600 text-black p-4">
+        <div class="flex justify-end p-4 space-x-4">
+            <div class="relative dropdown">
+                <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.003 6.003 0 00-5-5.917V4a2 2 0 10-4 0v1.083A6.003 6.003 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Notification Dropdown -->
+                <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
+                        Paints is pending.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Invoice 12321 has due date
+                        today.</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">95 services expiring this
+                        week.</a>
+                </div>
+            </div>
+            <div class="relative dropdown">
+                <button
+                    class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="w-8 h-8 rounded-full">
+                    <span class="font-semibold">Krupali</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
+                    <a href="index.html" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="max-w-7xl mx-auto">
         <h1 class="text-2xl font-bold mb-6">Create Invoice</h1>
         <div class="flex justify-between space-x-4">
             <div class="w-1/2 mb-4">
@@ -60,20 +113,24 @@
 
         <div class="flex justify-between space-x-4 mb-4">
             <div class="w-1/2">
-                <label for="poDate" class="block font-bold mb-1">PO Date</label>
-                <input type="date" class="w-full border border-gray-300 rounded px-3 py-2" id="poDate" name="poDate">
+                <label for="invoiceDate" class="block font-bold mb-1">Invoice Date</label>
+                <input type="date" class="w-full border border-gray-300 rounded px-3 py-2" id="invoiceDate"
+                    name="invoiceDate">
             </div>
             <div class="w-1/2">
                 <label for="poNumber" class="block font-bold mb-1">PO Number</label>
-                <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" id="poNumber" name="poNumber"
-                    required>
+                <select class="w-full border border-gray-300 rounded px-3 py-2" id="poNumber" name="poNumber" required>
+                    <option disabled selected>Select PO Number</option>
+                    <option value="PO001">PO001 - ₹10,000</option>
+                    <option value="PO002">PO002 - ₹20,500</option>
+                    <option value="PO003">PO003 - ₹15,750</option>
+                    <option value="PO004">PO004 - ₹30,000</option>
+                    <option value="PO005">PO005 - ₹12,400</option>
+                    <!-- Add more sample purchase orders as needed -->
+                </select>
             </div>
 
-        </div>
-        <div class="mb-4">
-            <label for="clientBrief" class="block font-bold mb-1">Client Brief</label>
-            <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="clientBrief" name="clientBrief"
-                required></textarea>
+
         </div>
 
 
@@ -97,6 +154,9 @@
                         onchange="showManHours(this)">
                         <option disabled selected>Select Service</option>
                     </select>
+                    <label for="serviceDescription" class="block font-bold mb-1">Service Description</label>
+                    <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="serviceDescription"
+                        name="serviceDescription" required></textarea>
                 </td>
                 <td>
                     <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
@@ -147,15 +207,17 @@
             <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
         </tr>
 
+        <label class="block font-bold mb-1">Billed By:</label>
         <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
-            <option disabled selected>Sold By</option>
-            <option>Salesperson 1</option>
+            <option disabled selected>Billed By</option>
+            <option>Krupali</option>
+            <option>Amit</option>
+            <option>Pooja</option>
+            <option>Another brick in the wall</option>
         </select>
 
         <br><br>
-        <label class="block font-bold mb-1">Upload Attachment:</label>
-        <input type="file" class="w-full border border-gray-300 rounded px-3 py-2">
-        <br><br>
+
         <a id="modal-submit" href="PurchaseOrders.html"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</a>
         <br><br>
@@ -163,6 +225,36 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load the sidebar
+            loadSidebar();
+        });
+        function loadSidebar() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            fetch("./Sidebar.html")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    sidebarContainer.innerHTML = html;
+                    executeSidebarScripts(sidebarContainer);
+                })
+                .catch(error => {
+                    console.error("There was a problem with the fetch operation:", error);
+                });
+        }
+
+        function executeSidebarScripts(container) {
+            const scripts = container.querySelectorAll("script");
+            scripts.forEach(script => {
+                const newScript = document.createElement("script");
+                newScript.text = script.innerHTML;
+                document.body.appendChild(newScript);
+            });
+        }
         $(function () {
             const calculateTotals = () => {
                 let total = 0;

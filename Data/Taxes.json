@@ -1,14 +1,8 @@
 [
     {
         "tax_id": 7,
-        "tax_name": "SGST",
-        "tax_percentage": 9,
-        "is_active": true
-    },
-    {
-        "tax_id": 8,
-        "tax_name": "CGST",
-        "tax_percentage": 9,
+        "tax_name": "SGST + IGST",
+        "tax_percentage": 18,
         "is_active": true
     },
     {

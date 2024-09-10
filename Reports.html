@@ -71,12 +71,8 @@
                             Description</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="category">
                             Category</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="frequency">
-                            Frequency</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="columns">
                             Columns</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="date_range">
-                            Date Range</th>
                     </tr>
                 </thead>
                 <tbody id="report-table" class="bg-white">
@@ -138,9 +134,7 @@
       <td class="px-4 py-2 text-gray-700">${report.report_name}</td>
       <td class="px-4 py-2 text-gray-700">${report.description}</td>
       <td class="px-4 py-2 text-gray-700">${report.category}</td>
-      <td class="px-4 py-2 text-gray-700">${report.frequency}</td>
       <td class="px-4 py-2 text-gray-700">${report.columns.join(', ')}</td>
-      <td class="px-4 py-2 text-gray-700">${report.date_range ? 'Yes' : 'No'}</td>
     `;
 
             // Append the row to the table body

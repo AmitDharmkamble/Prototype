@@ -67,6 +67,8 @@
         <table class="min-w-full border-collapse border border-gray-300 mt-4 bg-white shadow-md rounded-lg">
             <thead>
                 <tr>
+                    <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="employee_name">
+                        Employee Name</th>
                     <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="username">
                         Username</th>
                     <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700" data-sort="email">Email</th>
@@ -182,6 +184,7 @@
 
             tableBody.innerHTML = paginatedData.map(item => `
                     <tr class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <td class="px-4 py-2 border border-gray-300">${item.employee_name}</td>
                         <td class="px-4 py-2 border border-gray-300">${item.username}</td>
                         <td class="px-4 py-2 border border-gray-300">${item.email}</td>
                         <td class="px-4 py-2 border border-gray-300">${item.roles}</td>
