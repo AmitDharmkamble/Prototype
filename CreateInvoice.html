@@ -7,22 +7,28 @@
     <title>Invoice - Create</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
         .dropdown-content {
             display: none;
         }
 
-        /* Show dropdown on click */
+        /* Show dropdown on hover */
         .dropdown:hover .dropdown-content {
             display: block;
         }
     </style>
 </head>
 
-<body class="">
+<body>
+    <!-- Sidebar Placeholder -->
     <div id="sidebar-container"></div>
+
+    <!-- Header Section -->
     <header class="bg-blue-600 text-black p-4">
         <div class="flex justify-end p-4 space-x-4">
+            <!-- Notification Button -->
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
                     <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -32,7 +38,6 @@
                         </path>
                     </svg>
                 </button>
-
                 <!-- Notification Dropdown -->
                 <div class="absolute right-0 mt-0 w-64 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
                     <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Domain service for customer Amit
@@ -43,6 +48,8 @@
                         week.</a>
                 </div>
             </div>
+
+            <!-- User Profile Button -->
             <div class="relative dropdown">
                 <button
                     class="flex items-center space-x-2 bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
@@ -53,8 +60,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
-
-                <!-- Dropdown Menu -->
+                <!-- Profile Dropdown -->
                 <div class="absolute right-0 mt-1 w-48 bg-gray-800 rounded-md shadow-lg py-2 dropdown-menu hidden z-10">
                     <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Profile</a>
                     <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Settings</a>
@@ -63,8 +69,12 @@
             </div>
         </div>
     </header>
-    <div class="max-w-7xl mx-auto">
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto w-auto">
         <h1 class="text-2xl font-bold mb-6">Create Invoice</h1>
+
+        <!-- Customer Section -->
         <div class="flex justify-between space-x-4">
             <div class="w-1/2 mb-4">
                 <label for="customer" class="block font-bold mb-1">Customer</label>
@@ -78,6 +88,7 @@
                 </select>
             </div>
 
+            <!-- Customer Card -->
             <div class="w-1/2 max-w-sm p-5 border border-gray-300 shadow-md rounded-lg hidden" id="customerCard">
                 <img src="https://www.ikf.co.in/wp-content/uploads/ikf-logo-svg.svg" alt="IKF Logo"
                     class="w-full h-24 object-contain mb-4">
@@ -110,7 +121,7 @@
             </div>
         </div>
 
-
+        <!-- Invoice Section -->
         <div class="flex justify-between space-x-4 mb-4">
             <div class="w-1/2">
                 <label for="invoiceDate" class="block font-bold mb-1">Invoice Date</label>
@@ -126,80 +137,103 @@
                     <option value="PO003">PO003 - ₹15,750</option>
                     <option value="PO004">PO004 - ₹30,000</option>
                     <option value="PO005">PO005 - ₹12,400</option>
-                    <!-- Add more sample purchase orders as needed -->
                 </select>
             </div>
-
-
         </div>
 
+        <!-- Services Table -->
+        <!-- Services Table -->
+        <div class="overflow-x-auto">
+            <table class="w-full mb-4">
+                <thead>
+                    <tr class="bg-gray-200 border-b border-gray-300 font-bold">
+                        <th class="py-2 px-4">Service</th>
+                        <th class="py-2 px-4">Tenure</th>
+                        <th class="py-2 px-4">Unit Cost</th>
+                        <th class="py-2 px-4">Quantity</th>
+                        <th class="py-2 px-4">Price</th>
+                        <th class="py-2 px-4">Tax</th>
+                        <th class="py-2 px-4">Start Date</th>
+                        <th class="py-2 px-4">End Date</th>
+                        <th class="py-2 px-4">Man Hours</th>
+                        <th class="py-2 px-4">Action</th>
+                    </tr>
+                </thead>
 
-        <table class="w-full mb-4">
-            <tr class="bg-gray-200 border-b border-gray-300 font-bold">
-                <td class="py-2">Service</td>
-                <td class="py-2">Tenure</td>
-                <td class="py-2">Unit Cost</td>
-                <td class="py-2">Quantity</td>
-                <td class="py-2">Price</td>
-                <td class="py-2">Tax</td>
-                <td class="py-2">Start Date</td>
-                <td class="py-2">End Date</td>
-                <td class="py-2">Man Hours</td>
-                <td class="py-2">Action</td>
-            </tr>
+                <tbody>
+                    <tr class="item border-b border-gray-300">
+                        <td class="py-2 px-4">
+                            <select class="border border-gray-300 rounded px-3 py-2 service-select" required
+                                onchange="showManHours(this)">
+                                <option disabled selected>Select Service</option>
+                            </select>
+                            <label for="serviceDescription" class="block font-bold mb-1">Service Description</label>
+                            <textarea id="serviceDescription" name="serviceDescription"
+                                class="w-full border border-gray-300 rounded px-3 py-2" required></textarea>
+                        </td>
 
-            <tr class="item border-b border-gray-300">
-                <td>
-                    <select class="border border-gray-300 rounded px-3 py-2 service-select" required
-                        onchange="showManHours(this)">
-                        <option disabled selected>Select Service</option>
-                    </select>
-                    <label for="serviceDescription" class="block font-bold mb-1">Service Description</label>
-                    <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="serviceDescription"
-                        name="serviceDescription" required></textarea>
-                </td>
-                <td>
-                    <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
-                        <option disabled selected>Select Tenure</option>
-                        <option value="one-time">One Time</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="6-monthly">6 Monthly</option>
-                        <option value="annually">Annually</option>
-                    </select>
-                </td>
-                <td>₹<input type="number" class="w-20 border border-gray-300 rounded px-3 py-2" value="300"></td>
-                <td><input type="number" class="w-16 border border-gray-300 rounded px-3 py-2" value="1"></td>
-                <td>₹300.00</td>
-                <td>
-                    <select class="border border-gray-300 rounded px-3 py-2 tax-select" required>
-                        <option disabled selected>Select tax</option>
-                        <option value="one-time">CGST</option>
-                        <option value="monthly">SGST</option>
-                        <option value="quarterly">IGST</option>
-                    </select>
-                </td>
-                <td class="py-2">
-                    <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden" value="today">
-                </td>
-                <td class="py-2">
-                    <input type="text" class="border border-gray-300 rounded px-3 py-2 end-date hidden" readonly>
-                </td>
-                <td class="py-2">
-                    <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
-                </td>
-                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-            </tr>
+                        <td class="py-2 px-4">
+                            <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
+                                <option disabled selected>Select Tenure</option>
+                                <option value="one-time">One Time</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="quarterly">Quarterly</option>
+                                <option value="6-monthly">6 Monthly</option>
+                                <option value="annually">Annually</option>
+                            </select>
+                        </td>
 
-            <tr>
-                <td colspan="8" class="py-2"></td>
-            </tr>
-        </table>
+                        <td class="py-2 px-4">
+                            <div class="flex items-center">
+                                <span class="mr-2">₹</span>
+                                <input type="number" class="border border-gray-300 rounded px-2 py-1 w-auto"
+                                    value="300" />
+                            </div>
+                        </td>
+
+                        <td class="py-2 px-4">
+                            <input type="number" class="border border-gray-300 rounded px-2 py-2" value="1" />
+                        </td>
+
+                        <td class="py-2 px-4">₹300.00</td>
+
+                        <td class="py-2 px-4">
+                            <select class="border border-gray-300 rounded px-3 py-2 tax-select" required>
+                                <option disabled selected>Select tax</option>
+                                <option value="cgst">CGST</option>
+                                <option value="sgst">SGST</option>
+                                <option value="igst">IGST</option>
+                            </select>
+                        </td>
+
+                        <td class="py-2 px-4">
+                            <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden"
+                                value="today" />
+                        </td>
+
+                        <td class="py-2 px-4">
+                            <input type="text" class="border border-gray-300 rounded px-3 py-2 end-date hidden"
+                                readonly />
+                        </td>
+
+                        <td class="py-2 px-4">
+                            <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden" />
+                        </td>
+
+                        <td class="py-2 px-4 text-center">
+                            <button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
+        <tr class="">
+            <p colspan="5" class="total font-bold py-2 text-right" id="basicTotal">Basic Total: ₹0.00</p>
+        </tr>
         <tr class="">
             <p colspan="5" class="total font-bold py-2 text-right" id="taxTotal">Total Taxes: ₹0.00</p>
         </tr>
@@ -218,225 +252,13 @@
 
         <br><br>
 
-        <a id="modal-submit" href="PurchaseOrders.html"
+        <a id="modal-submit" href="Invoices.html"
             class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</a>
         <br><br>
     </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Load the sidebar
-            loadSidebar();
-        });
-        function loadSidebar() {
-            const sidebarContainer = document.getElementById("sidebar-container");
-            fetch("./Sidebar.html")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    sidebarContainer.innerHTML = html;
-                    executeSidebarScripts(sidebarContainer);
-                })
-                .catch(error => {
-                    console.error("There was a problem with the fetch operation:", error);
-                });
-        }
-
-        function executeSidebarScripts(container) {
-            const scripts = container.querySelectorAll("script");
-            scripts.forEach(script => {
-                const newScript = document.createElement("script");
-                newScript.text = script.innerHTML;
-                document.body.appendChild(newScript);
-            });
-        }
-        $(function () {
-            const calculateTotals = () => {
-                let total = 0;
-                let taxAmount = 0;
-                $('.item').each(function () {
-                    const taxValue = $(this).find('select.tax-select').val();
-                    const taxPercentage = parseFloat(taxValue) || 0; // Fallback to 0 if no tax selected
-
-
-                    const quantity = $(this).find('input:eq(1)').val();
-                    const price = $(this).find('input:eq(0)').val();
-                    const subtotal = quantity * price;
-                    taxAmount += subtotal * (taxPercentage / 100);
-                    $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
-                    total += subtotal + taxAmount;
-                });
-                $('#total').text(`Total: ₹${total.toFixed(2)}`);
-                $('#taxTotal').text(`Tax Total: ₹${taxAmount.toFixed(2)}`);
-            };
-
-            $('table').on('input', 'input[type=number]', calculateTotals);
-
-            $('.btn-add-row').click(function () {
-                const newRow = $('.item:first').clone();
-                newRow.find('input').val('');
-                newRow.find('td:eq(4)').text('');
-                newRow.appendTo('table');
-
-                // Re-add event listeners for new rows
-                handleRowEvents(newRow);
-            });
-
-            $('table').on('click', '.remove-row', function () {
-                $(this).closest('tr').remove();
-                calculateTotals();
-            });
-
-            const handleRowEvents = (row) => {
-                // Handle changes in the tenure-select dropdown
-                row.find('.tenure-select').off('change').on('change', function () {
-                    const tenureSelect = $(this);
-                    const startDateInput = tenureSelect.closest('tr').find('.start-date');
-                    const endDateInput = tenureSelect.closest('tr').find('.end-date');
-                    const tenure = tenureSelect.val();
-
-                    if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
-                        startDateInput.removeClass('hidden');
-                        endDateInput.removeClass('hidden');
-                    } else {
-                        startDateInput.addClass('hidden');
-                        endDateInput.addClass('hidden');
-                        endDateInput.val('');
-                        return;
-                    }
-
-                    // Trigger start date calculation if a new tenure is selected
-                    const startDate = new Date(startDateInput.val());
-                    let endDate = new Date(startDate);
-                    if (isNaN(startDate.getTime())) {
-                        endDateInput.val(''); // Optionally clear end date or handle error
-                    } else {
-                        switch (tenure) {
-                            case 'monthly':
-                                endDate.setMonth(endDate.getMonth() + 1);
-                                break;
-                            case 'quarterly':
-                                endDate.setMonth(endDate.getMonth() + 3);
-                                break;
-                            case '6-monthly':
-                                endDate.setMonth(endDate.getMonth() + 6);
-                                break;
-                            case 'annually':
-                                endDate.setFullYear(endDate.getFullYear() + 1);
-                                break;
-                        }
-                        endDateInput.val(formatDate(endDate));
-                    }
-                });
-
-                // Handle changes in the start-date input field
-                row.find('.start-date').off('change').on('change', function () {
-                    const startDate = new Date(this.value);
-                    const tenureSelect = $(this).closest('tr').find('.tenure-select');
-                    const endDateInput = $(this).closest('tr').find('.end-date');
-                    const tenure = tenureSelect.val();
-                    let endDate = new Date(startDate);
-
-                    switch (tenure) {
-                        case 'monthly':
-                            endDate.setMonth(endDate.getMonth() + 1);
-                            break;
-                        case 'quarterly':
-                            endDate.setMonth(endDate.getMonth() + 3);
-                            break;
-                        case '6-monthly':
-                            endDate.setMonth(endDate.getMonth() + 6);
-                            break;
-                        case 'annually':
-                            endDate.setFullYear(endDate.getFullYear() + 1);
-                            break;
-                    }
-
-                    endDateInput.val(formatDate(endDate));
-                });
-            };
-
-            // Initialize events for existing rows
-            $('table .item').each(function () {
-                handleRowEvents($(this));
-            });
-
-            // Customer change event handler
-            document.getElementById('customer').addEventListener('change', function () {
-                const card = document.getElementById('customerCard');
-                if (this.value) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Format date function
-            function formatDate(date) {
-                const day = String(date.getDate()).padStart(2, '0');
-                const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-                const year = date.getFullYear();
-                return `${day}-${month}-${year}`;
-            }
-
-            $(document).on('change', '.tax-select', function () {
-                calculateTotals(); // Recalculate totals whenever tax changes
-            });
-        });
-
-        // Fetch services from API or JSON file
-        fetch('./Data/services.json') // or API endpoint
-            .then(response => response.json())
-            .then(data => {
-                const selectElement = document.querySelector('.service-select');
-
-                // Iterate over each service and append an option
-                data.forEach(service => {
-                    const option = document.createElement('option');
-                    option.value = service.service_id;
-                    option.text = service.service_name;
-                    selectElement.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error fetching services:', error));
-
-        function showManHours(selectElement) {
-            const selectedService = selectElement.value;
-            const row = selectElement.closest('tr'); // Find the closest row
-            const manHoursField = row.querySelector('.man-hours'); // Find the man-hours field within the row
-
-            if (manHoursField) {
-                if (selectedService == 9) {
-                    manHoursField.classList.remove('hidden'); // Show the man-hours field
-                } else {
-                    manHoursField.classList.add('hidden'); // Hide the man-hours field
-                }
-            }
-        }
-
-        fetch('./Data/Taxes.json')
-            .then(response => response.json())
-            .then(taxes => {
-                const taxSelect = document.querySelector('.tax-select');
-
-                // Clear existing options
-                taxSelect.innerHTML = '<option disabled selected>Select tax</option>';
-
-                // Add new options from the JSON data
-                taxes.forEach(tax => {
-                    const option = document.createElement('option');
-                    option.value = tax.tax_percentage;
-                    option.textContent = tax.tax_name + '@' + tax.tax_percentage + '%';
-                    taxSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error loading taxes:', error));
-    </script>
+    <script src="CreateInvoice.js"></script>
 </body>
 
 </html>

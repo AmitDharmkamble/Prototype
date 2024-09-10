@@ -182,9 +182,9 @@
                 <h2 class="text-2xl font-bold mb-4">Create New Receipt</h2>
                 <form id="receiptForm">
                     <div class="mb-4">
-                        <label for="customer" class="block text-gray-700">Customer</label>
+                        <label for="customer" class="block text-gray-700">Customer<span class="text-red-500">*</span></label>
                         <select id="customer" name="customer"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                             <option value="" disabled selected>Select a Customer</option>
                             <option value="Customer A">Customer A</option>
                             <option value="Customer B">Customer B</option>
@@ -197,9 +197,9 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label for="invoiceId" class="block text-gray-700">Invoice Number</label>
+                        <label for="invoiceId" class="block text-gray-700">Invoice Number<span class="text-red-500">*</span></label>
                         <select id="invoiceId" name="invoiceId"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                             <option value="" disabled selected>Select an Invoice</option>
                             <!-- Dynamically populated options will go here -->
                         </select>
@@ -208,23 +208,23 @@
                         <!-- The invoice details will be injected here by JavaScript -->
                     </div>
                     <div class="mb-4">
-                        <label for="dateReceived" class="block text-gray-700">Date Received</label>
+                        <label for="dateReceived" class="block text-gray-700">Date Received<span class="text-red-500">*</span></label>
                         <input type="date" id="dateReceived" name="dateReceived"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                     </div>
                     <div class="mb-4">
-                        <label for="paymentMethod" class="block text-gray-700">Payment Method</label>
+                        <label for="paymentMethod" class="block text-gray-700">Payment Method<span class="text-red-500">*</span></label>
                         <select id="paymentMethod" name="paymentMethod"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                             <option value="Credit Card">Credit Card</option>
                             <option value="Bank Transfer">Bank Transfer</option>
                             <option value="Cash">Cash</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label for="amountReceived" class="block text-gray-700">Amount Received</label>
+                        <label for="amountReceived" class="block text-gray-700">Amount Received<span class="text-red-500">*</span></label>
                         <input type="number" id="amountReceived" name="amountReceived"
-                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" required>
                     </div>
                     <div class="mb-4">
                         <label for="notes" class="block text-gray-700">Notes</label>

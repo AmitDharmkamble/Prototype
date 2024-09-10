@@ -1,7 +1,7 @@
 [
     {
         "tax_id": 7,
-        "tax_name": "SGST + IGST",
+        "tax_name": "SGST + CGST",
         "tax_percentage": 18,
         "is_active": true
     },
