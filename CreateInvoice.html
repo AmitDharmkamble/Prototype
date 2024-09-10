@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice - Create</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body class="m-0 p-0 h-screen w-screen overflow-scroll box-border">
@@ -83,6 +84,7 @@
                 <td class="py-2">Unit Cost</td>
                 <td class="py-2">Quantity</td>
                 <td class="py-2">Price</td>
+                <td class="py-2">Tax</td>
                 <td class="py-2">Start Date</td>
                 <td class="py-2">End Date</td>
                 <td class="py-2">Man Hours</td>
@@ -109,7 +111,14 @@
                 <td>₹<input type="number" class="w-20 border border-gray-300 rounded px-3 py-2" value="300"></td>
                 <td><input type="number" class="w-16 border border-gray-300 rounded px-3 py-2" value="1"></td>
                 <td>₹300.00</td>
-
+                <td>
+                    <select class="border border-gray-300 rounded px-3 py-2 tax-select" required>
+                        <option disabled selected>Select tax</option>
+                        <option value="one-time">CGST</option>
+                        <option value="monthly">SGST</option>
+                        <option value="quarterly">IGST</option>
+                    </select>
+                </td>
                 <td class="py-2">
                     <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden" value="today">
                 </td>
@@ -119,7 +128,10 @@
                 <td class="py-2">
                     <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
                 </td>
-                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">Remove</button></td>
+                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
             </tr>
 
             <tr>
@@ -128,6 +140,9 @@
         </table>
 
         <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
+        <tr class="">
+            <p colspan="5" class="total font-bold py-2 text-right" id="taxTotal">Total Taxes: ₹0.00</p>
+        </tr>
         <tr class="">
             <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
         </tr>
@@ -151,14 +166,21 @@
         $(function () {
             const calculateTotals = () => {
                 let total = 0;
+                let taxAmount = 0;
                 $('.item').each(function () {
+                    const taxValue = $(this).find('select.tax-select').val();
+                    const taxPercentage = parseFloat(taxValue) || 0; // Fallback to 0 if no tax selected
+
+
                     const quantity = $(this).find('input:eq(1)').val();
                     const price = $(this).find('input:eq(0)').val();
                     const subtotal = quantity * price;
+                    taxAmount += subtotal * (taxPercentage / 100);
                     $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
-                    total += subtotal;
+                    total += subtotal + taxAmount;
                 });
                 $('#total').text(`Total: ₹${total.toFixed(2)}`);
+                $('#taxTotal').text(`Tax Total: ₹${taxAmount.toFixed(2)}`);
             };
 
             $('table').on('input', 'input[type=number]', calculateTotals);
@@ -200,7 +222,6 @@
                     const startDate = new Date(startDateInput.val());
                     let endDate = new Date(startDate);
                     if (isNaN(startDate.getTime())) {
-                        console.error('Invalid start date');
                         endDateInput.val(''); // Optionally clear end date or handle error
                     } else {
                         switch (tenure) {
@@ -270,6 +291,10 @@
                 const year = date.getFullYear();
                 return `${day}-${month}-${year}`;
             }
+
+            $(document).on('change', '.tax-select', function () {
+                calculateTotals(); // Recalculate totals whenever tax changes
+            });
         });
 
         // Fetch services from API or JSON file
@@ -302,7 +327,23 @@
             }
         }
 
+        fetch('./Data/Taxes.json')
+            .then(response => response.json())
+            .then(taxes => {
+                const taxSelect = document.querySelector('.tax-select');
 
+                // Clear existing options
+                taxSelect.innerHTML = '<option disabled selected>Select tax</option>';
+
+                // Add new options from the JSON data
+                taxes.forEach(tax => {
+                    const option = document.createElement('option');
+                    option.value = tax.tax_percentage;
+                    option.textContent = tax.tax_name + '@' + tax.tax_percentage + '%';
+                    taxSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error loading taxes:', error));
     </script>
 </body>
 

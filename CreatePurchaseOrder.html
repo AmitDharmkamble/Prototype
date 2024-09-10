@@ -7,6 +7,7 @@
     <title>Purcahse Order - Create</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/sumoselect.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body class="m-0 p-0 h-screen w-screen overflow-scroll box-border">
@@ -34,7 +35,7 @@
                         <h2 class="text-lg font-bold text-gray-800">Customer Details</h2>
                         <p class="text-sm font-bold text-gray-800">29GGGGG1314R9Z6</p>
                         <p class="text-sm"><strong>Since:</strong> January 1, 2024</p>
-                        <p class="text-sm"><strong>Outstanding:</strong> ₹50,000/-</p>
+                        <p class="text-sm"><strong>Outstanding:</strong> ₹50,000.00/-</p>
                     </div>
                     <div>
                         <h2 class="text-lg font-bold text-gray-800">Company Info</h2>
@@ -71,7 +72,8 @@
 
         </div>
         <div class="mb-4">
-            <label for="clientBrief" class="block font-bold mb-1">Client Brief<span class="text-red-500">*</span></label>
+            <label for="clientBrief" class="block font-bold mb-1">Client Brief<span
+                    class="text-red-500">*</span></label>
             <textarea class="w-full border border-gray-300 rounded px-3 py-2" id="clientBrief" name="clientBrief"
                 required></textarea>
         </div>
@@ -120,7 +122,10 @@
                 <td class="py-2">
                     <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
                 </td>
-                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">Remove</button></td>
+                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
             </tr>
 
             <tr>
