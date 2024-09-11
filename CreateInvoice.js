@@ -47,16 +47,16 @@ function initializeTaxChangeEvent() {
     $('.tax-select').on('change', function () {
         calculateTotals();
     });
-    
+
 }
 
 function initializeTableEvents() {
     $('table').on('input', 'input[type=number]', calculateTotals);
-    
+
     $('.btn-add-row').click(addNewRow);
-    
+
     $('table').on('click', '.remove-row', removeRow);
-    
+
     $('table .item').each(function () {
         handleRowEvents($(this));
     });
@@ -66,20 +66,20 @@ function calculateTotals() {
     let total = 0;
     let taxAmount = 0;
     let subtotal = 0;
-    
+
     $('.item').each(function () {
         const taxValue = $(this).find('select.tax-select').val();
         const taxPercentage = parseFloat(taxValue) || 0;
         const quantity = $(this).find('input:eq(3)').val();
         const price = $(this).find('input:eq(2)').val();
-        
+
         subtotal = quantity * price;
         taxAmount += subtotal * (taxPercentage / 100);
-        
+
         $(this).find('td:eq(4)').text(`₹${subtotal.toFixed(2)}`);
         total += subtotal + taxAmount;
     });
-    
+
     updateTotalsDisplay(total, taxAmount, subtotal);
 }
 
@@ -90,10 +90,12 @@ function updateTotalsDisplay(total, taxAmount, subtotal) {
 }
 
 function addNewRow() {
+    debugger;
     const newRow = $('.item:first').clone();
     newRow.find('input').val('');
     newRow.find('td:eq(4)').text('');
     newRow.appendTo('table');
+    newRow.find(".service-select").SumoSelect('destroy');
     handleRowEvents(newRow);
 }
 
@@ -112,7 +114,7 @@ function handleTenureChange() {
     const startDateInput = tenureSelect.closest('tr').find('.start-date');
     const endDateInput = tenureSelect.closest('tr').find('.end-date');
     const tenure = tenureSelect.val();
-    
+
     if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
         startDateInput.removeClass('hidden');
         endDateInput.removeClass('hidden');
@@ -121,7 +123,7 @@ function handleTenureChange() {
         endDateInput.addClass('hidden').val('');
         return;
     }
-    
+
     updateEndDate(startDateInput, endDateInput, tenure);
 }
 
@@ -130,7 +132,7 @@ function handleStartDateChange() {
     const tenureSelect = $(this).closest('tr').find('.tenure-select');
     const endDateInput = $(this).closest('tr').find('.end-date');
     const tenure = tenureSelect.val();
-    
+
     updateEndDate(startDate, endDateInput, tenure);
 }
 
@@ -140,7 +142,7 @@ function updateEndDate(startDateInput, endDateInput, tenure) {
         endDateInput.val('');
         return;
     }
-    
+
     let endDate = new Date(startDate);
     switch (tenure) {
         case 'monthly':
@@ -156,7 +158,7 @@ function updateEndDate(startDateInput, endDateInput, tenure) {
             endDate.setFullYear(endDate.getFullYear() + 1);
             break;
     }
-    
+
     endDateInput.val(formatDate(endDate));
 }
 
@@ -186,34 +188,33 @@ function loadServices() {
 }
 
 function appendServicesToSelect(data) {
-    fetch('./Data/services.json') // or API endpoint
-            .then(response => response.json())
-            .then(data => {
-                const selectElement = document.querySelector('.service-select');
+    const selectElement = $('.service-select');
+    
+    // Iterate over each service and append an option using jQuery
+    data.forEach(service => {
+        const option = $('<option></option>')
+            .val(service.service_id)
+            .text(service.service_name);
+        selectElement.append(option);
+    });
 
-                // Iterate over each service and append an option
-                data.forEach(service => {
-                    const option = document.createElement('option');
-                    option.value = service.service_id;
-                    option.text = service.service_name;
-                    selectElement.appendChild(option);
-                });
-
-                $(selectElement).SumoSelect({
-                    placeholder: 'Select services',
-                    csvDispCount: 3, // Customize how many selected items are shown
-                    search: true, // Enable search if needed
-                    okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
-                });
-            })
-            .catch(error => console.error('Error fetching services:', error));
+    // Reinitialize SumoSelect after adding options
+    selectElement.SumoSelect({
+        placeholder: 'Select services',
+        csvDispCount: 3, // Customize how many selected items are shown
+        search: true,    // Enable search if needed
+        okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
+    });
+    //selectElement[0].sumo.reload();
+    selectElement.SumoSelect('destroy');
 }
+
 
 function showManHours(selectElement) {
     const selectedService = selectElement.value;
     const row = selectElement.closest('tr');
     const manHoursField = row.querySelector('.man-hours');
-    
+
     if (manHoursField) {
         manHoursField.classList.toggle('hidden', selectedService != 9);
     }
@@ -229,7 +230,7 @@ function loadTaxes() {
 function appendTaxesToSelect(taxes) {
     const taxSelect = document.querySelector('.tax-select');
     taxSelect.innerHTML = '<option disabled selected>Select tax</option>';
-    
+
     taxes.forEach(tax => {
         const option = document.createElement('option');
         option.value = tax.tax_percentage;
@@ -247,7 +248,7 @@ function appendTaxesToSelect(taxes) {
 
 const words = document.querySelectorAll('.words span');
 words.forEach((span, index) => {
-  span.style.animationDelay = `${0.5 * (index + 1)}s`;
+    span.style.animationDelay = `${0.5 * (index + 1)}s`;
 });
 
 $('#customer').SumoSelect({ search: true, searchText: 'Select customer.' });
