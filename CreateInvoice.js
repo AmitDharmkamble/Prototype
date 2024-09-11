@@ -44,11 +44,10 @@ function initializeEventHandlers() {
 }
 
 function initializeTaxChangeEvent() {
-    document.querySelectorAll('.tax-select').forEach(function (select) {
-        select.addEventListener('change', function () {
-            calculateTotals();
-        });
+    $('.tax-select').on('change', function () {
+        calculateTotals();
     });
+    
 }
 
 function initializeTableEvents() {
@@ -71,8 +70,8 @@ function calculateTotals() {
     $('.item').each(function () {
         const taxValue = $(this).find('select.tax-select').val();
         const taxPercentage = parseFloat(taxValue) || 0;
-        const quantity = $(this).find('input:eq(1)').val();
-        const price = $(this).find('input:eq(0)').val();
+        const quantity = $(this).find('input:eq(3)').val();
+        const price = $(this).find('input:eq(2)').val();
         
         subtotal = quantity * price;
         taxAmount += subtotal * (taxPercentage / 100);
@@ -162,9 +161,13 @@ function updateEndDate(startDateInput, endDateInput, tenure) {
 }
 
 function initializeCustomerChangeEvent() {
-    document.getElementById('customer').addEventListener('change', function () {
+    $('#customer').on('change', function () {
         const card = document.getElementById('customerCard');
-        card.style.display = this.value ? 'block' : 'none';
+        if (this.value) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
     });
 }
 
@@ -183,13 +186,27 @@ function loadServices() {
 }
 
 function appendServicesToSelect(data) {
-    const selectElement = document.querySelector('.service-select');
-    data.forEach(service => {
-        const option = document.createElement('option');
-        option.value = service.service_id;
-        option.text = service.service_name;
-        selectElement.appendChild(option);
-    });
+    fetch('./Data/services.json') // or API endpoint
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.querySelector('.service-select');
+
+                // Iterate over each service and append an option
+                data.forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.service_id;
+                    option.text = service.service_name;
+                    selectElement.appendChild(option);
+                });
+
+                $(selectElement).SumoSelect({
+                    placeholder: 'Select services',
+                    csvDispCount: 3, // Customize how many selected items are shown
+                    search: true, // Enable search if needed
+                    okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
+                });
+            })
+            .catch(error => console.error('Error fetching services:', error));
 }
 
 function showManHours(selectElement) {
@@ -219,4 +236,24 @@ function appendTaxesToSelect(taxes) {
         option.textContent = `${tax.tax_name}@${tax.tax_percentage}%`;
         taxSelect.appendChild(option);
     });
+
+    $(taxSelect).SumoSelect({
+        placeholder: 'Select services',
+        csvDispCount: 3, // Customize how many selected items are shown
+        search: true, // Enable search if needed
+        okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
+    });
 }
+
+const words = document.querySelectorAll('.words span');
+words.forEach((span, index) => {
+  span.style.animationDelay = `${0.5 * (index + 1)}s`;
+});
+
+$('#customer').SumoSelect({ search: true, searchText: 'Select customer.' });
+
+$('.tenure-select').SumoSelect({ search: true, searchText: 'Select Tenure.' });
+
+$('#poNumber').SumoSelect({ search: true, searchText: 'Select Tenure.' });
+
+$('#soldBy').SumoSelect({ search: true, searchText: 'Select Tenure.' });

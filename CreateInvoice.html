@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.4.9/sumoselect.min.css" rel="stylesheet" />
+    
     <style>
         .dropdown-content {
             display: none;
@@ -18,55 +20,6 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        .words {
-  color: white;
-  font-size: 0;
-  line-height: 1.5;
-}
-
-.words span {
-  font-size: 5rem;
-  display: inline-block;
-  animation: move 3s ease-in-out infinite;
-}
-
-@keyframes move {
-  0% {
-    transform: translate(-30%, 0);
-  }
-  50% {
-    text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
-  }
-  100% {
-    transform: translate(30%, 0);
-  }
-}
-
-.words span:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.words span:nth-child(3) {
-  animation-delay: 1s;
-}
-
-.words span:nth-child(4) {
-  animation-delay: 1.5s;
-}
-
-.words span:nth-child(5) {
-  animation-delay: 2s;
-}
-
-.words span:nth-child(6) {
-  animation-delay: 2.5s;
-}
-
-.words span:nth-child(7) {
-  animation-delay: 3s;
-}
-
     </style>
 </head>
 
@@ -121,27 +74,16 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto w-auto">
-        <div class="words word-1">
-            <span>C</span>
-            <span>R</span>
-            <span>E</span>
-            <span>A</span>
-            <span>T</span>
-            <span>E</span>
-            <span>&nbsp;</span>
-            <span>I</span>
-            <span>N</span>
-            <span>V</span>
-            <span>O</span>
-            <span>I</span>
-            <span>C</span>
-            <span>E</span>
-          </div>
+        <div class="mb-4 flex justify-between items-center gap-4">
+            <div class="">
+                <h1 class="text-2xl font-bold mb-6">Create Invoice</h1>
+            </div>
+        </div>
 
         <!-- Customer Section -->
         <div class="flex justify-between space-x-4">
             <div class="w-1/2 mb-4">
-                <label for="customer" class="block font-bold mb-1">Customer</label>
+                <label for="customer" class="block font-bold mb-1">Customer<span class="text-red-500">*</span></label>
                 <select class="w-full border border-gray-300 rounded px-3 py-2" id="customer" name="customer" required>
                     <option value="" disabled selected>Select a customer</option>
                     <option value="customerA">Customer A</option>
@@ -188,7 +130,7 @@
         <!-- Invoice Section -->
         <div class="flex justify-between space-x-4 mb-4">
             <div class="w-1/2">
-                <label for="invoiceDate" class="block font-bold mb-1">Invoice Date</label>
+                <label for="invoiceDate" class="block font-bold mb-1">Invoice Date<span class="text-red-500">*</span></label>
                 <input type="date" class="w-full border border-gray-300 rounded px-3 py-2" id="invoiceDate"
                     name="invoiceDate">
             </div>
@@ -211,12 +153,12 @@
             <table class="w-full mb-4">
                 <thead>
                     <tr class="bg-gray-200 border-b border-gray-300 font-bold">
-                        <th class="py-2 px-4">Service</th>
-                        <th class="py-2 px-4">Tenure</th>
-                        <th class="py-2 px-4">Unit Cost</th>
-                        <th class="py-2 px-4">Quantity</th>
-                        <th class="py-2 px-4">Price</th>
-                        <th class="py-2 px-4">Tax</th>
+                        <th class="py-2 px-4">Service<span class="text-red-500">*</span></th>
+                        <th class="py-2 px-4">Tenure<span class="text-red-500">*</span></th>
+                        <th class="py-2 px-4">Unit Cost<span class="text-red-500">*</span></th>
+                        <th class="py-2 px-4">Quantity<span class="text-red-500">*</span></th>
+                        <th class="py-2 px-4">Price<span class="text-red-500">*</span></th>
+                        <th class="py-2 px-4">Tax<span class="text-red-500">*</span></th>
                         <th class="py-2 px-4">Start Date</th>
                         <th class="py-2 px-4">End Date</th>
                         <th class="py-2 px-4">Man Hours</th>
@@ -233,7 +175,8 @@
                             </select>
                             <label for="serviceDescription" class="block font-semi-bold mb-1"></label>
                             <textarea id="serviceDescription" name="serviceDescription"
-                                class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Enter service description here..." required></textarea>
+                                class="w-full border border-gray-300 rounded px-3 py-2"
+                                placeholder="Enter service description here..." required></textarea>
                         </td>
 
                         <td class="py-2 px-4">
@@ -305,7 +248,7 @@
             <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>
         </tr>
 
-        <label class="block font-bold mb-1">Billed By:</label>
+        <label class="block font-bold mb-1">Billed By:<span class="text-red-500">*</span></label>
         <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
             <option disabled selected>Billed By</option>
             <option>Krupali</option>
@@ -319,8 +262,9 @@
         <br><br>
     </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
     <script src="CreateInvoice.js"></script>
+    
 </body>
 
 </html>
