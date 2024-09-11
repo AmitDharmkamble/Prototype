@@ -18,6 +18,55 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        .words {
+  color: white;
+  font-size: 0;
+  line-height: 1.5;
+}
+
+.words span {
+  font-size: 5rem;
+  display: inline-block;
+  animation: move 3s ease-in-out infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(-30%, 0);
+  }
+  50% {
+    text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
+  }
+  100% {
+    transform: translate(30%, 0);
+  }
+}
+
+.words span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.words span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.words span:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.words span:nth-child(5) {
+  animation-delay: 2s;
+}
+
+.words span:nth-child(6) {
+  animation-delay: 2.5s;
+}
+
+.words span:nth-child(7) {
+  animation-delay: 3s;
+}
+
     </style>
 </head>
 
@@ -72,7 +121,22 @@
 
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto w-auto">
-        <h1 class="text-2xl font-bold mb-6">Create Invoice</h1>
+        <div class="words word-1">
+            <span>C</span>
+            <span>R</span>
+            <span>E</span>
+            <span>A</span>
+            <span>T</span>
+            <span>E</span>
+            <span>&nbsp;</span>
+            <span>I</span>
+            <span>N</span>
+            <span>V</span>
+            <span>O</span>
+            <span>I</span>
+            <span>C</span>
+            <span>E</span>
+          </div>
 
         <!-- Customer Section -->
         <div class="flex justify-between space-x-4">
@@ -167,9 +231,9 @@
                                 onchange="showManHours(this)">
                                 <option disabled selected>Select Service</option>
                             </select>
-                            <label for="serviceDescription" class="block font-bold mb-1">Service Description</label>
+                            <label for="serviceDescription" class="block font-semi-bold mb-1"></label>
                             <textarea id="serviceDescription" name="serviceDescription"
-                                class="w-full border border-gray-300 rounded px-3 py-2" required></textarea>
+                                class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Enter service description here..." required></textarea>
                         </td>
 
                         <td class="py-2 px-4">
@@ -232,7 +296,7 @@
 
         <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
         <tr class="">
-            <p colspan="5" class="total font-bold py-2 text-right" id="basicTotal">Basic Total: ₹0.00</p>
+            <p colspan="5" class="total font-bold py-2 text-right" id="basicTotal">Basic Total: ₹300.00</p>
         </tr>
         <tr class="">
             <p colspan="5" class="total font-bold py-2 text-right" id="taxTotal">Total Taxes: ₹0.00</p>
@@ -245,9 +309,7 @@
         <select id="soldBy" class="w-full border border-gray-300 rounded px-3 py-2" required>
             <option disabled selected>Billed By</option>
             <option>Krupali</option>
-            <option>Amit</option>
             <option>Pooja</option>
-            <option>Another brick in the wall</option>
         </select>
 
         <br><br>

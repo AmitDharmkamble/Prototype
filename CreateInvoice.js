@@ -40,6 +40,15 @@ function initializeEventHandlers() {
     // Initialize calculation and dynamic row events
     initializeTableEvents();
     initializeCustomerChangeEvent();
+    initializeTaxChangeEvent();
+}
+
+function initializeTaxChangeEvent() {
+    document.querySelectorAll('.tax-select').forEach(function (select) {
+        select.addEventListener('change', function () {
+            calculateTotals();
+        });
+    });
 }
 
 function initializeTableEvents() {
