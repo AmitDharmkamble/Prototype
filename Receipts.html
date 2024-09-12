@@ -213,7 +213,7 @@
                         <!-- The invoice details will be injected here by JavaScript -->
                     </div>
                     <div class="mb-4">
-                        <label for="dateReceived" class="block text-gray-700">Date Received<span
+                        <label for="dateReceived" class="block text-gray-700">Receipt Date<span
                                 class="text-red-500">*</span></label>
                         <input type="date" id="dateReceived" name="dateReceived"
                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -225,10 +225,7 @@
                         <select id="paymentMethod" name="paymentMethod"
                             class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
                             required>
-                            <option value="" disabled selected>Select a payment method</option>
-                            <option value="Credit Card">Credit Card</option>
-                            <option value="Bank Transfer">Bank Transfer</option>
-                            <option value="Cash">Cash</option>
+                            
                         </select>
                     </div>
                     <div class="mb-4">
@@ -261,6 +258,7 @@
     document.addEventListener("DOMContentLoaded", () => {
         // Load the sidebar
         loadSidebar();
+        loadPaymentMethods();
     });
     function loadSidebar() {
         const sidebarContainer = document.getElementById("sidebar-container");
@@ -384,8 +382,8 @@
         const modalContent = document.getElementById('modalContent');
 
         modalContent.innerHTML = `
-        <p><strong>Invoice ID:</strong> ${invoice.invoice_id}</p>
-        <p><strong>Date Issued:</strong> ${invoice.date_issued}</p>
+        <p><strong>Invoice Number:</strong> ${invoice.invoice_id}</p>
+        <p><strong>Invoice Date:</strong> ${invoice.date_issued}</p>
         <p><strong>Customer:</strong> ${invoice.customer.name}</p>
         <p><strong>Total Amount:</strong> ₹${invoice.total_amount.toFixed(2)}</p>
         <!-- Add more details as needed -->
@@ -399,7 +397,36 @@
     $('#filterPaymentMethod').SumoSelect({ search: true, searchText: 'Select Payment method.', multiple: true });
     $('#filterPaymentStatus').SumoSelect({ search: true, searchText: 'Select Payment Status.', multiple: true });
     $('#customer').SumoSelect({ search: true, searchText: 'Select Customer.' });
-    $('#paymentMethod').SumoSelect({ search: true, searchText: 'Select Customer.' });
+
+    function loadPaymentMethods() {
+            fetch('./Data/paymentmodes.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    populatePaymentMethodSelect(data);
+                })
+                .catch(error => console.error('Error fetching payment methods:', error));
+        }
+
+        function populatePaymentMethodSelect(paymentModes) {
+            const selectElement = $('#paymentMethod');
+            paymentModes.forEach(mode => {
+                const option = $('<option></option>')
+                    .val(mode.payment_mode_id)
+                    .text(mode.payment_mode_name);
+                selectElement.append(option);
+            });
+
+            selectElement.SumoSelect({
+                placeholder: 'Select a payment method',
+                csvDispCount: 3,
+                search: true,
+            });
+        }
 </script>
 
 </html>
