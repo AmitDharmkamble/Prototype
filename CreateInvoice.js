@@ -76,36 +76,12 @@ function updateTotalsDisplay(total, taxAmount, subtotal) {
 }
 
 function addNewRow() {
-    const newRow = $('.item:first').clone(); // Clone the first row
-    newRow.find('input').val(''); // Clear input values
-    newRow.find('td:eq(4)').text(''); // Clear the subtotal column
-
-    // Destroy SumoSelect in the original row before cloning
-    $('.service-select').SumoSelect('destroy');
-    $('.tax-select').SumoSelect('destroy');
-
-    // Append the cloned row to the table
-    newRow.appendTo('table');
-
-    // Initialize SumoSelect for the new row
-    newRow.find(".service-select").SumoSelect({
-        placeholder: 'Select services',
-        csvDispCount: 3,
-        search: true,
-        okCancelInMulti: true
-    });
-
-    newRow.find(".tax-select").SumoSelect({
-        placeholder: 'Select tax',
-        csvDispCount: 3,
-        search: true,
-        okCancelInMulti: true
-    });
-
-    // Reattach event handlers
+    const newRow = $('.item:first').clone();
+    newRow.find('input').val('');
+    newRow.find('td:eq(4)').text('');
+    newRow.appendTo('table').find(".service-select").SumoSelect('destroy');
     handleRowEvents(newRow);
 }
-
 
 function removeRow() {
     $(this).closest('tr').remove();
@@ -138,7 +114,7 @@ function handleStartDateChange() {
     const startDate = new Date(this.value);
     const tenure = $(this).closest('tr').find('.tenure-select').val();
     const endDateInput = $(this).closest('tr').find('.end-date');
-
+    
     updateEndDate(startDate, endDateInput, tenure);
 }
 
@@ -182,7 +158,7 @@ function fetchJSON(url, callback) {
 
 function appendServicesToSelect(services) {
     const selectElement = $('.service-select').empty();
-
+    
     services.forEach(service => {
         $('<option></option>')
             .val(service.service_id)
@@ -205,7 +181,7 @@ function initializeSumoSelect(selectElement, placeholder) {
 function showManHours(selectElement) {
     const row = selectElement.closest('tr');
     const manHoursField = row.querySelector('.man-hours');
-
+    
     if (manHoursField) {
         manHoursField.classList.toggle('hidden', selectElement.value != 9);
     }
@@ -218,7 +194,7 @@ function loadTaxes() {
 function appendTaxesToSelect(taxes) {
     const taxSelect = $('.tax-select').empty();
     $('<option disabled selected>Select tax</option>').appendTo(taxSelect);
-
+    
     taxes.forEach(tax => {
         $('<option></option>')
             .val(tax.tax_percentage)
