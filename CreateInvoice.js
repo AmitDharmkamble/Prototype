@@ -1,77 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
+    initializeApp();
+});
+
+function initializeApp() {
     loadSidebar();
     initializeEventHandlers();
     loadServices();
     loadTaxes();
-});
-
-function loadSidebar() {
-    const sidebarContainer = document.getElementById("sidebar-container");
-    fetch("./Sidebar.html")
-        .then(handleFetchResponse)
-        .then(html => {
-            sidebarContainer.innerHTML = html;
-            executeScriptsInContainer(sidebarContainer);
-        })
-        .catch(handleFetchError);
 }
 
-function handleFetchResponse(response) {
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
-    }
-    return response.text();
+function loadSidebar() {
+    fetchHTML("./Sidebar.html", "#sidebar-container", executeScriptsInContainer);
+}
+
+function fetchHTML(url, containerSelector, callback) {
+    const container = document.querySelector(containerSelector);
+    fetch(url)
+        .then(response => response.ok ? response.text() : Promise.reject("Network response was not ok"))
+        .then(html => {
+            container.innerHTML = html;
+            callback(container);
+        })
+        .catch(error => console.error("There was a problem with the fetch operation:", error));
 }
 
 function executeScriptsInContainer(container) {
-    const scripts = container.querySelectorAll("script");
-    scripts.forEach(script => {
+    container.querySelectorAll("script").forEach(script => {
         const newScript = document.createElement("script");
         newScript.text = script.innerHTML;
         document.body.appendChild(newScript);
     });
 }
 
-function handleFetchError(error) {
-    console.error("There was a problem with the fetch operation:", error);
-}
-
 function initializeEventHandlers() {
-    // Initialize calculation and dynamic row events
     initializeTableEvents();
     initializeCustomerChangeEvent();
     initializeTaxChangeEvent();
 }
 
 function initializeTaxChangeEvent() {
-    $('.tax-select').on('change', function () {
-        calculateTotals();
-    });
-
+    $('.tax-select').on('change', calculateTotals);
 }
 
 function initializeTableEvents() {
     $('table').on('input', 'input[type=number]', calculateTotals);
-
     $('.btn-add-row').click(addNewRow);
-
     $('table').on('click', '.remove-row', removeRow);
-
     $('table .item').each(function () {
         handleRowEvents($(this));
     });
 }
 
 function calculateTotals() {
-    let total = 0;
-    let taxAmount = 0;
-    let subtotal = 0;
+    let total = 0, taxAmount = 0, subtotal = 0;
 
     $('.item').each(function () {
-        const taxValue = $(this).find('select.tax-select').val();
-        const taxPercentage = parseFloat(taxValue) || 0;
-        const quantity = $(this).find('input:eq(3)').val();
-        const price = $(this).find('input:eq(2)').val();
+        const taxPercentage = parseFloat($(this).find('select.tax-select').val()) || 0;
+        const quantity = parseFloat($(this).find('input:eq(3)').val()) || 0;
+        const price = parseFloat($(this).find('input:eq(2)').val()) || 0;
 
         subtotal = quantity * price;
         taxAmount += subtotal * (taxPercentage / 100);
@@ -90,14 +76,36 @@ function updateTotalsDisplay(total, taxAmount, subtotal) {
 }
 
 function addNewRow() {
-    debugger;
-    const newRow = $('.item:first').clone();
-    newRow.find('input').val('');
-    newRow.find('td:eq(4)').text('');
+    const newRow = $('.item:first').clone(); // Clone the first row
+    newRow.find('input').val(''); // Clear input values
+    newRow.find('td:eq(4)').text(''); // Clear the subtotal column
+
+    // Destroy SumoSelect in the original row before cloning
+    $('.service-select').SumoSelect('destroy');
+    $('.tax-select').SumoSelect('destroy');
+
+    // Append the cloned row to the table
     newRow.appendTo('table');
-    newRow.find(".service-select").SumoSelect('destroy');
+
+    // Initialize SumoSelect for the new row
+    newRow.find(".service-select").SumoSelect({
+        placeholder: 'Select services',
+        csvDispCount: 3,
+        search: true,
+        okCancelInMulti: true
+    });
+
+    newRow.find(".tax-select").SumoSelect({
+        placeholder: 'Select tax',
+        csvDispCount: 3,
+        search: true,
+        okCancelInMulti: true
+    });
+
+    // Reattach event handlers
     handleRowEvents(newRow);
 }
+
 
 function removeRow() {
     $(this).closest('tr').remove();
@@ -110,10 +118,10 @@ function handleRowEvents(row) {
 }
 
 function handleTenureChange() {
-    const tenureSelect = $(this);
-    const startDateInput = tenureSelect.closest('tr').find('.start-date');
-    const endDateInput = tenureSelect.closest('tr').find('.end-date');
-    const tenure = tenureSelect.val();
+    const tenure = $(this).val();
+    const row = $(this).closest('tr');
+    const startDateInput = row.find('.start-date');
+    const endDateInput = row.find('.end-date');
 
     if (tenure && tenure !== 'one-time' && tenure !== 'Select Tenure') {
         startDateInput.removeClass('hidden');
@@ -121,23 +129,20 @@ function handleTenureChange() {
     } else {
         startDateInput.addClass('hidden');
         endDateInput.addClass('hidden').val('');
-        return;
     }
 
-    updateEndDate(startDateInput, endDateInput, tenure);
+    updateEndDate(startDateInput.val(), endDateInput, tenure);
 }
 
 function handleStartDateChange() {
     const startDate = new Date(this.value);
-    const tenureSelect = $(this).closest('tr').find('.tenure-select');
+    const tenure = $(this).closest('tr').find('.tenure-select').val();
     const endDateInput = $(this).closest('tr').find('.end-date');
-    const tenure = tenureSelect.val();
 
     updateEndDate(startDate, endDateInput, tenure);
 }
 
-function updateEndDate(startDateInput, endDateInput, tenure) {
-    const startDate = new Date(startDateInput);
+function updateEndDate(startDate, endDateInput, tenure) {
     if (isNaN(startDate.getTime())) {
         endDateInput.val('');
         return;
@@ -145,18 +150,10 @@ function updateEndDate(startDateInput, endDateInput, tenure) {
 
     let endDate = new Date(startDate);
     switch (tenure) {
-        case 'monthly':
-            endDate.setMonth(endDate.getMonth() + 1);
-            break;
-        case 'quarterly':
-            endDate.setMonth(endDate.getMonth() + 3);
-            break;
-        case '6-monthly':
-            endDate.setMonth(endDate.getMonth() + 6);
-            break;
-        case 'annually':
-            endDate.setFullYear(endDate.getFullYear() + 1);
-            break;
+        case 'monthly': endDate.setMonth(endDate.getMonth() + 1); break;
+        case 'quarterly': endDate.setMonth(endDate.getMonth() + 3); break;
+        case '6-monthly': endDate.setMonth(endDate.getMonth() + 6); break;
+        case 'annually': endDate.setFullYear(endDate.getFullYear() + 1); break;
     }
 
     endDateInput.val(formatDate(endDate));
@@ -164,97 +161,79 @@ function updateEndDate(startDateInput, endDateInput, tenure) {
 
 function initializeCustomerChangeEvent() {
     $('#customer').on('change', function () {
-        const card = document.getElementById('customerCard');
-        if (this.value) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
+        $('#customerCard').toggle(!!this.value);
     });
 }
 
 function formatDate(date) {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
+    return date.toISOString().slice(0, 10).split('-').reverse().join('-');
 }
 
 function loadServices() {
-    fetch('./Data/services.json')
+    fetchJSON('./Data/services.json', appendServicesToSelect);
+}
+
+function fetchJSON(url, callback) {
+    fetch(url)
         .then(response => response.json())
-        .then(appendServicesToSelect)
-        .catch(error => console.error('Error fetching services:', error));
+        .then(callback)
+        .catch(error => console.error('Error fetching data:', error));
 }
 
-function appendServicesToSelect(data) {
-    const selectElement = $('.service-select');
-    
-    // Iterate over each service and append an option using jQuery
-    data.forEach(service => {
-        const option = $('<option></option>')
+function appendServicesToSelect(services) {
+    const selectElement = $('.service-select').empty();
+
+    services.forEach(service => {
+        $('<option></option>')
             .val(service.service_id)
-            .text(service.service_name);
-        selectElement.append(option);
+            .text(service.service_name)
+            .appendTo(selectElement);
     });
 
-    // Reinitialize SumoSelect after adding options
-    selectElement.SumoSelect({
-        placeholder: 'Select services',
-        csvDispCount: 3, // Customize how many selected items are shown
-        search: true,    // Enable search if needed
-        okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
-    });
-    //selectElement[0].sumo.reload();
-    selectElement.SumoSelect('destroy');
+    initializeSumoSelect(selectElement, 'Select services');
 }
 
+function initializeSumoSelect(selectElement, placeholder) {
+    selectElement.SumoSelect({
+        placeholder,
+        csvDispCount: 3,
+        search: true,
+        okCancelInMulti: true
+    });
+}
 
 function showManHours(selectElement) {
-    const selectedService = selectElement.value;
     const row = selectElement.closest('tr');
     const manHoursField = row.querySelector('.man-hours');
 
     if (manHoursField) {
-        manHoursField.classList.toggle('hidden', selectedService != 9);
+        manHoursField.classList.toggle('hidden', selectElement.value != 9);
     }
 }
 
 function loadTaxes() {
-    fetch('./Data/Taxes.json')
-        .then(response => response.json())
-        .then(appendTaxesToSelect)
-        .catch(error => console.error('Error loading taxes:', error));
+    fetchJSON('./Data/Taxes.json', appendTaxesToSelect);
 }
 
 function appendTaxesToSelect(taxes) {
-    const taxSelect = document.querySelector('.tax-select');
-    taxSelect.innerHTML = '<option disabled selected>Select tax</option>';
+    const taxSelect = $('.tax-select').empty();
+    $('<option disabled selected>Select tax</option>').appendTo(taxSelect);
 
     taxes.forEach(tax => {
-        const option = document.createElement('option');
-        option.value = tax.tax_percentage;
-        option.textContent = `${tax.tax_name}@${tax.tax_percentage}%`;
-        taxSelect.appendChild(option);
+        $('<option></option>')
+            .val(tax.tax_percentage)
+            .text(`${tax.tax_name}@${tax.tax_percentage}%`)
+            .appendTo(taxSelect);
     });
 
-    $(taxSelect).SumoSelect({
-        placeholder: 'Select services',
-        csvDispCount: 3, // Customize how many selected items are shown
-        search: true, // Enable search if needed
-        okCancelInMulti: true // Enable OK/Cancel buttons for multi-select
-    });
+    initializeSumoSelect(taxSelect, 'Select tax');
 }
 
-const words = document.querySelectorAll('.words span');
-words.forEach((span, index) => {
+$('.words span').each((index, span) => {
     span.style.animationDelay = `${0.5 * (index + 1)}s`;
 });
 
-$('#customer').SumoSelect({ search: true, searchText: 'Select customer.' });
-
-$('.tenure-select').SumoSelect({ search: true, searchText: 'Select Tenure.' });
-
-$('#poNumber').SumoSelect({ search: true, searchText: 'Select Tenure.' });
-
-$('#soldBy').SumoSelect({ search: true, searchText: 'Select Tenure.' });
+initializeSumoSelect($('#customer'), 'Select customer');
+initializeSumoSelect($('.tenure-select'), 'Select Tenure');
+initializeSumoSelect($('#poNumber'), 'Select PO Number');
+initializeSumoSelect($('#soldBy'), 'Select Sold By');
