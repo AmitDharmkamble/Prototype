@@ -122,60 +122,63 @@
         </div>
 
         <div class="overflow-x-auto">
-        <table class="w-full mb-4">
-            <tr class="bg-gray-200 border-b border-gray-300 font-bold">
-                <td class="py-2 px-4">Service<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Tenure<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Unit Cost<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Quantity<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Price<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Start Date<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">End Date<span class="text-red-500">*</span></td>
-                <td class="py-2 px-4">Man Hours</td>
-                <td class="py-2 px-4">Action</td>
-            </tr>
+            <table class="w-full mb-4">
+                <tr class="bg-gray-200 border-b border-gray-300 font-bold">
+                    <td class="py-2 px-4">Service<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Tenure<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Unit Cost<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Quantity<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Price<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Start Date<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">End Date<span class="text-red-500">*</span></td>
+                    <td class="py-2 px-4">Man Hours</td>
+                    <td class="py-2 px-4">Action</td>
+                </tr>
 
-            <tr class="item border-b border-gray-300">
-                <td class="py-2 px-4">
-                    <select class="border border-gray-300 rounded px-3 py-2 service-select" required
-                        onchange="showManHours(this)">
-                        <option disabled selected>Select Service</option>
-                    </select>
-                </td>
-                <td class="py-2 px-4">
-                    <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
-                        <option disabled selected>Select Tenure</option>
-                        <option value="one-time">One Time</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="6-monthly">6 Monthly</option>
-                        <option value="annually">Annually</option>
-                    </select>
-                </td>
-                <td class="py-2 px-4">₹<input type="number" class="w-20 border border-gray-300 rounded px-3 py-2" value="300"></td>
-                <td class="py-2 px-4"><input type="number" class="w-16 border border-gray-300 rounded px-3 py-2" value="1"></td>
-                <td class="py-2 px-4">₹300.00</td>
+                <tr class="item border-b border-gray-300">
+                    <td class="py-2 px-4">
+                        <select class="border border-gray-300 rounded px-3 py-2 service-select" required
+                            onchange="showManHours(this)">
+                            <option disabled selected>Select Service</option>
+                        </select>
+                    </td>
+                    <td class="py-2 px-4">
+                        <select class="border border-gray-300 rounded px-3 py-2 tenure-select" required>
+                            <option disabled selected>Select Tenure</option>
+                            <option value="one-time">One Time</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="6-monthly">6 Monthly</option>
+                            <option value="annually">Annually</option>
+                        </select>
+                    </td>
+                    <td class="py-2 px-4">₹<input type="number" class="w-20 border border-gray-300 rounded px-3 py-2"
+                            value="300"></td>
+                    <td class="py-2 px-4"><input type="number" class="w-16 border border-gray-300 rounded px-3 py-2"
+                            value="1"></td>
+                    <td class="py-2 px-4">₹300.00</td>
 
-                <td class="py-2 px-4">
-                    <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden" value="today">
-                </td>
-                <td class="py-2 px-4">
-                    <input type="text" class="border border-gray-300 rounded px-3 py-2 end-date hidden" readonly>
-                </td>
-                <td class="py-2 px-4">
-                    <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
-                </td>
-                <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-            </tr>
+                    <td class="py-2 px-4">
+                        <input type="date" class="border border-gray-300 rounded px-3 py-2 start-date hidden"
+                            value="today">
+                    </td>
+                    <td class="py-2 px-4">
+                        <input type="text" class="border border-gray-300 rounded px-3 py-2 end-date hidden" readonly>
+                    </td>
+                    <td class="py-2 px-4">
+                        <input type="number" class="border border-gray-300 rounded px-3 py-2 man-hours hidden">
+                    </td>
+                    <td><button class="remove-row bg-red-500 text-white px-3 py-2 rounded">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
 
-            <tr>
-                <td colspan="8" class="py-2"></td>
-            </tr>
-        </table>
-</div>
+                <tr>
+                    <td colspan="8" class="py-2"></td>
+                </tr>
+            </table>
+        </div>
         <button class="btn-add-row bg-blue-500 text-white px-3 py-2 rounded">Add row</button>
         <tr class="">
             <p colspan="5" class="total font-bold py-2 text-right" id="total">Total: ₹300.00</p>

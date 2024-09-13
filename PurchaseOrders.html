@@ -7,6 +7,7 @@
     <title>Purchase Orders</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/sumoselect.min.css">
 
     <style>
         .transition-max-height {
@@ -24,23 +25,29 @@
             align-items: center;
         }
 
-        @keyframes bg-gradient-animation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+        .group:hover .tooltip {
+            display: block;
+        }
 
-  .animate-bg-change {
-    background: linear-gradient(270deg, #1e40af, #3b82f6, #60a5fa);
-    background-size: 600% 600%;
-    animation: bg-gradient-animation 8s ease infinite;
-  }
+        @keyframes bg-gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-bg-change {
+            background: linear-gradient(270deg, #1e40af, #3b82f6, #60a5fa);
+            background-size: 600% 600%;
+            animation: bg-gradient-animation 8s ease infinite;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -229,9 +236,9 @@
                         </tr>
                     </thead>
                     <tbody id="purchaseOrdersBody">
-                        <!-- Sample Data Rows -->
+                        <!-- Row 1 -->
                         <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
+                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer text-center">
                             <td class="px-4 py-2 flex items-center space-x-2">
                                 <!-- Image -->
                                 <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
@@ -244,29 +251,37 @@
                             <td class="px-4 py-2">Salesperson A</td>
                             <td class="px-4 py-2">30 days</td>
                             <td class="px-4 py-2">₹5000.00</td>
-                            <td class="flex justify-center items-center space-x-2 relative">
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
+                            <td class="py-2 text-center">
+                                <div class="flex justify-center items-center space-x-2 relative">
+                                    <button class="text-black rounded relative group" data-tooltip="View">
+                                        <i class="fas fa-eye"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">View</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Download">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Download
+                                            Attachment</span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
-                        <!-- Accordion Row for Additional Details -->
+                        <!-- Accordion Row 1 -->
                         <tr class="accordion-row hidden">
-                            <td colspan="10" class="bg-gray-50 p-4 border-t">
+                            <td colspan="7" class="bg-gray-50 p-4 border-t">
                                 <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0 w-full">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">A</span> has placed
+                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
+                                    <p class="text-gray-700">Customer <span class="font-semibold">A</span> placed
                                         Purchase Order <span class="font-semibold">PO001</span> with the title <span
                                             class="font-semibold">Title A</span> for a total amount of <span
-                                            class="font-semibold">₹5000.00</span>.
-                                    </p>
-                                    <p class="text-gray-600 mt-2">The services included in this order are:</p>
+                                            class="font-semibold">₹5000.00</span>.</p>
+                                    <p class="text-gray-600 mt-2">Services included:</p>
                                     <table class="min-w-full bg-white border border-gray-300">
                                         <thead>
                                             <tr>
@@ -293,16 +308,18 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <p class="text-gray-600 mt-2">This order is handled by <span
-                                            class="font-semibold">Salesperson A</span> with payment terms of <span
-                                            class="font-semibold">30 days</span>.</p>
+                                    <p class="text-gray-600 mt-2">Handled by <span class="font-semibold">Salesperson
+                                            A</span> with payment terms of <span class="font-semibold">30 days</span>.
+                                    </p>
                                     <p class="text-gray-600 mt-2">Proposal reference: <span
                                             class="font-semibold">Proposal A</span></p>
                                 </div>
                             </td>
                         </tr>
+
+                        <!-- Row 2 -->
                         <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
+                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer text-center">
                             <td class="px-4 py-2 flex items-center space-x-2">
                                 <!-- Image -->
                                 <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
@@ -315,42 +332,52 @@
                             <td class="px-4 py-2">Salesperson B</td>
                             <td class="px-4 py-2">45 days</td>
                             <td class="px-4 py-2">₹1000.00</td>
-                            <td class="flex justify-center items-center space-x-2 relative">
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
+                            <td class="py-2 text-center">
+                                <div class="flex justify-center items-center space-x-2 relative">
+                                    <button class="text-black rounded relative group" data-tooltip="View">
+                                        <i class="fas fa-eye"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">View</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Download">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Download
+                                            Attachment</span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
+                        <!-- Accordion Row 2 -->
                         <tr class="accordion-row hidden">
-                            <td colspan="10" class="bg-gray-50 p-4 border-t">
+                            <td colspan="7" class="bg-gray-50 p-4 border-t">
                                 <div
                                     class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">In the purchase order <span
-                                            class="font-semibold">PO002</span>
-                                        titled <span class="font-semibold">Title
-                                            B</span>, <span class="font-semibold">Customer B</span> has agreed to a
-                                        total payment of <span class="font-semibold">₹1,000.00</span>.</p>
-                                    <p class="text-gray-600 mt-2">This order includes the following services:</p>
+                                    <p class="text-gray-700">In Purchase Order <span class="font-semibold">PO002</span>
+                                        titled <span class="font-semibold">Title B</span>, <span
+                                            class="font-semibold">Customer B</span> agreed to a total payment of <span
+                                            class="font-semibold">₹1000.00</span>.</p>
+                                    <p class="text-gray-600 mt-2">Services included:</p>
                                     <ul class="list-disc list-inside text-gray-600">
                                         <li>Basic Consultation - ₹500.00</li>
                                         <li>Technical Support - ₹300.00</li>
                                         <li>System Monitoring - ₹200.00</li>
                                     </ul>
-                                    <p class="text-gray-600 mt-2">The order is under the supervision of <span
-                                            class="font-semibold">Salesperson B</span>, with payment terms of <span
-                                            class="font-semibold">45 days</span>. For further details, refer to <span
-                                            class="font-semibold">Proposal B</span>.</p>
+                                    <p class="text-gray-600 mt-2">Supervised by <span class="font-semibold">Salesperson
+                                            B</span> with payment terms of <span class="font-semibold">45 days</span>.
+                                        Refer to <span class="font-semibold">Proposal B</span> for further details.</p>
                                 </div>
                             </td>
                         </tr>
+
+                        <!-- Row 3 -->
                         <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
+                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer text-center">
                             <td class="px-4 py-2 flex items-center space-x-2">
                                 <!-- Image -->
                                 <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
@@ -363,141 +390,55 @@
                             <td class="px-4 py-2">Salesperson C</td>
                             <td class="px-4 py-2">60 days</td>
                             <td class="px-4 py-2">₹50,000.00</td>
-                            <td class="flex justify-center items-center space-x-2 relative">
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
+                            <td class="py-2 text-center">
+                                <div class="flex justify-center items-center space-x-2 relative">
+                                    <button class="text-black rounded relative group" data-tooltip="View">
+                                        <i class="fas fa-eye"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">View</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Edit">
+                                        <i class="fas fa-edit"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Edit</span>
+                                    </button>
+                                    <button class="text-black rounded relative group" data-tooltip="Download">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span
+                                            class="tooltip hidden absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-sm text-white bg-gray-700 rounded">Download
+                                            Attachment</span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
+                        <!-- Accordion Row 3 -->
                         <tr class="accordion-row hidden">
-                            <td colspan="10" class="bg-gray-50 p-4 border-t">
+                            <td colspan="7" class="bg-gray-50 p-4 border-t">
                                 <div
                                     class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">C</span> has placed
-                                        Purchase Order <span class="font-semibold">PO003</span> with the title <span
-                                            class="font-semibold">Title C</span> for a total amount of <span
+                                    <p class="text-gray-700">Customer <span class="font-semibold">C</span> placed
+                                        Purchase Order <span class="font-semibold">PO003</span> titled <span
+                                            class="font-semibold">Title C</span> with a total amount of <span
                                             class="font-semibold">₹50,000.00</span>.</p>
-                                    <p class="text-gray-600 mt-2">The services included in this order are:</p>
+                                    <p class="text-gray-600 mt-2">Services included:</p>
                                     <ul class="list-disc list-inside text-gray-600">
                                         <li>Website Design - ₹20,000.00</li>
                                         <li>Mobile App Development - ₹15,000.00</li>
                                         <li>Social Media Marketing - ₹10,000.00</li>
                                         <li>Technical Support - ₹5,000.00</li>
                                     </ul>
-                                    <p class="text-gray-600 mt-2">This order is managed by <span
-                                            class="font-semibold">Salesperson C</span> with payment terms of <span
-                                            class="font-semibold">60 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Proposal reference: <span
-                                            class="font-semibold">Proposal
-                                            C</span></p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer D</span>
-                            </td>
-                            <td class="px-4 py-2">PO004</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Salesperson D</td>
-                            <td class="px-4 py-2">30 days</td>
-                            <td class="px-4 py-2">₹852.00</td>
-                            <td class="flex justify-center items-center space-x-2 relative">
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="10" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">Customer <span class="font-semibold">D</span> has placed
-                                        Purchase Order <span class="font-semibold">PO004</span> titled <span
-                                            class="font-semibold">Title D</span> with a total value of <span
-                                            class="font-semibold">₹852.00</span>.</p>
-                                    <p class="text-gray-600 mt-2">This order includes the following services:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Email Hosting - ₹300.00</li>
-                                        <li>SSL Certificate - ₹250.00</li>
-                                        <li>Domain Renewal - ₹200.00</li>
-                                        <li>Technical Support - ₹102.00</li>
-                                    </ul>
-                                    <p class="text-gray-600 mt-2">The order is handled by <span
-                                            class="font-semibold">Salesperson D</span> with a payment term of <span
-                                            class="font-semibold">30 days</span>.</p>
-                                    <p class="text-gray-600 mt-2">Refer to <span class="font-semibold">Proposal D</span>
-                                        for additional details.</p>
-
-                                </div>
-                            </td>
-                        </tr>
-                        <tr
-                            class="hover:bg-gray-100 hover:shadow-lg transition-shadow duration-300 ease-in-out cursor-pointer">
-                            <td class="px-4 py-2 flex items-center space-x-2">
-                                <!-- Image -->
-                                <img src="https://picsum.photos/40" alt="Avatar" class="w-10 h-10 rounded-full">
-
-                                <!-- Text -->
-                                <span>Customer E</span>
-                            </td>
-                            <td class="px-4 py-2">PO005</td>
-                            <td class="py-2">23-08-2024</td>
-                            <td class="px-4 py-2">Salesperson E</td>
-                            <td class="px-4 py-2">45 days</td>
-                            <td class="px-4 py-2">₹75,000.00</td>
-                            <td class="flex justify-center items-center space-x-2 relative">
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-black px-1 py-1 rounded">
-                                    <i class="fas fa-paperclip"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="accordion-row hidden">
-                            <td colspan="10" class="bg-gray-50 p-4 border-t">
-                                <div
-                                    class="accordion-content transition-all duration-500 ease-in-out overflow-hidden max-h-0">
-                                    <p class="text-gray-700">For Purchase Order <span class="font-semibold">PO005</span>
-                                        titled <span class="font-semibold">Title E</span>, <span
-                                            class="font-semibold">Customer E</span> has committed a total of <span
-                                            class="font-semibold">₹75,000</span>.</p>
-                                    <p class="text-gray-600 mt-2">The following services are included in this order:</p>
-                                    <ul class="list-disc list-inside text-gray-600">
-                                        <li>Website Development - ₹50,000.00</li>
-                                        <li>SEO Optimization - ₹15,000.00</li>
-                                        <li>Content Management System (CMS) - ₹7,500.00</li>
-                                        <li>Monthly Maintenance - ₹2,500.00</li>
-                                    </ul>
                                     <p class="text-gray-600 mt-2">Managed by <span class="font-semibold">Salesperson
-                                            E</span>, this order has a payment term of <span class="font-semibold">45
-                                            days</span>. For more details, please refer to <span
-                                            class="font-semibold">Proposal E</span>.</p>
+                                            C</span> with payment terms of <span class="font-semibold">60 days</span>.
+                                    </p>
+                                    <p class="text-gray-600 mt-2">Proposal reference: <span
+                                            class="font-semibold">Proposal C</span></p>
                                 </div>
                             </td>
                         </tr>
+
+                        <!-- Repeat similar rows for other customers... -->
                     </tbody>
+
                 </table>
 
                 <div class="flex justify-between items-center mt-4">
@@ -523,7 +464,7 @@
 
         <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
         <script>
             let currentPage = 1;
             const rowsPerPage = 10;
@@ -621,31 +562,41 @@
 
                 rows.forEach((row, index) => {
                     //if (index % 2 === 0) { // Target only the data rows (not the accordion rows)
-                        row.addEventListener("click", function () {
-                            const accordionRow = this.nextElementSibling;
-                            const accordionContent = accordionRow.querySelector(".accordion-content");
+                    row.addEventListener("click", function () {
+                        const accordionRow = this.nextElementSibling;
+                        const accordionContent = accordionRow.querySelector(".accordion-content");
 
-                            if (accordionRow.classList.contains("hidden")) {
-                                accordionRow.classList.remove("hidden");
-                                accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                            } else {
-                                accordionContent.style.maxHeight = "0px";
-                                setTimeout(() => {
-                                    accordionRow.classList.add("hidden");
-                                }, 500); // Wait for the animation to complete before hiding
-                            }
-                        });
+                        if (accordionRow.classList.contains("hidden")) {
+                            accordionRow.classList.remove("hidden");
+                            accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                        } else {
+                            accordionContent.style.maxHeight = "0px";
+                            setTimeout(() => {
+                                accordionRow.classList.add("hidden");
+                            }, 500); // Wait for the animation to complete before hiding
+                        }
+                    });
                     //}
                 });
             });
 
 
             $(document).ready(function () {
-                $('#filterCustomer').select2();
-            });
+                // Initialize SumoSelect for #filterCustomer
+                $('#filterCustomer').SumoSelect({
+                    placeholder: 'Select a customer',
+                    search: true, // Enable search in the dropdown
+                    searchText: 'Search...',
+                    okCancelInMulti: true // Adds OK and Cancel buttons for multi-select
+                });
 
-            $(document).ready(function () {
-                $('#filterSoldBy').select2();
+                // Initialize SumoSelect for #filterSoldBy
+                $('#filterSoldBy').SumoSelect({
+                    placeholder: 'Select who sold by',
+                    search: true, // Enable search in the dropdown
+                    searchText: 'Search...',
+                    okCancelInMulti: true // Adds OK and Cancel buttons for multi-select
+                });
             });
         </script>
 </body>

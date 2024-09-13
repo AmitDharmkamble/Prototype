@@ -29,19 +29,20 @@
         }
 
         .stripe-pattern {
-    background: linear-gradient(45deg, blue 25%, transparent 25%, transparent 50%, #ffeb3b 50%, #ffeb3b 75%, transparent 75%, transparent);
-    background-size: 50px 50px;
-    animation: stripe-animation 4s linear infinite;
-  }
+            background: linear-gradient(45deg, blue 25%, transparent 25%, transparent 50%, #ffeb3b 50%, #ffeb3b 75%, transparent 75%, transparent);
+            background-size: 50px 50px;
+            animation: stripe-animation 4s linear infinite;
+        }
 
-  @keyframes stripe-animation {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 50px 50px;
-    }
-  }
+        @keyframes stripe-animation {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -113,7 +114,8 @@
                 <form id="serviceForm">
                     <input type="hidden" id="serviceId" name="serviceId">
                     <div class="mb-4">
-                        <label for="serviceName" class="block text-sm font-medium text-gray-700">Service Name<span class="text-red-500">*</span></label>
+                        <label for="serviceName" class="block text-sm font-medium text-gray-700">Service Name<span
+                                class="text-red-500">*</span></label>
                         <input type="text" id="serviceName" name="serviceName"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
                     </div>
@@ -152,7 +154,8 @@
                             data-sort="service_name">Service Name</th>
                         <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
                             data-sort="service_sac_code">SAC Code</th>
-                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left" data-sort="is_active">Is
+                        <th class="px-4 py-2 border-b cursor-pointer bg-gray-200 text-gray-700 text-left"
+                            data-sort="is_active">Is
                             Active</th>
                         <th class="border-b bg-gray-200 text-gray-700">Actions</th>
                     </tr>
