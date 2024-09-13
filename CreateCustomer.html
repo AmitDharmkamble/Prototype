@@ -95,6 +95,78 @@
                     --ring: 240 4.9% 83.9%;
 				}
 		        }
+
+                .paisley-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f0f0; /* Background color */
+  overflow: hidden;
+}
+
+.paisley {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
+  margin: 50px auto;
+}
+
+.paisley:before, .paisley:after {
+  content: "";
+  position: absolute;
+}
+
+/* Teardrop shape */
+.paisley:before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at top left, #8842f4 50%, transparent 50%);
+  border-radius: 50% 0 0 50%;
+}
+
+.paisley:after {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(72deg);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at top left, #8842f4 50%, transparent 50%);
+  border-radius: 50% 0 0 50%;
+}
+
+/* To create a repeating pattern, 
+   we'll use the :before and :after 
+   pseudo-elements on the container */
+.paisley-container:before, .paisley-container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.paisley-container:before {
+  background-image: 
+    radial-gradient(circle at 20% 30%, #8842f4 10%, transparent 10%),
+    radial-gradient(circle at 80% 50%, #8842f4 10%, transparent 10%),
+    radial-gradient(circle at 50% 80%, #8842f4 10%, transparent 10%);
+  background-size: 100px 100px;
+  background-position: 0 0, 50px 50px, 0 100px;
+}
+
+.paisley-container:after {
+  background-image: 
+    radial-gradient(circle at 50% 20%, #8842f4 10%, transparent 10%),
+    radial-gradient(circle at 20% 70%, #8842f4 10%, transparent 10%),
+    radial-gradient(circle at 80% 30%, #8842f4 10%, transparent 10%);
+  background-size: 100px 100px;
+  background-position: 50px 0, 0 50px, 100px 100px;
+  transform: rotate(30deg);
+}
 	</style>
 </head>
 
@@ -103,6 +175,9 @@
     </div>
 
     <header class="bg-blue-600 text-black p-4">
+        <div class="paisley-container">
+            <div class="paisley"></div>
+          </div>
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
@@ -151,7 +226,8 @@
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <p class="text-3xl font-bold text-gray-800 mb-6">Add Customer</p>
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Name<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Name<span
+                            class="text-red-500">*</span></label>
                     <div class="flex">
                         <input id="companyName" type="text" placeholder="Enter Company Name"
                             class="border border-gray-300 rounded-l-md p-3 flex-1" />
@@ -159,13 +235,15 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">GSTIN<span
+                            class="text-red-500">*</span></label>
                     <input id="gstin" type="text" placeholder="Enter GSTIN"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Address<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Address<span
+                            class="text-red-500">*</span></label>
                     <input id="addressLine1" type="text" placeholder="Line 1"
                         class="border border-gray-300 rounded-md p-3 mb-2 w-full" />
                     <input id="addressLine2" type="text" placeholder="Line 2"
@@ -175,19 +253,22 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Phone Number<span
+                            class="text-red-500">*</span></label>
                     <input id="companyPhone" type="text" placeholder="Enter Phone Number"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Website<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Company Website<span
+                            class="text-red-500">*</span></label>
                     <input id="companyWebsite" type="text" placeholder="Enter Website URL"
                         class="border border-gray-300 rounded-md p-3 w-full" />
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">City<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">City<span
+                            class="text-red-500">*</span></label>
                     <select id="city" class="w-full p-2 border border-gray-300 rounded-lg" required>
                         <option value="" disabled selected>Select City</option>
                         <option>Pune</option>
@@ -197,7 +278,8 @@
                 </div>
 
                 <div class="mb-5">
-                    <label class="block text-sm font-medium text-gray-600 mb-2">Industry<span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Industry<span
+                            class="text-red-500">*</span></label>
                     <select id="industry" class="w-full p-2 border border-gray-300 rounded-lg" required>
                         <option value="" disabled selected>Select industry</option>
                         <option>Hotel</option>
@@ -213,17 +295,20 @@
                 <div class="mb-5">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Contact Person</h2>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Name<span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Name<span
+                                class="text-red-500">*</span></label>
                         <input id="contactName" type="text" placeholder="Enter Name"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Phone<span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Phone<span
+                                class="text-red-500">*</span></label>
                         <input id="contactPhone" type="text" placeholder="Enter Phone"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Email<span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Email<span
+                                class="text-red-500">*</span></label>
                         <input id="contactEmail" type="text" placeholder="Enter Email"
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
@@ -233,7 +318,8 @@
                             class="border border-gray-300 rounded-md p-3 w-full" />
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Primary<span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Primary<span
+                                class="text-red-500">*</span></label>
                         <select id="contactIsPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
                             <option value="" disabled selected>Is Primary</option>
                             <option>Yes</option>
@@ -241,7 +327,8 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Signing Authority<span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Is Signing Authority<span
+                                class="text-red-500">*</span></label>
                         <select id="contactIsSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg"
                             required>
                             <option value="" disabled selected>Is Signing Authority</span></option>

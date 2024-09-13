@@ -22,13 +22,33 @@
         .counter {
             animation: countUp 1s ease-out forwards;
         }
+
+        .wave-pattern {
+            background: repeating-linear-gradient(135deg, #4f46e5 10px, #3b82f6 20px);
+            background-size: 200% 200%;
+            animation: wave-animation 8s ease-in-out infinite;
+        }
+
+        @keyframes wave-animation {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="sidebar-container">
     </div>
-    <header class="bg-blue-600 text-black p-4">
+    <header class="wave-pattern p-4 text-black">
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">

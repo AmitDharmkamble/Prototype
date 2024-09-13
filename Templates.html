@@ -29,6 +29,25 @@
         .group:hover .tooltip {
             display: block;
         }
+
+        @keyframes ripple {
+    0% {
+      background-size: 100% 100%;
+    }
+    50% {
+      background-size: 200% 200%;
+    }
+    100% {
+      background-size: 100% 100%;
+    }
+  }
+
+  .animate-ripple {
+    background: radial-gradient(circle, rgba(0, 136, 255, 0.4), rgba(0, 68, 136, 0.8));
+    animation: ripple 5s ease infinite;
+  }
+
+  
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Include CKEditor 5 library -->
@@ -39,7 +58,7 @@
 <body>
     <div id="sidebar-container">
     </div>
-    <header class="bg-blue-600 text-black p-4">
+    <header class="bg-blue-600 text-black p-4 animate-ripple">
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">

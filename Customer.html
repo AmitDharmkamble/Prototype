@@ -141,6 +141,101 @@
             visibility: visible;
             opacity: 1;
         }
+
+        .shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* Keep behind other elements */
+    pointer-events: none; /* Prevent it from blocking clicks */
+  }
+
+  /* Common shape styles */
+  .shapes-container .shape {
+    position: absolute;
+    animation: floatShapes 15s infinite ease-in-out;
+    opacity: 0.6;
+  }
+
+  /* Circles */
+  .shapes-container .circle {
+    background-color: rgba(30, 144, 255, 0.7); /* Blue shade */
+    border-radius: 50%;
+  }
+
+  .shapes-container .circle.one {
+    width: 120px;
+    height: 120px;
+    left: 15%;
+    top: 20%;
+    animation-delay: 2s;
+  }
+
+  .shapes-container .circle.two {
+    width: 80px;
+    height: 80px;
+    right: 15%;
+    top: 50%;
+    animation-delay: 4s;
+  }
+
+  /* Triangles */
+  .shapes-container .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 80px solid rgba(0, 102, 255, 0.6);
+  }
+
+  .shapes-container .triangle.one {
+    top: 30%;
+    left: 60%;
+    animation-delay: 3s;
+  }
+
+  .shapes-container .triangle.two {
+    top: 60%;
+    right: 20%;
+    animation-delay: 5s;
+  }
+
+  /* Squares */
+  .shapes-container .square {
+    background-color: rgba(0, 153, 255, 0.5);
+  }
+
+  .shapes-container .square.one {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 6s;
+  }
+
+  .shapes-container .square.two {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1s;
+  }
+
+  /* Move and rotate shapes */
+  @keyframes floatShapes {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(50px, -30px) rotate(180deg);
+    }
+    100% {
+      transform: translate(-50px, 30px) rotate(360deg);
+    }
+  }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -149,7 +244,16 @@
     <div id="sidebar-container">
 
     </div>
+    
     <header class="bg-blue-600 text-black p-4">
+        <div class="shapes-container">
+            <div class="shape circle one"></div>
+            <div class="shape circle two"></div>
+            <div class="shape triangle one"></div>
+            <div class="shape triangle two"></div>
+            <div class="shape square one"></div>
+            <div class="shape square two"></div>
+          </div>
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
@@ -193,10 +297,12 @@
     </header>
 
     <div class="container mx-auto flex p-4">
+        <div class="shapes-container"></div>
         <div>
             <h1 class="text-2xl font-bold">Customers</h1>
             <p class="text-muted-foreground">Add, search and manage your customers and contact persons in one place.</p>
-            <a href="https://relic-brisket-98a.notion.site/Invoice-System-Customers-Document-5a19a9e9a7ea4ffc9c6e84a1e3e62122?pvs=74" class="text-primary underline">More information on this page.</a>
+            <a href="https://relic-brisket-98a.notion.site/Invoice-System-Customers-Document-5a19a9e9a7ea4ffc9c6e84a1e3e62122?pvs=74"
+                class="text-primary underline">More information on this page.</a>
         </div>
         <div class="flex items-center space-x-2 ml-auto">
             <a href="CreateCustomer.html"
@@ -222,7 +328,7 @@
                 The total number of customers currently stands at 521.
             </div>
         </div>
-        
+
 
         <!-- Second Div with Tooltip -->
         <div class="relative group w-1/3">
@@ -239,7 +345,7 @@
                 There are currently 195 inactive customers.
             </div>
         </div>
-        
+
 
         <!-- Third Div with Tooltip -->
         <div class="relative group w-1/3">
@@ -270,7 +376,7 @@
                 Currently, there are 158 active customers.
             </div>
         </div>
-        
+
 
     </div>
 
@@ -317,8 +423,8 @@
                         onclick="toggleContacts(this)">
 
                         <!-- Image Section -->
-                        <img class="w-full h-40 object-fill rounded-t-lg" src="https://www.ikf.co.in/wp-content/uploads/ikf-logo-svg.svg"
-                            alt="Hotel Image">
+                        <img class="w-full h-40 object-fill rounded-t-lg"
+                            src="https://www.ikf.co.in/wp-content/uploads/ikf-logo-svg.svg" alt="Hotel Image">
 
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-gray-700">Hotel</h3>
@@ -583,12 +689,16 @@
                             <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-4">Create New Record</h2>
                             <form id="modal-form">
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="name">Name <span class="text-red-500">*</span></label>
-                                    <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Name" required>
+                                    <label class="block text-gray-700 mb-2" for="name">Name <span
+                                            class="text-red-500">*</span></label>
+                                    <input id="name" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Name" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label for="organization" class="block text-gray-700 mb-2">Organization <span class="text-red-500">*</span></label>
-                                    <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                                    <label for="organization" class="block text-gray-700 mb-2">Organization <span
+                                            class="text-red-500">*</span></label>
+                                    <select id="organization" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        required>
                                         <option value="" disabled selected>Select an organization</option>
                                         <option>Acme, Inc.</option>
                                         <option>Another Org</option>
@@ -596,41 +706,54 @@
                                     </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="phone">Phone Number <span class="text-red-500">*</span></label>
-                                    <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Phone Number" required>
+                                    <label class="block text-gray-700 mb-2" for="phone">Phone Number <span
+                                            class="text-red-500">*</span></label>
+                                    <input id="phone" type="text" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Phone Number" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="email">Email Id <span class="text-red-500">*</span></label>
-                                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Email Id" required>
+                                    <label class="block text-gray-700 mb-2" for="email">Email Id <span
+                                            class="text-red-500">*</span></label>
+                                    <input id="email" type="email" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Email Id" required>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 mb-2" for="designation">Designation</label>
-                                    <input id="designation" type="text" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter Designation" required>
+                                    <input id="designation" type="text"
+                                        class="w-full p-2 border border-gray-300 rounded-lg"
+                                        placeholder="Enter Designation" required>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary <span class="text-red-500">*</span></label>
-                                    <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                                    <label class="block text-gray-700 mb-2" for="isPrimary">Is Primary <span
+                                            class="text-red-500">*</span></label>
+                                    <select id="isPrimary" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        required>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="block text-gray-700 mb-2" for="isSigningAuthority">Is Signing Authority <span class="text-red-500">*</span></label>
-                                    <select id="isSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg" required>
+                                    <label class="block text-gray-700 mb-2" for="isSigningAuthority">Is Signing
+                                        Authority <span class="text-red-500">*</span></label>
+                                    <select id="isSigningAuthority" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        required>
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 mb-2" for="avatar">Upload Avatar</label>
-                                    <input id="avatar" type="file" class="w-full p-2 border border-gray-300 rounded-lg" accept="image/*">
+                                    <input id="avatar" type="file" class="w-full p-2 border border-gray-300 rounded-lg"
+                                        accept="image/*">
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="button" id="modal-close" class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
-                                    <button type="submit" id="modal-submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
+                                    <button type="button" id="modal-close"
+                                        class="bg-red-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-600">Cancel</button>
+                                    <button type="submit" id="modal-submit"
+                                        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 ml-2">Save</button>
                                 </div>
                             </form>
-                            
+
 
                         </div>
                     </div>
@@ -776,7 +899,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Emily Davis</div>
                                     <div class="text-xs text-gray-500">HR Manager</div>
@@ -802,7 +925,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Michael Johnson</div>
                                     <div class="text-xs text-gray-500">Sales Lead</div>
@@ -828,7 +951,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Olivia Martinez</div>
                                     <div class="text-xs text-gray-500">Marketing Specialist</div>
@@ -854,7 +977,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">James Wilson</div>
                                     <div class="text-xs text-gray-500">Product Manager</div>
@@ -880,7 +1003,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Sophia Brown</div>
                                     <div class="text-xs text-gray-500">Business Analyst</div>
@@ -906,7 +1029,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Liam Thompson</div>
                                     <div class="text-xs text-gray-500">Customer Support</div>
@@ -932,7 +1055,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>IKF</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Mia Anderson</div>
                                     <div class="text-xs text-gray-500">Lead Developer</div>
@@ -958,7 +1081,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Noah Walker</div>
                                     <div class="text-xs text-gray-500">Financial Analyst</div>
@@ -984,7 +1107,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Isabella Lee</div>
                                     <div class="text-xs text-gray-500">Operations Manager</div>
@@ -1010,7 +1133,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Ethan Harris</div>
                                     <div class="text-xs text-gray-500">HR Coordinator</div>
@@ -1036,7 +1159,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Ava Martinez</div>
                                     <div class="text-xs text-gray-500">Product Specialist</div>
@@ -1062,7 +1185,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">William King</div>
                                     <div class="text-xs text-gray-500">Business Development</div>
@@ -1088,7 +1211,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Charlotte Wright</div>
                                     <div class="text-xs text-gray-500">Customer Success</div>
@@ -1114,7 +1237,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>IKF</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Lucas Scott</div>
                                     <div class="text-xs text-gray-500">Lead Designer</div>
@@ -1140,7 +1263,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>LMN Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Mason Green</div>
                                     <div class="text-xs text-gray-500">Financial Planner</div>
@@ -1166,7 +1289,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>OPQ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Amelia Adams</div>
                                     <div class="text-xs text-gray-500">Operations Analyst</div>
@@ -1192,7 +1315,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>RST Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Evelyn Evans</div>
                                     <div class="text-xs text-gray-500">HR Assistant</div>
@@ -1218,7 +1341,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>UVW Inc</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Henry Carter</div>
                                     <div class="text-xs text-gray-500">Product Development</div>
@@ -1244,7 +1367,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>XYZ Ltd</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Isabella Phillips</div>
                                     <div class="text-xs text-gray-500">Marketing Manager</div>
@@ -1270,7 +1393,7 @@
                                 <td class="p-4 flex items-center space-x-3">
                                     <img src="https://picsum.photos/50" alt="Avatar" class="w-10 h-10 rounded-full">
                                     <span>ABC Corp</span>
-                                </td>                                
+                                </td>
                                 <td class="p-4">
                                     <div class="text-sm font-semibold">Owen Rivera</div>
                                     <div class="text-xs text-gray-500">Customer Support</div>

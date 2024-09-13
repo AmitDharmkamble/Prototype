@@ -27,6 +27,54 @@
         .group:hover .tooltip {
             display: block;
         }
+
+        .pulsing-circles {
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  .pulsing-circles::before,
+  .pulsing-circles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 235, 59, 0.6); /* Semi-transparent yellow */
+    animation: pulse 3s infinite;
+  }
+
+  .pulsing-circles::before {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .pulsing-circles::after {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 1.5s;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.5;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -35,7 +83,7 @@
 
     <div id="sidebar-container"></div>
 
-    <header class="bg-blue-600 text-black p-4">
+    <header class="pulsing-circles text-black p-4">
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">

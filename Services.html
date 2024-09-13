@@ -27,6 +27,21 @@
         .group:hover .tooltip {
             display: block;
         }
+
+        .stripe-pattern {
+    background: linear-gradient(45deg, blue 25%, transparent 25%, transparent 50%, #ffeb3b 50%, #ffeb3b 75%, transparent 75%, transparent);
+    background-size: 50px 50px;
+    animation: stripe-animation 4s linear infinite;
+  }
+
+  @keyframes stripe-animation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -35,7 +50,7 @@
 
     <div id="sidebar-container"></div>
 
-    <header class="bg-blue-600 text-black p-4">
+    <header class="stripe-pattern text-black p-4">
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">

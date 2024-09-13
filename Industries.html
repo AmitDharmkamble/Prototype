@@ -27,6 +27,45 @@
         .group:hover .tooltip {
             display: block;
         }
+
+        .animated-bg {
+  position: relative;
+  overflow: hidden;
+  background-color: #0000; /* transparent background */
+}
+
+.animated-bg::before, .animated-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  animation: pulse 2s linear infinite;
+}
+
+.animated-bg::before {
+  background-color: #2196f3; /* blue */
+  animation-delay: 0s;
+}
+
+.animated-bg::after {
+  background-color: #f7dc6f; /* yellow */
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -35,7 +74,7 @@
 
     <div id="sidebar-container"></div>
 
-    <header class="bg-blue-600 text-black p-4">
+    <header class="animated-bg text-black p-4">
         <div class="flex justify-end p-4 space-x-4">
             <div class="relative dropdown">
                 <button class="flex items-center bg-white p-2 rounded-full shadow focus:outline-none focus:ring">
