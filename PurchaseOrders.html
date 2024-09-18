@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/sumoselect.min.css">
 
     <style>
+        body {
+            cursor: none;
+            background-color: black;
+        }
+
         .transition-max-height {
             transition: max-height 0.3s ease-in-out;
         }
@@ -48,13 +53,27 @@
             background-size: 600% 600%;
             animation: bg-gradient-animation 8s ease infinite;
         }
+
+        .cursor {
+            pointer-events: none;
+            position: fixed;
+            padding: 0.3rem;
+            background-color: #fff;
+            border-radius: 50%;
+            mix-blend-mode: difference;
+            transition: transform 0.3s ease;
+        }
+
+        .link:hover~.cursor {
+            transform: translate(-50%, -50%) scale(8);
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="">
-
+    <div class="cursor"></div>
     <div id="sidebar-container"></div>
 
     <header class="bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 text-black p-4 animate-bg-change">
@@ -464,7 +483,7 @@
 
         <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js"></script>
         <script>
             let currentPage = 1;
             const rowsPerPage = 10;
@@ -598,6 +617,33 @@
                     okCancelInMulti: true // Adds OK and Cancel buttons for multi-select
                 });
             });
+
+            const cursor = document.querySelector('.cursor');
+
+            const animateit = function (e) {
+                const span = this.querySelector('.link > span');
+                const { offsetX: x, offsetY: y } = e,
+                    { offsetWidth: width, offsetHeight: height } = this,
+
+                    move = 25,
+                    xMove = x / width * (move * 2) - move,
+                    yMove = y / height * (move * 2) - move;
+
+                span.style.transform = `translate(${xMove}px, ${yMove}px)`;
+
+                if (e.type === 'mouseleave') span.style.transform = '';
+            };
+
+            const editCursor = e => {
+                const { clientX: x, clientY: y } = e;
+                cursor.style.left = x + 'px';
+                cursor.style.top = y + 'px';
+            };
+
+            link.forEach(b => b.addEventListener('mousemove', animateit));
+            link.forEach(b => b.addEventListener('mouseleave', animateit));
+            window.addEventListener('mousemove', editCursor);
+
         </script>
 </body>
 
