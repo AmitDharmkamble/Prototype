@@ -9,63 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        .transition-max-height {
-            transition: max-height 0.3s ease-in-out;
-        }
-
-        .filters {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .filters>div {
-            display: flex;
-            align-items: center;
-        }
-
-        .group:hover .tooltip {
-            display: block;
-        }
-
-        .animated-bg {
-  position: relative;
-  overflow: hidden;
-  background-color: #0000; /* transparent background */
-}
-
-.animated-bg::before, .animated-bg::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  animation: pulse 2s linear infinite;
-}
-
-.animated-bg::before {
-  background-color: #2196f3; /* blue */
-  animation-delay: 0s;
-}
-
-.animated-bg::after {
-  background-color: #f7dc6f; /* yellow */
-  animation-delay: 1s;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.5);
-  }
-}
+        
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
